@@ -1,6 +1,9 @@
 import React, { CSSProperties } from "react";
 import Head from "next/head";
 
+import { Providers } from "../pages/providers";
+import "@rainbow-me/rainbowkit/styles.css";
+
 import { Header } from "./Header";
 import { usePathname } from "next/navigation";
 
@@ -29,7 +32,8 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
         <title>{title}</title>
       </Head>
       <Header />
-      <main>{children}</main>
+
+      <Providers>{children}</Providers>
       {/* {showFooter && <Footer />} */}
     </div>
   );

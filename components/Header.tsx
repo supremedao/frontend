@@ -1,3 +1,5 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 export const Header = () => {
   return (
     <header className="w-full">
@@ -13,7 +15,7 @@ export const Header = () => {
               SupremeDAO
             </a>
           </li>
-          <li className="flex flex-row">
+          <li className="flex flex-row p-4">
             {/* <a
               className="pointer-events-none flex place-items-center gap-2 p-8"
               target="_blank"
@@ -30,14 +32,8 @@ export const Header = () => {
             >
               ABOUT
             </a> */}
-            <a
-              className="pointer-events-none flex place-items-center gap-2 p-8"
-              target="_blank"
-              href=""
-              rel="noopener noreferrer"
-            >
-              Connect Wallet
-            </a>
+
+            <ConnectButton />
           </li>
         </ul>
       </nav>
