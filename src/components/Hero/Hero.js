@@ -1,15 +1,14 @@
-function Hero({ children, img = "" }) {
+import Spline from "@/components/Spline";
+
+function Hero({ children, spline, img = "" }) {
   return (
-    <div className="relative mx-auto my-4 flex flex-col-reverse items-center justify-between px-4 sm:px-6 md:flex-row">
-      <div className="flex items-center py-5 md:w-3/6 md:pb-20 md:pr-10 md:pt-10">
+    <div className="relative mx-auto my-4 flex min-h-[600px] flex-col-reverse items-center justify-between px-4 sm:px-6 md:flex-row md:pt-10">
+      <div className="flex items-center md:w-3/6 md:pr-5">
         <div className="text-left">{children}</div>
       </div>
-      <div className="-my-4 flex h-full items-center md:w-2/5 md:pb-10 md:pl-10">
-        <div className="relative w-full p-3 md:p-0">
-          <div className={"relative w-full"}>
-            <img src={img} width={"60%"} className={"mx-auto "} />
-          </div>
-        </div>
+      <div className="grid min-h-[600px] items-center items-stretch md:w-3/6 ">
+        {img && <img src={img} width={"60%"} className={"mx-auto "} />}
+        {spline && <Spline scene={spline} />}
       </div>
     </div>
   );

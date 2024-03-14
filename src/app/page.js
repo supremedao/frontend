@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
+import Spline from "@/components/Spline";
 
 export default function Home() {
   return (
@@ -15,7 +16,11 @@ export default function Home() {
       <Header />
 
       <article className={"mb-36"}>
-        <Hero img={"/hero/eth.jpg"}>
+        <Hero
+          spline={
+            "https://prod.spline.design/M7xPf-bpJaJkwpRk/scene.splinecode"
+          }
+        >
           <HeroTitle>
             <span className="text-primary">Maximize yield</span>
             {` `} with a single-token DeFi optimizer
@@ -149,7 +154,9 @@ export default function Home() {
         </div>
       </article>
 
-      <Hero img={"/hero/cube.jpg"}>
+      <Hero
+        spline={"https://prod.spline.design/oOLNnQiBDf87m8H8/scene.splinecode"}
+      >
         <HeroTitle>
           Boost your ETH holding{" "}
           <span className={"text-primary"}>with a 10%+ APR</span>
