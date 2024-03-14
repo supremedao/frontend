@@ -6,7 +6,7 @@ function Hero({ children, spline, img = "" }) {
       <div className="flex items-center md:w-3/6 md:pr-5">
         <div className="text-left">{children}</div>
       </div>
-      <div className="grid min-h-[600px] items-center items-stretch md:w-3/6 ">
+      <div className="grid min-h-[600px] items-stretch md:w-3/6 ">
         {img && <img src={img} width={"60%"} className={"mx-auto "} />}
         {spline && <Spline scene={spline} />}
       </div>

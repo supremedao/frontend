@@ -1,5 +1,5 @@
 function About() {
-    return 123
+  return 123;
 }
 
-export default About
+export default About;

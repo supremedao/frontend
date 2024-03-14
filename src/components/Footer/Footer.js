@@ -23,7 +23,7 @@ export default function Footer() {
                 <label for="UserEmail" className="sr-only">
                   Email
                 </label>
-                <div className="btn-secondary flex items-center gap-2 rounded-full border border-black/50 bg-black/5 px-3 py-1 focus-within:ring">
+                <div className="flex items-center gap-2 rounded-full border border-black/50 bg-black/5 px-3 py-1 focus-within:ring">
                   <input
                     type="email"
                     id="UserEmail"

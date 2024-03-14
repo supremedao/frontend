@@ -4,7 +4,7 @@ import Link from "@/components/Link";
 export default function Social() {
   return (
     <article className={""}>
-      <Typography variant={"h3"} className={"mb-6 font-bold"}>
+      <Typography variant={"h3"} className={"mb-6 font-semibold"}>
         Follow us
       </Typography>
 
