@@ -213,15 +213,7 @@ export default function Home() {
 
       <Footer />
 
-      <canvas id="grain" />
-      <Script
-        src="/static/grain.js"
-        onLoad={() => {
-          const el = document.getElementById("grain");
-          console.log(el);
-          new window.Grain(el);
-        }}
-      />
+      <div className="noise-bg" />
     </main>
   );
 }
