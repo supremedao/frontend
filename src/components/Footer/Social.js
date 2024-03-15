@@ -9,36 +9,36 @@ export default function Social() {
       </Typography>
 
       <ul className="col-span-2 flex justify-start gap-6 lg:col-span-5 ">
-        <li>
+        <li className={"flex"}>
           <Link
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75"
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Facebook</span>
 
             <svg
               className="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
+              viewBox="0 0 320 512"
             >
-              <path
-                fill-rule="evenodd"
-                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                clip-rule="evenodd"
-              />
+              <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
             </svg>
           </Link>
         </li>
 
-        <li>
+        <li className={"flex"}>
           <Link
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75"
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Instagram</span>
 
@@ -57,12 +57,14 @@ export default function Social() {
           </Link>
         </li>
 
-        <li>
+        <li className={"flex"}>
           <Link
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75"
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Twitter</span>
 
@@ -77,12 +79,14 @@ export default function Social() {
           </Link>
         </li>
 
-        <li>
+        <li className={"flex"}>
           <Link
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75"
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">GitHub</span>
 
@@ -101,12 +105,14 @@ export default function Social() {
           </Link>
         </li>
 
-        <li>
+        <li className={"flex"}>
           <Link
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75"
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Dribbble</span>
 

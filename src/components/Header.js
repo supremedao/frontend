@@ -21,7 +21,7 @@ export default function Header() {
               width={258}
               height={49}
               className=""
-              src="/logotype.svg"
+              src="/logotype.png"
               alt="Supreme DAO"
             />
           </a>
@@ -71,7 +71,7 @@ export default function Header() {
                 width={129}
                 height={24}
                 className=""
-                src="/logotype.svg"
+                src="/logotype.png"
                 alt="Supreme DAO"
               />
             </a>

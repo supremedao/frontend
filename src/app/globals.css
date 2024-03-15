@@ -4,7 +4,7 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background: #fff;
+  --background: #F4FCFF;
   --linear-bg-start: rgba(92, 169, 252, 0.4);
   --linear-bg-end: rgba(92, 169, 252, 0.15);
 }
@@ -28,12 +28,6 @@ body {
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply transition duration-75 ease-in-out text-xl leading-6 rounded-full py-2 px-0 text-white font-semibold ;
-  }
-}
-
 .noise-bg-container {
   position: absolute;
   top: 0;
@@ -43,15 +37,16 @@ body {
 }
 
 .noise-bg {
-  height: 200%;
-  left: -50%;
+  height: 100%;
   pointer-events: none;
   position: fixed;
-  top: -50%;
-  width: 200%;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 500;
   overflow: hidden;
-  background: transparent url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png') repeat 0 0;
-  opacity: .085;
+  background: transparent url('/bg-noise.svg') repeat 0 0;
+  mix-blend-mode: overlay;
   visibility: visible;
+  opacity: 0.5;
 }

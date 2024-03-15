@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import Header from "@/components/Header";
 import { Hero, HeroTitle } from "@/components/Hero";
 import { Card, CardMedia, CardDate } from "@/components/Card";
@@ -8,7 +7,6 @@ import { Footer } from "@/components/Footer";
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
-import Spline from "@/components/Spline";
 
 export default function Home() {
   return (
@@ -55,17 +53,17 @@ export default function Home() {
             progressively and centred around existing liquidity pools managed by
             our partners.
           </Card>
-          <Card title="Trustless participation" icon={"icons/strategy.svg"}>
+          <Card title="Trustless participation" icon={"icons/trust.svg"}>
             We run regular smart contract audits, implement transparent risk
             management policies, and offer DAO governance to ensure everyone is
             fairly involved.
           </Card>
-          <Card title="$YAI token, hold for yield" icon={"icons/strategy.svg"}>
+          <Card title="$YAI token, hold for yield" icon={"icons/yai.svg"}>
             $YAI stands for Yield Automated Instrument. Holding it gives you
             instant exposure to a wide selection of SupremeDAO’s
             yield-generating strategies.
           </Card>
-          <Card title="$SUP token, vote for yield" icon={"icons/strategy.svg"}>
+          <Card title="$SUP token, vote for yield" icon={"icons/sup.svg"}>
             $SUP is our governance token. Holders play a vital role in our
             ecosystem by determining which strategies are implemented for yield
             generation.
@@ -126,7 +124,7 @@ export default function Home() {
               </Typography>
               <div className={"mt-3"}>
                 <Button className={"w-full"} size={"large"} color={"white"}>
-                  Stake now
+                  Get notified
                 </Button>
               </div>
             </div>
@@ -146,7 +144,7 @@ export default function Home() {
               </Typography>
               <div className={"mt-3"}>
                 <Button className={"w-full"} size={"large"} color={"white"}>
-                  Stake now
+                  Get notified
                 </Button>
               </div>
             </div>

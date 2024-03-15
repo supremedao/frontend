@@ -51,29 +51,25 @@ export default function Footer() {
                   <ul className="space-y-4 text-sm">
                     <li>
                       <Link variant={"h4"} href="#">
-                        {" "}
-                        1on1 Coaching{" "}
+                        Open app
                       </Link>
                     </li>
 
                     <li>
                       <Link variant={"h4"} href="#">
-                        {" "}
-                        Company Review{" "}
+                        Strategies
                       </Link>
                     </li>
 
                     <li>
                       <Link variant={"h4"} href="#">
-                        {" "}
-                        Accounts Review{" "}
+                        About us
                       </Link>
                     </li>
 
                     <li>
                       <Link variant={"h4"} href="#">
-                        {" "}
-                        HR Consulting{" "}
+                        Documentation
                       </Link>
                     </li>
                   </ul>
