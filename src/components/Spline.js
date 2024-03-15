@@ -12,7 +12,7 @@ function Spline({ scene = "" }) {
         </div>
       }
     >
-      <div className="transform-gpu">
+      <div className="pointer-events-none transform-gpu">
         <ReactSpline scene={scene} style={{ width: "100%" }} />
       </div>
     </Suspense>

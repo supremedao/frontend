@@ -32,14 +32,16 @@ export default function RootLayout({ children }) {
             {children}
             <div
               className={
-                "absolute right-0 top-[70rem] -z-10 grid h-[1850px] w-[1100px]"
+                "absolute right-0 top-[80rem] -z-10 grid h-[1850px] w-full overflow-hidden md:top-[70rem]"
               }
             >
-              <Spline
-                scene={
-                  "https://prod.spline.design/67GWXoedqMNytxny/scene.splinecode"
-                }
-              />
+              <div className={"absolute -right-96 top-0 w-[1100px] md:right-0"}>
+                <Spline
+                  scene={
+                    "https://prod.spline.design/67GWXoedqMNytxny/scene.splinecode"
+                  }
+                />
+              </div>
             </div>
           </>
         </NoSSR>

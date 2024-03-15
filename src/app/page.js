@@ -10,7 +10,7 @@ import Link from "@/components/Link";
 
 export default function Home() {
   return (
-    <main className="container mx-auto max-w-screen-xl px-4">
+    <main className="container mx-auto max-w-screen-xl px-3">
       <Header />
 
       <article className={"mb-36"}>
@@ -64,7 +64,7 @@ export default function Home() {
             yield-generating strategies.
           </Card>
           <Card title="$SUP token, vote for yield" icon={"icons/sup.svg"}>
-            $SUP is our governance token. Holders play a vital role in our
+            $SUP is our governance token. Holders play a vital role in our
             ecosystem by determining which strategies are implemented for yield
             generation.
           </Card>
@@ -94,7 +94,7 @@ export default function Home() {
             conic
             className={
               "min-h-[500px] " +
-              "bg-[conic-gradient(from_180deg_at_50%_50%,rgba(60,105,244,0.50)_0deg,rgba(57,99,243,0.05)_360deg)] sm:bg-[conic-gradient(from_90deg_at_50%_50%,rgba(60,105,244,0.50)_0deg,rgba(57,99,243,0.05)_360deg)]"
+              "bg-[conic-gradient(from_180deg_at_50%_50%,rgba(60,105,244,0.40)_0deg,rgba(57,99,243,0.05)_360deg)] sm:bg-[conic-gradient(from_90deg_at_50%_50%,rgba(60,105,244,0.50)_0deg,rgba(57,99,243,0.05)_360deg)]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>
@@ -114,7 +114,7 @@ export default function Home() {
             conic
             className={
               "min-h-[500px] " +
-              "bg-[conic-gradient(from_0deg_at_50%_100%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)] sm:bg-[conic-gradient(from_-90deg_at_100%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)]"
+              "bg-[conic-gradient(from_0deg_at_50%_100%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.40)_360deg)] sm:bg-[conic-gradient(from_-90deg_at_100%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>
@@ -134,7 +134,7 @@ export default function Home() {
             conic
             className={
               "min-h-[500px] " +
-              "bg-[conic-gradient(from_0deg_at_50%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)] sm:bg-[conic-gradient(from_-90deg_at_50%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)]"
+              "bg-[conic-gradient(from_0deg_at_50%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.40)_360deg)] sm:bg-[conic-gradient(from_-90deg_at_50%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>
@@ -151,7 +151,6 @@ export default function Home() {
           </Card>
         </div>
       </article>
-
       <Hero
         spline={"https://prod.spline.design/oOLNnQiBDf87m8H8/scene.splinecode"}
       >
