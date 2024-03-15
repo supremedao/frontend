@@ -92,10 +92,7 @@ export default function Home() {
           <Card
             title="Alpha wstETH"
             conic
-            className={
-              "min-h-[500px] " +
-              "bg-[conic-gradient(from_180deg_at_50%_50%,rgba(60,105,244,0.40)_0deg,rgba(57,99,243,0.05)_360deg)] sm:bg-[conic-gradient(from_90deg_at_50%_50%,rgba(60,105,244,0.50)_0deg,rgba(57,99,243,0.05)_360deg)]"
-            }
+            className={`min-h-[500px] bg-[conic-gradient(var(--conic--down))] sm:bg-[conic-gradient(var(--conic--right))]`}
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
@@ -113,8 +110,7 @@ export default function Home() {
             title="Alpha wstETH"
             conic
             className={
-              "min-h-[500px] " +
-              "bg-[conic-gradient(from_0deg_at_50%_100%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.40)_360deg)] sm:bg-[conic-gradient(from_-90deg_at_100%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)]"
+              "min-h-[500px] bg-[conic-gradient(var(--conic--up-down))] sm:bg-[conic-gradient(var(--conic--left-right))]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>
@@ -133,8 +129,7 @@ export default function Home() {
             title="Alpha wstETH"
             conic
             className={
-              "min-h-[500px] " +
-              "bg-[conic-gradient(from_0deg_at_50%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.40)_360deg)] sm:bg-[conic-gradient(from_-90deg_at_50%_50%,rgba(57,99,243,0.05)_0deg,rgba(60,105,244,0.50)_360deg)]"
+              "min-h-[500px] bg-[conic-gradient(var(--conic--up))] sm:bg-[conic-gradient(var(--conic--left))]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>

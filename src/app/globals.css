@@ -7,6 +7,12 @@
   --background: #F4FCFF;
   --linear-bg-start: rgba(92, 169, 252, 0.4);
   --linear-bg-end: rgba(92, 169, 252, 0.15);
+  --conic--up-down: from 0deg at 50% 100%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.40) 360deg;
+  --conic--up: from 0deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.40) 360deg;
+  --conic--right: from 90deg at 50% 50%, rgba(60, 105, 244, 0.50) 0deg, rgba(57, 99, 243, 0.05) 360deg;
+  --conic--left-right: from -90deg at 100% 50%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.50) 360deg;
+  --conic--left: from -90deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.50) 360deg;
+  --conic--down: from 180deg at 50% 50%, rgba(60, 105, 244, 0.40) 0deg, rgba(57, 99, 243, 0.05) 360deg;
 }
 
 /*@media (prefers-color-scheme: dark) {*/
@@ -27,6 +33,8 @@ body {
     text-wrap: balance;
   }
 }
+
+
 
 .noise-bg-container {
   position: absolute;

@@ -10,7 +10,7 @@ function Card({
 }) {
   return (
     <div
-      className={`flex flex-col rounded-2xl border  border-blue-500/50 bg-gradient-to-br from-[--linear-bg-start] to-[--linear-bg-end] px-5 py-7 backdrop-blur-lg ${className}`}
+      className={`flex flex-col rounded-2xl border  border-blue-500/50 ${!conic ? "bg-gradient-to-br from-[--linear-bg-start] to-[--linear-bg-end] backdrop-blur-lg" : ""} px-5 py-7  ${className}`}
       style={style}
     >
       {icon && (
