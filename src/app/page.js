@@ -54,14 +54,14 @@ export default function Home() {
           </Card>
           <Card title="DAO Governance" icon={"icons/trust.svg"}>
             Governance in SupremeDAO is community-led. Holders of $SUP tokens
-            directly influence the platform's strategic decisions through DAO
-            votes, ensuring transparent and democratic control over the vault's
-            operations.
+            directly influence the platform&apos;s strategic decisions through
+            DAO votes, ensuring transparent and democratic control over the
+            vault&apos;s operations.
           </Card>
           <Card title="YAI" icon={"icons/yai.svg"}>
             YAI means “Yield Automated Instrument”. YAI centralizes our diverse
-            strategies under one token. It's designed to increase in value as
-            our strategies succeed, backed by a diversified asset pool. This
+            strategies under one token. It&apos;s designed to increase in value
+            as our strategies succeed, backed by a diversified asset pool. This
             makes investing in DeFi strategies straightforward and efficient.
           </Card>
           <Card title="Dao governed liquidity" icon={"icons/sup.svg"}>
@@ -185,11 +185,7 @@ export default function Home() {
           "absolute right-0 top-[80rem] -z-10 grid h-[1850px] w-full overflow-hidden md:top-[70rem]"
         }
       >
-        <div
-          className={
-            "absolute -right-32 top-0 w-[1100px] md:-right-96 md:right-0"
-          }
-        >
+        <div className={"absolute -right-32 top-0 w-[1100px] md:-right-96"}>
           <div
             className={
               "absolute inset-x-0 top-0 z-[1] h-full bg-gradient-to-b from-[var(--background)] to-transparent"
