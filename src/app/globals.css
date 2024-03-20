@@ -51,7 +51,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 500;
+  z-index: 5;
   overflow: hidden;
   background: transparent url('/bg-noise.svg') repeat 0 0;
   mix-blend-mode: overlay;

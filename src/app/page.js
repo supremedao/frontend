@@ -7,12 +7,12 @@ import { Footer } from "@/components/Footer";
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
+import LatestArticles from "@/components/LatestArticles";
+import Spline from "@/components/Spline";
 
 export default function Home() {
   return (
-    <main className="container mx-auto max-w-screen-xl px-3">
-      <Header />
-
+    <>
       <article className={"mb-36"}>
         <Hero
           spline={
@@ -24,17 +24,16 @@ export default function Home() {
             {` `} with a single-token DeFi optimizer
           </HeroTitle>
           <Typography variant={"lead"}>
-            Gain instant access to high-APR DeFi strategies designed by
-            professionals with a single token.
+            Gain instant access to high-APR DeFi strategies with a single token.
           </Typography>
           <div className="my-5 sm:flex md:mt-10">
             <Button
               shadow
               color={"blue"}
               size={"large"}
-              className={"xs:w-3/5 w-full md:w-3/5"}
+              className={"xs:w-3/5 z-[6] w-full md:w-3/5"}
             >
-              Stake now
+              Coming soon
             </Button>
           </div>
           <p className={"text-xs"}>
@@ -49,24 +48,27 @@ export default function Home() {
         </Typography>
         <div className="mb-28 grid w-full gap-4 py-6 md:grid-cols-4 lg:mb-0">
           <Card title="Automated strategies" icon={"icons/strategy.svg"}>
-            These strategies are the core of the SupremeDAO ecosystem, deployed
-            progressively and centred around existing liquidity pools managed by
-            our partners.
+            SupremeDAO automates DeFi strategies, removing the need for users to
+            navigate complex processes. Stake your assets and the system
+            automatically manages yield generation and risk mitigation.
           </Card>
-          <Card title="Trustless participation" icon={"icons/trust.svg"}>
-            We run regular smart contract audits, implement transparent risk
-            management policies, and offer DAO governance to ensure everyone is
-            fairly involved.
+          <Card title="DAO Governance" icon={"icons/trust.svg"}>
+            Governance in SupremeDAO is community-led. Holders of $SUP tokens
+            directly influence the platform's strategic decisions through DAO
+            votes, ensuring transparent and democratic control over the vault's
+            operations.
           </Card>
-          <Card title="$YAI token, hold for yield" icon={"icons/yai.svg"}>
-            $YAI stands for Yield Automated Instrument. Holding it gives you
-            instant exposure to a wide selection of SupremeDAO’s
-            yield-generating strategies.
+          <Card title="YAI" icon={"icons/yai.svg"}>
+            YAI means “Yield Automated Instrument”. YAI centralizes our diverse
+            strategies under one token. It's designed to increase in value as
+            our strategies succeed, backed by a diversified asset pool. This
+            makes investing in DeFi strategies straightforward and efficient.
           </Card>
-          <Card title="$SUP token, vote for yield" icon={"icons/sup.svg"}>
-            $SUP is our governance token. Holders play a vital role in our
-            ecosystem by determining which strategies are implemented for yield
-            generation.
+          <Card title="Dao governed liquidity" icon={"icons/sup.svg"}>
+            SupremeDAO manages its liquidity by creating proprietary pools and
+            applying veTokenomics incentives and strategic investments to ensure
+            profitability and stability, with all operations automated and
+            governed by DAO
           </Card>
         </div>
       </article>
@@ -82,32 +84,36 @@ export default function Home() {
           protocols since 2022. Being part of the Daoism ecosystem enhances our
           offerings through long-lasting and community-driven partnerships.
         </Typography>
+        <Typography className={"text-sm text-gray-500"}>
+          *Developed for the best.
+        </Typography>
       </article>
 
-      <article className={"mb-40"}>
+      <article className={"mb-28"}>
         <Typography variant={"h2"}>
           Featured <span className={"text-primary"}>Strategies</span>
         </Typography>
         <div className="mb-28 grid min-h-[580px] w-full gap-4 py-6 md:grid-cols-3 lg:mb-0">
           <Card
-            title="Alpha wstETH"
+            title="Alpha wstETH Maximizer"
             conic
             className={`min-h-[500px] bg-[conic-gradient(var(--conic--down))] sm:bg-[conic-gradient(var(--conic--right))]`}
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
-                Join SupremeDAO’s first strategy. Stake wstETH and secure extra
-                yield from our upcoming launch airdrop.
+                Maximize your wstETH on Mainnet with our D2D farming strategy.
+                Utilizing veTokenomics, this strategy enhances yield by
+                leveraging vote-escrowed tokens effectively.
               </Typography>
               <div className={"mt-3"}>
                 <Button className={"w-full"} size={"large"} color={"white"}>
-                  Stake now
+                  Coming soon
                 </Button>
               </div>
             </div>
           </Card>
           <Card
-            title="Alpha wstETH"
+            title="SupremePool"
             conic
             className={
               "min-h-[500px] bg-[conic-gradient(var(--conic--up-down))] sm:bg-[conic-gradient(var(--conic--left-right))]"
@@ -115,8 +121,10 @@ export default function Home() {
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
-                Join SupremeDAO’s first strategy. Stake wstETH and secure extra
-                yield from our upcoming launch airdrop.
+                Through proprietary liquidity pools and veTokenomics incentives,
+                our SupremePool strategy achieves superior returns and
+                community-driven stability. Access a fully automated strategy
+                directly steered by the SupremeDAO community.
               </Typography>
               <div className={"mt-3"}>
                 <Button className={"w-full"} size={"large"} color={"white"}>
@@ -126,7 +134,7 @@ export default function Home() {
             </div>
           </Card>
           <Card
-            title="Alpha wstETH"
+            title="L2 Yield Harvester"
             conic
             className={
               "min-h-[500px] bg-[conic-gradient(var(--conic--up))] sm:bg-[conic-gradient(var(--conic--left))]"
@@ -134,8 +142,10 @@ export default function Home() {
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
-                Join SupremeDAO’s first strategy. Stake wstETH and secure extra
-                yield from our upcoming launch airdrop.
+                Explore the potential of Layer 2 networks and multi-chain
+                ecosystems. Engineered to optimize incentives and influence
+                voter behavior, securing and amplifying rewards across various
+                networks for our community.
               </Typography>
               <div className={"mt-3"}>
                 <Button className={"w-full"} size={"large"} color={"white"}>
@@ -146,6 +156,7 @@ export default function Home() {
           </Card>
         </div>
       </article>
+
       <Hero
         spline={"https://prod.spline.design/oOLNnQiBDf87m8H8/scene.splinecode"}
       >
@@ -161,51 +172,41 @@ export default function Home() {
         <div className="my-5 sm:flex md:mt-8">
           <div className="">
             <Button className="w-full" color={"blue"} size={"large"}>
-              Stake now
+              Coming soon
             </Button>
           </div>
         </div>
       </Hero>
 
-      <article className={"mb-12 sm:mb-36"}>
-        <Typography variant={"h2"}>Latest Articles</Typography>
-        <div className="grid w-full gap-4 py-6 md:grid-cols-3">
-          <Card>
-            <div className={"-mt-2"}>
-              <CardMedia image={"/assets/media/img.png"}></CardMedia>
-              <Link href={"#"} variant={"h4"}>
-                How is SupremeDAO democratizing access to complex DeFi
-                strategies? strategies
-              </Link>
-              <CardDate>Today, 17:35</CardDate>
-            </div>
-          </Card>
-          <Card>
-            <div className={"-mt-2"}>
-              <CardMedia image={"/assets/media/img.png"}></CardMedia>
-              <Link href={"#"} variant={"h4"}>
-                How is SupremeDAO democratizing access to complex DeFi
-                strategies? strategies
-              </Link>
-              <CardDate>Today, 17:35</CardDate>
-            </div>
-          </Card>
-          <Card>
-            <div className={"-mt-2"}>
-              <CardMedia image={"/assets/media/img.png"}></CardMedia>
-              <Link href={"#"} variant={"h4"}>
-                How is SupremeDAO democratizing access to complex DeFi
-                strategies? strategies
-              </Link>
-              <CardDate>Today, 17:35</CardDate>
-            </div>
-          </Card>
+      {/*<LatestArticles />*/}
+
+      <div
+        className={
+          "absolute right-0 top-[80rem] -z-10 grid h-[1850px] w-full overflow-hidden md:top-[70rem]"
+        }
+      >
+        <div
+          className={
+            "absolute -right-32 top-0 w-[1100px] md:-right-96 md:right-0"
+          }
+        >
+          <div
+            className={
+              "absolute inset-x-0 top-0 z-[1] h-full bg-gradient-to-b from-[var(--background)] to-transparent"
+            }
+          />
+          <div
+            className={
+              "absolute inset-x-0 bottom-0 z-[1] h-full bg-gradient-to-b from-transparent to-[var(--background)]"
+            }
+          />
+          <Spline
+            scene={
+              "https://prod.spline.design/67GWXoedqMNytxny/scene.splinecode"
+            }
+          />
         </div>
-      </article>
-
-      <Footer />
-
-      <div className="noise-bg" />
-    </main>
+      </div>
+    </>
   );
 }

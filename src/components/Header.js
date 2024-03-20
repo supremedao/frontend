@@ -15,7 +15,7 @@ export default function Header() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Supreme DAO</span>
             <img
               width={258}
@@ -36,21 +36,21 @@ export default function Header() {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Ecosystem
-          </a>
+        {/*<Popover.Group className="hidden lg:flex lg:gap-x-12">*/}
+        {/*  <a href="#" className="text-sm font-semibold leading-6 text-gray-900">*/}
+        {/*    Ecosystem*/}
+        {/*  </a>*/}
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            About us
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Strategies
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            News{" "}
-          </a>
-        </Popover.Group>
+        {/*  <a href="#" className="text-sm font-semibold leading-6 text-gray-900">*/}
+        {/*    About us*/}
+        {/*  </a>*/}
+        {/*  <a href="#" className="text-sm font-semibold leading-6 text-gray-900">*/}
+        {/*    Strategies*/}
+        {/*  </a>*/}
+        {/*  <a href="#" className="text-sm font-semibold leading-6 text-gray-900">*/}
+        {/*    News{" "}*/}
+        {/*  </a>*/}
+        {/*</Popover.Group>*/}
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Button size="medium">Launch dApp</Button>

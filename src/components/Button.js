@@ -4,6 +4,7 @@ const Button = ({
   size = "medium",
   children,
   shadow,
+  ...props
 }) => {
   const colorClasses = {
     light: "bg-black/5 hover:bg-black/10 border-black/10 focus:ring-slate-100",
@@ -15,7 +16,7 @@ const Button = ({
   const sizeClasses = {
     small: "py-2 px-4 text-sm",
     medium: "py-4 px-10 text-base font-semibold",
-    large: `py-5 px-12 text-xl leading-6 font-semibold ${shadow ? "shadow-md shadow-slate-400" : ""}`,
+    large: `py-5 px-14 text-xl leading-6 font-semibold ${shadow ? "shadow-md shadow-slate-400" : ""}`,
   };
 
   const colorClass = colorClasses[color] || "";
@@ -24,6 +25,7 @@ const Button = ({
   return (
     <button
       className={`rounded-full border focus:outline-none focus:ring focus:ring-opacity-75  ${colorClass} ${sizeClass} ${className}`}
+      {...props}
     >
       {children}
     </button>

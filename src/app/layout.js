@@ -2,6 +2,9 @@ import "./globals.css";
 import NoSSR from "./NoSSR";
 import localFont from "next/font/local";
 import Spline from "@/components/Spline";
+import CookieBanner from "@/components/CookieBanner";
+import { Footer } from "@/components/Footer";
+import Header from "@/components/Header";
 
 const Gilroy = localFont({
   src: [
@@ -27,24 +30,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={Gilroy.className}>
-        <NoSSR>
-          <>
-            {children}
-            <div
-              className={
-                "absolute right-0 top-[80rem] -z-10 grid h-[1850px] w-full overflow-hidden md:top-[70rem]"
-              }
-            >
-              <div className={"absolute -right-96 top-0 w-[1100px] md:right-0"}>
-                <Spline
-                  scene={
-                    "https://prod.spline.design/67GWXoedqMNytxny/scene.splinecode"
-                  }
-                />
-              </div>
-            </div>
-          </>
-        </NoSSR>
+        <main className="container mx-auto max-w-screen-xl px-3">
+          <Header />
+          <NoSSR>
+            <>
+              {children}
+
+              <CookieBanner />
+            </>
+          </NoSSR>
+          <Footer />
+        </main>
+        <div className="noise-bg" />
       </body>
     </html>
   );
