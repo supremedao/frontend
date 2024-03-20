@@ -16,7 +16,7 @@ function Imprint() {
       <br />
       <Typography>
         HRB 237917 B<br />
-        Email:{" "}
+        Email:
         <a href={"mailto:contact@daoism.systems"}>contact@daoism.systems</a>
       </Typography>
       <br />
@@ -29,14 +29,15 @@ function Imprint() {
       </Typography>
       <br />
       <Typography>
-        These terms of use (" Website Terms of Use / Terms of Use ") set out the
-        legal terms and conditions on which we allow you to access our Website.
-        By accessing, browsing or otherwise using our Website, you accept these
-        Terms of Use, without limitation or qualification. If you do not accept
-        these Terms of Use, you are not entitled to access or use the Website
-        and you should leave the Website immediately. When we refer to "we",
-        "us" or "our", we mean Daoism Systems UG. When we refer to "you" or
-        "your" we mean you, the person accessing or using our Website.
+        These terms of use (&quot; Website Terms of Use / Terms of Use &quot;)
+        set out the legal terms and conditions on which we allow you to access
+        our Website. By accessing, browsing or otherwise using our Website, you
+        accept these Terms of Use, without limitation or qualification. If you
+        do not accept these Terms of Use, you are not entitled to access or use
+        the Website and you should leave the Website immediately. When we refer
+        to &quot;we&quot;, &quot;us&quot; or &quot;our&quot;, we mean Daoism
+        Systems UG. When we refer to &quot;you&quot; or &quot;your&quot; we mean
+        you, the person accessing or using our Website.
       </Typography>
       <br />
       <Typography>
@@ -53,7 +54,7 @@ function Imprint() {
         You are responsible for making all arrangements necessary for you to
         have access to our Website. You are also responsible for ensuring that
         all persons who access our Website through your internet connection are
-        aware of these Terms of Use and that they comply with them. <br />{" "}
+        aware of these Terms of Use and that they comply with them. <br />
         <br />
         WE DO NOT GUARANTEE THAT THE WEBSITE, OR ANY CONTENT ON IT, WILL BE FREE
         FROM ERRORS OR OMISSIONS. WE USE REASONABLE EFFORTS TO INCLUDE ONLY
@@ -87,10 +88,10 @@ function Imprint() {
           </li>
           <li>Simple negligence.</li>
         </ul>
-        Furthermore, the website is made available "as is" and, we exclude all
-        conditions, liabilities, warranties, representations or other terms
-        which may apply to our website or any content on it, whether express or
-        implied. <br />
+        Furthermore, the website is made available &quot;as is&quot; and, we
+        exclude all conditions, liabilities, warranties, representations or
+        other terms which may apply to our website or any content on it, whether
+        express or implied. <br />
         <br />
         We also will not be liable to any user for any loss or damage, whether
         in contract, tort, breach of statutory duty, or otherwise, even if
