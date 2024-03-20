@@ -25,9 +25,9 @@ function CookieBanner() {
             We use cookies to provide the best experience and to help improve
             our website and application. Please read our{" "}
             <Link href={"/cookie-policy"}>Cookie Policy</Link> for more
-            information. By clicking "Accept all", you agree to the storing of
-            cookies on your device to enhance site navigation, analyze site
-            usage and provide customer support
+            information. By clicking &quot;Accept all&quot;, you agree to the
+            storing of cookies on your device to enhance site navigation,
+            analyze site usage and provide customer support
           </Typography>
         </div>
         <div className="flex items-center justify-center gap-4">
