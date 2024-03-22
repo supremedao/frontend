@@ -24,7 +24,7 @@ function CookieBanner() {
           <Typography>
             We use cookies to provide the best experience and to help improve
             our website and application. Please read our{" "}
-            <Link href={"/cookie-policy"}>Cookie Policy</Link> for more
+            <Link href={"/content/cookie-policy"}>Cookie Policy</Link> for more
             information. By clicking &quot;Accept all&quot;, you agree to the
             storing of cookies on your device to enhance site navigation,
             analyze site usage and provide customer support

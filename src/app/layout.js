@@ -1,7 +1,6 @@
 import "./globals.css";
 import NoSSR from "./NoSSR";
 import localFont from "next/font/local";
-import Spline from "@/components/Spline";
 import CookieBanner from "@/components/CookieBanner";
 import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";

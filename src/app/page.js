@@ -1,14 +1,10 @@
 "use client";
-
-import Header from "@/components/Header";
 import { Hero, HeroTitle } from "@/components/Hero";
 import { Card, CardMedia, CardDate } from "@/components/Card";
-import { Footer } from "@/components/Footer";
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
-import Link from "@/components/Link";
-import LatestArticles from "@/components/LatestArticles";
 import Spline from "@/components/Spline";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -31,7 +27,7 @@ export default function Home() {
               shadow
               color={"blue"}
               size={"large"}
-              className={"xs:w-3/5 z-[6] w-full md:w-3/5"}
+              className={"xs:w-3/5 w-full md:w-3/5"}
             >
               Coming soon
             </Button>
@@ -76,7 +72,13 @@ export default function Home() {
       <article className={"mb-40 lg:w-2/5"}>
         <Typography variant={"h2"}>
           Innovation powered <br />
-          <span className={"text-primary"}>by Daoism Systems</span>
+          <Link
+            href={"https://daoism.systems/"}
+            target={"_blank"}
+            className={"text-primary"}
+          >
+            by Daoism Systems
+          </Link>
         </Typography>
         <Typography variant={"lead"}>
           SupremeDAO is built by Daoism Systems, a development studio creating
@@ -185,15 +187,15 @@ export default function Home() {
           "absolute right-0 top-[80rem] -z-10 grid h-[1850px] w-full overflow-hidden md:top-[70rem]"
         }
       >
-        <div className={"absolute -right-32 top-0 w-[1100px] md:-right-96"}>
+        <div className={"absolute -right-32 top-0 w-[1100px] md:-right-32"}>
           <div
             className={
-              "absolute inset-x-0 top-0 z-[1] h-full bg-gradient-to-b from-[var(--background)] to-transparent"
+              "absolute inset-x-0 top-0 z-[1] h-1/2 bg-gradient-to-b from-[var(--background)] to-transparent"
             }
           />
           <div
             className={
-              "absolute inset-x-0 bottom-0 z-[1] h-full bg-gradient-to-b from-transparent to-[var(--background)]"
+              "absolute inset-x-0 bottom-0 z-[1] h-1/2 bg-gradient-to-b from-transparent to-[var(--background)]"
             }
           />
           <Spline

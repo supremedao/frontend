@@ -6,7 +6,7 @@ import Link from "@/components/Link";
 export default function Footer() {
   return (
     <footer>
-      <div className="mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 py-16 sm:px-6 lg:px-6">
         <div className="">
           <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
             {/*<div className="col-span-2">*/}
@@ -42,28 +42,17 @@ export default function Footer() {
             {/*</div>*/}
 
             <article className={"col-span-2"}>
-              <Typography className="mb-5 mt-2 text-base text-gray-500">
-                Company
-              </Typography>
-
               <div className={"grid grid-cols-2 gap-8"}>
                 <div className="col-span-2 sm:col-span-1">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <Link variant={"h4"} href="/imprint">
-                        Imprint & Terms
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link variant={"h4"} href="#">
-                        Strategies
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link variant={"h4"} href="#">
+                      <Link variant={"h4"} href="/">
                         About us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link variant={"h4"} href="/content/strategies">
+                        Strategies
                       </Link>
                     </li>
 
@@ -73,6 +62,11 @@ export default function Footer() {
                         href="https://supremedao.gitbook.io/supremedao"
                       >
                         Documentation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link variant={"h4"} href="/content/imprint">
+                        Imprint & Terms
                       </Link>
                     </li>
                   </ul>
@@ -86,18 +80,13 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link variant={"h4"} href="t.me/supremedaochat">
-                        Support
-                      </Link>
-                    </li>
-                    <li>
-                      <Link variant={"h4"} href="#">
+                      <Link variant={"h4"} href="/content/cookie-policy">
                         Cookie Policy
                       </Link>
                     </li>
 
                     <li>
-                      <Link variant={"h4"} href="#">
+                      <Link variant={"h4"} href="/content/privacy">
                         Terms &amp; Privacy
                       </Link>
                     </li>

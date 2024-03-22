@@ -10,11 +10,11 @@ function Card({
 }) {
   return (
     <div
-      className={`z-[6] flex flex-col rounded-2xl border  border-blue-500/50 ${!conic ? "bg-gradient-to-br from-[--linear-bg-start] to-[--linear-bg-end] backdrop-blur-lg" : ""} px-5 py-7  ${className}`}
+      className={`flex flex-col rounded-2xl border  border-blue-500/50 ${!conic ? "bg-gradient-to-br from-[--linear-bg-start] to-[--linear-bg-end]" : ""} px-5 py-7  ${className}`}
       style={style}
     >
       {icon && (
-        <div className={"mb-5"}>
+        <div className={"relative z-[6] mb-5"}>
           <img src={icon} alt="" />
         </div>
       )}

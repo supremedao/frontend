@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@/components/Typography";
 import Link from "@/components/Link";
 
@@ -16,7 +17,7 @@ export default function Social() {
             target="_blank"
             data-twe-ripple-init
             data-twe-ripple-color="light"
-            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
+            className="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Mirror</span>
             mirror
@@ -30,7 +31,7 @@ export default function Social() {
             target="_blank"
             data-twe-ripple-init
             data-twe-ripple-color="light"
-            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
+            className="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Twitter</span>
 
@@ -52,7 +53,7 @@ export default function Social() {
             target="_blank"
             data-twe-ripple-init
             data-twe-ripple-color="light"
-            class="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
+            className="shadow-dark-3 hover:shadow-dark-1 focus:shadow-dark-1 active:shadow-1 rounded-full bg-primary p-3 uppercase leading-normal text-white shadow-black/30 transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:text-white"
           >
             <span className="sr-only">Telegram</span>
 
