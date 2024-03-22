@@ -28,14 +28,14 @@ export default function Social() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <rect width="60" height="60" rx="30" fill="#3E6CF4" />
-              <g clip-path="url(#clip0_312_21)">
+              <g clipPath="url(#clip0_312_21)">
                 <path
                   d="M18 26.3871C18 19.5459 23.5459 14 30.3871 14C37.2284 14 42.7742 19.5459 42.7742 26.3871V44.1177C42.7742 45.1573 41.9315 46 40.8918 46H19.8824C18.8428 46 18 45.1573 18 44.1177V26.3871Z"
                   fill="url(#paint0_linear_312_21)"
                 />
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M41.3024 44.4624V26.4232C41.3024 20.3772 36.4156 15.476 30.3871 15.476C24.3587 15.476 19.4717 20.3772 19.4717 26.4232V44.4624C19.4717 44.4965 19.4992 44.524 19.5331 44.524H41.2412C41.2751 44.524 41.3024 44.4965 41.3024 44.4624ZM30.3871 14C23.5459 14 18 19.5621 18 26.4232V44.4624C18 45.3116 18.6864 46 19.5331 46H41.2412C42.0879 46 42.7742 45.3116 42.7742 44.4624V26.4232C42.7742 19.5621 37.2284 14 30.3871 14Z"
                   fill="white"
                 />
@@ -49,8 +49,8 @@ export default function Social() {
                   y2="50.2287"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop offset="0.265625" stop-color="white" />
-                  <stop offset="0.734375" stop-color="white" stop-opacity="0" />
+                  <stop offset="0.265625" stopColor="white" />
+                  <stop offset="0.734375" stopColor="white" stopOpacity="0" />
                 </linearGradient>
                 <clipPath id="clip0_312_21">
                   <rect
