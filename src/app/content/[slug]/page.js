@@ -32,7 +32,6 @@ export async function generateStaticPaths() {
     .map((path) => path.replace(/\.mdx?$/, ""))
     .map((slug) => `content/${slug}`); // ({ params: { slug: `content/${slug}` } }));
 
-  console.log(paths);
   return {
     paths,
     fallback: true,

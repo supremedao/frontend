@@ -6,9 +6,9 @@ import Link from "@/components/Link";
 export default function Footer() {
   return (
     <footer>
-      <div className="mx-auto px-4 py-16 sm:px-6 lg:px-6">
+      <div className="mx-auto px-2 py-16 sm:px-6 lg:px-4">
         <div className="">
-          <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
+          <div className="mt-8 grid grid-cols-1 gap-8 lg:mt-0 lg:grid-cols-2 lg:gap-y-16">
             {/*<div className="col-span-2">*/}
             {/*  <div>*/}
             {/*    <Typography variant={"h3"}>Stay Up to Date</Typography>*/}
@@ -41,9 +41,9 @@ export default function Footer() {
             {/*  </form>*/}
             {/*</div>*/}
 
-            <article className={"col-span-2"}>
-              <div className={"grid grid-cols-2 gap-8"}>
-                <div className="col-span-2 sm:col-span-1">
+            <article className={""}>
+              <div className={"grid grid-cols-2 gap-4"}>
+                <div className="">
                   <ul className="space-y-4 text-sm">
                     <li>
                       <Link variant={"h4"} href="/">
@@ -72,7 +72,7 @@ export default function Footer() {
                   </ul>
                 </div>
 
-                <div className="col-span-2 sm:col-span-1">
+                <div className="">
                   <ul className="space-y-4 text-sm">
                     <li>
                       <Link variant={"h4"} href="mailto:contact@daoism.systems">
@@ -95,7 +95,7 @@ export default function Footer() {
               </div>
             </article>
 
-            <article className={"col-span-2"}>
+            <article className={""}>
               <Social />
               <Typography className={"mt-10 text-xl"}>
                 Copyright 2024 &copy; SupremeDAO. All right reserved

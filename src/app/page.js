@@ -99,7 +99,7 @@ export default function Home() {
           <Card
             title="Alpha wstETH Maximizer"
             conic
-            className={`min-h-[500px] bg-[conic-gradient(var(--conic--down))] sm:bg-[conic-gradient(var(--conic--right))]`}
+            className={`min-h-[500px] border-none bg-[conic-gradient(var(--conic--down))] sm:bg-[conic-gradient(var(--conic--right))]`}
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
@@ -118,7 +118,7 @@ export default function Home() {
             title="SupremePool"
             conic
             className={
-              "min-h-[500px] bg-[conic-gradient(var(--conic--up-down))] sm:bg-[conic-gradient(var(--conic--left-right))]"
+              "min-h-[500px] border-none bg-[conic-gradient(var(--conic--up-down))] sm:bg-[conic-gradient(var(--conic--left-right))]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>
@@ -139,7 +139,7 @@ export default function Home() {
             title="L2 Yield Harvester"
             conic
             className={
-              "min-h-[500px] bg-[conic-gradient(var(--conic--up))] sm:bg-[conic-gradient(var(--conic--left))]"
+              "min-h-[500px] border-none bg-[conic-gradient(var(--conic--up))] sm:bg-[conic-gradient(var(--conic--left))]"
             }
           >
             <div className={"flex h-full flex-col justify-between"}>
@@ -184,10 +184,14 @@ export default function Home() {
 
       <div
         className={
-          "absolute right-0 top-[80rem] -z-10 grid h-[1850px] w-full overflow-hidden md:top-[70rem]"
+          "absolute right-0 top-[80rem] -z-10 grid h-[1950px] w-full overflow-hidden md:top-[82rem]"
         }
       >
-        <div className={"absolute -right-32 top-0 w-[1100px] md:-right-32"}>
+        <div
+          className={
+            "absolute left-1/2 top-0 -ml-[1250px] w-[2300px] lg:-ml-[1050px]"
+          }
+        >
           <div
             className={
               "absolute inset-x-0 top-0 z-[1] h-1/2 bg-gradient-to-b from-[var(--background)] to-transparent"
