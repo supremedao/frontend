@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
           </NoSSR>
           <Footer />
         </main>
-        <div className="noise-bg" />
+        {/*<div className="noise-bg" />*/}
       </body>
     </html>
   );
