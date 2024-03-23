@@ -8,12 +8,16 @@ function CookieBanner() {
   const [consent, setConsent] = useState(localStorage.getItem("consent"));
 
   function acceptSection() {
-    localStorage.setItem("consent", "necessary");
+    if (localStorage) {
+      localStorage.setItem("consent", "necessary");
+    }
     setConsent("necessary");
   }
 
   function acceptAll() {
-    localStorage.setItem("consent", "all");
+    if (localStorage) {
+      localStorage.setItem("consent", "all");
+    }
     setConsent("all");
   }
 
@@ -30,40 +34,48 @@ function CookieBanner() {
             analyze site usage and provide customer support
           </Typography>
         </div>
-        <div className="flex items-center justify-center gap-4">
-          <label>
-            <input
-              type="checkbox"
-              name="necessary"
-              id="necessary"
-              checked
-              disabled
-              className={"mr-2"}
-            />
-            Necessary
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              name="analytics"
-              id="analytics"
-              defaultChecked={true}
-              className={"mr-2"}
-            />
-            Analytics
-          </label>
-          <Button
-            onClick={acceptSection}
-            className={"rounded border-green-600 py-1 hover:border-green-400"}
-          >
-            Accept Section
-          </Button>
-          <Button
-            onClick={acceptAll}
-            className={"rounded bg-green-600 py-1 hover:bg-green-400"}
-          >
-            Accept all
-          </Button>
+        <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+          <div className={"flex w-1/2 flex-row gap-4"}>
+            <label>
+              <input
+                type="checkbox"
+                name="necessary"
+                id="necessary"
+                checked
+                disabled
+                className={"mr-2"}
+              />
+              Necessary
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="analytics"
+                id="analytics"
+                defaultChecked={true}
+                className={"mr-2"}
+              />
+              Analytics
+            </label>
+          </div>
+          <div className={"flex w-full  flex-col gap-4 md:w-1/2 md:flex-row"}>
+            <Button
+              onClick={acceptSection}
+              className={
+                "w-full rounded-lg border-green-600 py-1 hover:border-green-400"
+              }
+            >
+              Accept Section
+            </Button>
+            <Button
+              onClick={acceptAll}
+              className={
+                "w-full rounded-lg bg-green-600 py-1 hover:bg-green-400"
+              }
+            >
+              Accept all
+            </Button>
+          </div>
         </div>
       </div>
     </figure>
