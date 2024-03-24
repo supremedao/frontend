@@ -79,7 +79,7 @@ export default function Home() {
             by Daoism Systems
           </Link>
         </Typography>
-        <Typography variant={"lead"}>
+        <Typography variant={"lead"} className={"mb-2"}>
           SupremeDAO is built by Daoism Systems, a development studio creating
           self-sovereign internet organizations, frontier tooling, and DeFi
           protocols since 2022. Being part of the Daoism ecosystem enhances our
@@ -88,6 +88,9 @@ export default function Home() {
         <Typography className={"text-sm text-gray-500"}>
           *Developed for the best.
         </Typography>
+        <div className={"mt-10"}>
+          <img src={"/partners.png"} />
+        </div>
       </article>
 
       <article className={"mb-28"}>
