@@ -4,15 +4,21 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background: #F4FCFF;
+  --background: #f4fcff;
   --linear-bg-start: rgba(92, 169, 252, 0.4);
   --linear-bg-end: rgba(92, 169, 252, 0.15);
-  --conic--up-down: from 0deg at 50% 100%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.40) 360deg;
-  --conic--up: from 0deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.40) 360deg;
-  --conic--right: from 90deg at 50% 50%, rgba(60, 105, 244, 0.50) 0deg, rgba(57, 99, 243, 0.05) 360deg;
-  --conic--left-right: from -90deg at 100% 50%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.50) 360deg;
-  --conic--left: from -90deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg, rgba(60, 105, 244, 0.50) 360deg;
-  --conic--down: from 180deg at 50% 50%, rgba(60, 105, 244, 0.40) 0deg, rgba(57, 99, 243, 0.05) 360deg;
+  --conic--up-down: from 0deg at 50% 100%, rgba(57, 99, 243, 0.05) 0deg,
+    rgba(60, 105, 244, 0.4) 360deg;
+  --conic--up: from 0deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg,
+    rgba(60, 105, 244, 0.4) 360deg;
+  --conic--right: from 90deg at 50% 50%, rgba(60, 105, 244, 0.5) 0deg,
+    rgba(57, 99, 243, 0.05) 360deg;
+  --conic--left-right: from -90deg at 100% 50%, rgba(57, 99, 243, 0.05) 0deg,
+    rgba(60, 105, 244, 0.5) 360deg;
+  --conic--left: from -90deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg,
+    rgba(60, 105, 244, 0.5) 360deg;
+  --conic--down: from 180deg at 50% 50%, rgba(60, 105, 244, 0.4) 0deg,
+    rgba(57, 99, 243, 0.05) 360deg;
 }
 
 /*@media (prefers-color-scheme: dark) {*/
@@ -34,8 +40,6 @@ body {
   }
 }
 
-
-
 .noise-bg-container {
   position: absolute;
   top: 0;
@@ -45,6 +49,17 @@ body {
 }
 
 .noise-bg {
+  mix-blend-mode: overlay;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+.noise-bg-animation {
   height: 200%;
   pointer-events: none;
   position: fixed;
@@ -53,23 +68,45 @@ body {
   width: 200%;
   z-index: 5;
   overflow: hidden;
-  background: transparent url('/bg-noise.svg') repeat 0 0;
+  background: transparent url("/bg-noise.svg") repeat 0 0;
   mix-blend-mode: overlay;
   visibility: visible;
   opacity: 1;
-  animation: bg-animation .2s infinite;
+  animation: bg-animation 0.2s infinite;
 }
 
 @keyframes bg-animation {
-  0% { transform: translate(0,0) }
-  10% { transform: translate(-5%,-5%) }
-  20% { transform: translate(-10%,5%) }
-  30% { transform: translate(5%,-10%) }
-  40% { transform: translate(-5%,15%) }
-  50% { transform: translate(-10%,5%) }
-  60% { transform: translate(15%,0) }
-  70% { transform: translate(0,10%) }
-  80% { transform: translate(-15%,0) }
-  90% { transform: translate(10%,5%) }
-  100% { transform: translate(5%,0) }
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  20% {
+    transform: translate(-10%, 5%);
+  }
+  30% {
+    transform: translate(5%, -10%);
+  }
+  40% {
+    transform: translate(-5%, 15%);
+  }
+  50% {
+    transform: translate(-10%, 5%);
+  }
+  60% {
+    transform: translate(15%, 0);
+  }
+  70% {
+    transform: translate(0, 10%);
+  }
+  80% {
+    transform: translate(-15%, 0);
+  }
+  90% {
+    transform: translate(10%, 5%);
+  }
+  100% {
+    transform: translate(5%, 0);
+  }
 }

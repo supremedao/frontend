@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import CookieBanner from "@/components/CookieBanner";
 import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
+import Script from "next/script";
+import Noise from "@/components/Noise";
 
 const Gilroy = localFont({
   src: [
@@ -40,7 +42,7 @@ export default function RootLayout({ children }) {
           </NoSSR>
           <Footer />
         </main>
-        {/*<div className="noise-bg" />*/}
+        <Noise />
       </body>
     </html>
   );

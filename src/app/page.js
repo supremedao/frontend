@@ -24,7 +24,6 @@ export default function Home() {
           </Typography>
           <div className="my-5 sm:flex md:mt-10">
             <Button
-              shadow
               color={"blue"}
               size={"large"}
               className={"xs:w-3/5 w-full md:w-3/5"}
@@ -60,7 +59,7 @@ export default function Home() {
             as our strategies succeed, backed by a diversified asset pool. This
             makes investing in DeFi strategies straightforward and efficient.
           </Card>
-          <Card title="Dao governed liquidity" icon={"icons/sup.svg"}>
+          <Card title="DAO governed liquidity" icon={"icons/sup.svg"}>
             SupremeDAO manages its liquidity by creating proprietary pools and
             applying veTokenomics incentives and strategic investments to ensure
             profitability and stability, with all operations automated and
@@ -184,7 +183,7 @@ export default function Home() {
 
       <div
         className={
-          "absolute right-0 top-[80rem] -z-10 grid h-[1950px] w-full overflow-hidden md:top-[82rem]"
+          "absolute right-0 top-[80rem] -z-10 grid h-[1150px] w-full overflow-hidden md:top-[82rem]"
         }
       >
         <div
@@ -199,7 +198,7 @@ export default function Home() {
           />
           <div
             className={
-              "absolute inset-x-0 bottom-0 z-[1] h-1/2 bg-gradient-to-b from-transparent to-[var(--background)]"
+              "absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-b from-transparent via-[var(--background)] to-[var(--background)]"
             }
           />
           <Spline
