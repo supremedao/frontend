@@ -15,25 +15,28 @@ export default function Home() {
             "https://prod.spline.design/M7xPf-bpJaJkwpRk/scene.splinecode"
           }
         >
-          <HeroTitle>
-            <span className="text-primary">Maximize yield</span>
-            {` `} with a single-token DeFi optimizer
-          </HeroTitle>
-          <Typography variant={"lead"}>
-            Gain instant access to high-APR DeFi strategies with a single token.
-          </Typography>
-          <div className="my-5 sm:flex md:mt-10">
-            <Button
-              color={"blue"}
-              size={"large"}
-              className={"xs:w-3/5 w-full md:w-3/5"}
-            >
-              Coming soon
-            </Button>
+          <div className={"-mt-80 sm:mt-0"}>
+            <HeroTitle>
+              <span className="text-primary">Maximize yield</span>
+              {` `} with a single-token DeFi optimizer
+            </HeroTitle>
+            <Typography variant={"lead"}>
+              Gain instant access to high-APR DeFi strategies with a single
+              token.
+            </Typography>
+            <div className="my-5 sm:flex md:mt-10">
+              <Button
+                color={"blue"}
+                size={"large"}
+                className={"xs:w-3/5 w-full md:w-3/5"}
+              >
+                Coming soon
+              </Button>
+            </div>
+            <p className={"text-center text-xs sm:text-left"}>
+              *Beta version now available for wstETH holders
+            </p>
           </div>
-          <p className={"text-xs"}>
-            *Beta version now available for wstETH holders
-          </p>
         </Hero>
       </article>
 
@@ -186,7 +189,7 @@ export default function Home() {
 
       <div
         className={
-          "absolute right-0 top-[80rem] -z-10 grid h-[1150px] w-full overflow-hidden md:top-[82rem]"
+          "absolute right-0 top-[145rem] -z-10 grid h-[1150px] w-full overflow-hidden md:top-[82rem]"
         }
       >
         <div

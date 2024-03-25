@@ -4,7 +4,7 @@ function Typography({ as, children, variant = "p", className = "", ...props }) {
     h2: `mb-4 sm:mb-10 text-3xl sm:text-4xl leading-tight sm:leading-snug font-semibold`, // 40px
     h3: `mb-2 text-2xl font-semibold leading-snug`, // 24px
     h4: `mb-5 text-xl font-semibold leading-snug`, // 24px
-    lead: "text-lg", // 18px
+    lead: "md:text-lg", // 18px
     default: `text-base`, // 16px
   };
 

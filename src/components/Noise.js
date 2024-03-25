@@ -7,7 +7,7 @@ function Noise() {
   const noiseRef = useRef();
   return (
     <>
-      <canvas ref={noiseRef} className="noise-bg" />;
+      <canvas ref={noiseRef} className="noise-bg" />
       <Script
         src="/libs/noise.js"
         onLoad={() => {
