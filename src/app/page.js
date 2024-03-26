@@ -10,11 +10,7 @@ export default function Home() {
   return (
     <>
       <article className={"mb-36"}>
-        <Hero
-          spline={
-            "https://prod.spline.design/M7xPf-bpJaJkwpRk/scene.splinecode"
-          }
-        >
+        <Hero video={"/videos/pyramid.mp4"}>
           <div className={"-mt-80 sm:mt-0"}>
             <HeroTitle>
               <span className="text-primary">Maximize yield</span>
