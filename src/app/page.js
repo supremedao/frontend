@@ -86,9 +86,6 @@ export default function Home() {
             our offerings through long-lasting and community-driven
             partnerships.
           </Typography>
-          <Typography className={"text-sm text-gray-500"}>
-            *Developed for the best.
-          </Typography>
         </div>
         <div className={"mb-4 flex flex-wrap gap-4 lg:w-1/2 lg:flex-row"}>
           <img
@@ -121,6 +118,9 @@ export default function Home() {
             alt=""
             className={"h-[60px] w-[180px]"}
           />
+          <Typography className={"ml-6 text-sm text-gray-500"}>
+            *Our professional network
+          </Typography>
         </div>
       </article>
 

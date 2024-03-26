@@ -8,16 +8,16 @@
   --linear-bg-start: rgba(92, 169, 252, 0.4);
   --linear-bg-end: rgba(92, 169, 252, 0.15);
   --conic--up-down: from 0deg at 50% 100%, rgba(57, 99, 243, 0.05) 0deg,
-    rgba(60, 105, 244, 0.4) 360deg;
+    rgba(60, 105, 244, 0.5) 360deg;
   --conic--up: from 0deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg,
-    rgba(60, 105, 244, 0.4) 360deg;
-  --conic--right: from 90deg at 50% 50%, rgba(60, 105, 244, 0.5) 0deg,
+    rgba(60, 105, 244, 0.5) 360deg;
+  --conic--right: from 90deg at 50% 50%, rgba(60, 105, 244, 0.6) 0deg,
     rgba(57, 99, 243, 0.05) 360deg;
   --conic--left-right: from -90deg at 100% 50%, rgba(57, 99, 243, 0.05) 0deg,
-    rgba(60, 105, 244, 0.5) 360deg;
+    rgba(60, 105, 244, 0.6) 360deg;
   --conic--left: from -90deg at 50% 50%, rgba(57, 99, 243, 0.05) 0deg,
-    rgba(60, 105, 244, 0.5) 360deg;
-  --conic--down: from 180deg at 50% 50%, rgba(60, 105, 244, 0.4) 0deg,
+    rgba(60, 105, 244, 0.6) 360deg;
+  --conic--down: from 180deg at 50% 50%, rgba(60, 105, 244, 0.5) 0deg,
     rgba(57, 99, 243, 0.05) 360deg;
 }
 
@@ -40,12 +40,20 @@ body {
   }
 }
 
-.noise-bg-container {
+.card {
+  position: relative;
+}
+.card:after {
+  content: '';
+  display: block;
   position: absolute;
+  background: url('/card-noise-sample.png') repeat;
   top: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: .7;
+  mix-blend-mode: overlay;
 }
 
 .noise-bg {
