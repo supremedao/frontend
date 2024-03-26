@@ -67,28 +67,60 @@ export default function Home() {
         </div>
       </article>
 
-      <article className={"mb-40 lg:w-2/5"}>
-        <Typography variant={"h2"}>
-          Innovation powered <br />
-          <Link
-            href={"https://daoism.systems/"}
-            target={"_blank"}
-            className={"text-primary"}
-          >
-            by Daoism Systems
-          </Link>
-        </Typography>
-        <Typography variant={"lead"} className={"mb-2"}>
-          SupremeDAO is built by Daoism Systems, a development studio creating
-          self-sovereign internet organizations, frontier tooling, and DeFi
-          protocols since 2022. Being part of the Daoism ecosystem enhances our
-          offerings through long-lasting and community-driven partnerships.
-        </Typography>
-        <Typography className={"text-sm text-gray-500"}>
-          *Developed for the best.
-        </Typography>
-        <div className={"mt-10"}>
-          <img src={"/partners.png"} />
+      <article className={"mb-40 flex flex-col items-center gap-5 lg:flex-row"}>
+        <div className={"lg:w-1/2"}>
+          <Typography variant={"h2"}>
+            Innovation powered <br />
+            <Link
+              href={"https://daoism.systems/"}
+              target={"_blank"}
+              className={"text-primary"}
+            >
+              by Daoism Systems
+            </Link>
+          </Typography>
+          <Typography variant={"lead"} className={"mb-2"}>
+            SupremeDAO is built by Daoism Systems, a development studio creating
+            self-sovereign internet organizations, frontier tooling, and DeFi
+            protocols since 2022. Being part of the Daoism ecosystem enhances
+            our offerings through long-lasting and community-driven
+            partnerships.
+          </Typography>
+          <Typography className={"text-sm text-gray-500"}>
+            *Developed for the best.
+          </Typography>
+        </div>
+        <div className={"mb-4 flex flex-wrap gap-4 lg:w-1/2 lg:flex-row"}>
+          <img
+            src="/partners/power-pool.png"
+            alt=""
+            className={"h-[60px] w-[180px]"}
+          />
+          <img
+            src="/partners/safe.png"
+            alt=""
+            className={"h-[60px] w-[180px]"}
+          />
+          <img
+            src="/partners/balancer.png"
+            alt=""
+            className={"h-[60px] w-[180px]"}
+          />
+          <img
+            src="/partners/prime-dao.png"
+            alt=""
+            className={"h-[60px] w-[180px]"}
+          />
+          <img
+            src="/partners/ceramic.png"
+            alt=""
+            className={"h-[60px] w-[180px]"}
+          />
+          <img
+            src="/partners/daoist.png"
+            alt=""
+            className={"h-[60px] w-[180px]"}
+          />
         </div>
       </article>
 
