@@ -8,12 +8,12 @@ function Noise() {
   return (
     <>
       <canvas ref={noiseRef} className="noise-bg" />
-      <Script
-        src="/libs/noise.js"
-        onLoad={() => {
-          new Grain(noiseRef.current);
-        }}
-      />
+      {/*<Script*/}
+      {/*  src="/libs/noise.js"*/}
+      {/*  onLoad={() => {*/}
+      {/*    new Grain(noiseRef.current);*/}
+      {/*  }}*/}
+      {/*/>*/}
     </>
   );
 }
