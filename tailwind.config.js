@@ -12,7 +12,7 @@ module.exports = {
         "4xl": "2.5rem", // 40px
       },
       colors: {
-        primary: "#3E6CF4",
+        primary: "#254CF7",
       },
     },
   },

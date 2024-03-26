@@ -56,7 +56,7 @@ body {
   bottom: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 5;
+  z-index: 999;
 }
 .noise-bg-animation {
   height: 200%;
