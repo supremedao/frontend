@@ -1,7 +1,5 @@
 "use strict";
 
-console.clear();
-
 class Grain {
   constructor(el) {
     /**

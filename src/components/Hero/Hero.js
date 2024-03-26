@@ -10,7 +10,7 @@ function Hero({ children, video, spline, img = "" }) {
         <div className="flex h-[400px] w-full items-stretch justify-center md:h-[700px] md:w-3/6">
           {img && <img src={img} width={"60%"} className={"mx-auto "} />}
           {video && (
-            <video className={"mx-auto "} autoPlay muted loop>
+            <video className={"mx-auto "} autoPlay muted={true} loop>
               <source src={video} type="video/mp4" />
             </video>
           )}

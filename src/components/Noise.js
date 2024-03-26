@@ -11,6 +11,7 @@ function Noise() {
       <Script
         src="/libs/noise.js"
         onLoad={() => {
+          console.log("noise init");
           new Grain(noiseRef.current);
         }}
       />
