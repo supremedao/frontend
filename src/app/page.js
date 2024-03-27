@@ -108,7 +108,7 @@ export default function Home() {
         </div>
       </article>
 
-      <article className={"mb-10 sm:mb-24"}>
+      <article id={"strategies"} className={"mb-10 sm:mb-24"}>
         <Typography variant={"h2"}>
           Featured <span className={"text-primary"}>Strategies</span>
         </Typography>

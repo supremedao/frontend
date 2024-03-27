@@ -14,35 +14,35 @@ function Partners() {
       <Link
         href={"https://safe.global/"}
         target={"_blank"}
-        className={"scale-75"}
+        className={"scale-75 sm:scale-100"}
       >
         <span className="partner-icon partner--safe inline-block" />
       </Link>
       <Link
         href={"https://balancer.fi/"}
         target={"_blank"}
-        className={"scale-75"}
+        className={"scale-75 sm:scale-100"}
       >
         <span className="partner-icon partner--balancer inline-block" />
       </Link>
       <Link
         href={"https://www.prime.xyz/"}
         target={"_blank"}
-        className={"scale-75"}
+        className={"scale-75 sm:scale-100"}
       >
         <span className="partner-icon partner--prime-dao inline-block" />
       </Link>
       <Link
         href={"https://ceramic.network/"}
         target={"_blank"}
-        className={"scale-75"}
+        className={"scale-75 sm:scale-100"}
       >
         <span className="partner-icon partner--ceramic inline-block" />
       </Link>
       <Link
         href={"https://www.thedaoist.co/"}
         target={"_blank"}
-        className={"scale-75"}
+        className={"scale-75 sm:scale-100"}
       >
         <span className="partner-icon partner--daoist inline-block" />
       </Link>

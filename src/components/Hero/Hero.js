@@ -7,7 +7,7 @@ function Hero({ children, video, spline, img = "" }) {
         <div className="z-10 flex items-center md:w-3/6 md:pr-5">
           <div className="text-left">{children}</div>
         </div>
-        <div className="flex h-[400px] w-full items-stretch justify-center md:h-[700px] md:w-3/6">
+        <div className="flex h-[400px] w-full justify-center md:h-[700px] md:w-3/6">
           {img && <img src={img} width={"60%"} className={"mx-auto "} />}
           {video && (
             <video
