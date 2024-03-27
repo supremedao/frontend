@@ -1,9 +1,8 @@
 "use client";
 import { Hero, HeroTitle } from "@/components/Hero";
-import { Card, CardMedia, CardDate } from "@/components/Card";
+import { Card } from "@/components/Card";
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
-import Spline from "@/components/Spline";
 import Link from "next/link";
 import WaveBG from "@/components/WaveBG";
 import Partners from "@/components/Partners";
@@ -13,7 +12,7 @@ export default function Home() {
     <>
       <article className={"mb-36"}>
         <Hero video={"/videos/pyramid.mp4"}>
-          <div className={"-mt-80 sm:mt-0"}>
+          <div className={"-mt-8 sm:mt-0"}>
             <HeroTitle>
               <span className="text-primary">Maximize yield</span>
               {` `} with a single-token DeFi optimizer
