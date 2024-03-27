@@ -26,6 +26,7 @@ function WaveBG() {
           className={"pointer-events-none mx-auto"}
           autoPlay
           muted={true}
+          controls={false}
           loop
         >
           <source src={"/videos/wave.mp4"} type="video/mp4" />

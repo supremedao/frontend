@@ -14,6 +14,7 @@ function Hero({ children, video, spline, img = "" }) {
               className={"pointer-events-none mx-auto h-[90%]"}
               autoPlay
               muted={true}
+              controls={false}
               loop
             >
               <source src={video} type="video/mp4" />
