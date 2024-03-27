@@ -84,26 +84,35 @@ export default function Home() {
             </Link>
           </Typography>
           <Typography variant={"lead"} className={"mb-2"}>
-            SupremeDAO is built by Daoism Systems, a development studio creating
-            self-sovereign internet organizations, frontier tooling, and DeFi
-            protocols since 2022. Being part of the Daoism ecosystem enhances
-            our offerings through long-lasting and community-driven
-            partnerships.
+            SupremeDAO is built by{" "}
+            <Link
+              href={"https://daoism.systems/"}
+              target={"_blank"}
+              className={"text-primary"}
+            >
+              Daoism Systems
+            </Link>
+            , a development studio creating self-sovereign internet
+            organizations, frontier tooling, and DeFi protocols since 2022.
+            Being part of the Daoism ecosystem enhances our offerings through
+            long-lasting and community-driven partnerships.
           </Typography>
         </div>
-        <div className={"mb-4 flex flex-wrap gap-4 lg:w-1/2 lg:flex-row"}>
+        <div className={"mb-4  lg:w-1/2 "}>
           <Partners />
-          <Typography className={"ml-6 text-sm text-gray-500"}>
-            *Our professional network
-          </Typography>
+          <div>
+            <Typography className={"ml-6 text-sm text-gray-500"}>
+              *Our professional network
+            </Typography>
+          </div>
         </div>
       </article>
 
-      <article className={"mb-28"}>
+      <article className={"mb-10 sm:mb-24"}>
         <Typography variant={"h2"}>
           Featured <span className={"text-primary"}>Strategies</span>
         </Typography>
-        <div className="mb-28 grid min-h-[580px] w-full gap-4 py-6 md:grid-cols-3 lg:mb-0">
+        <div className="grid min-h-[580px] w-full gap-4 py-6 md:grid-cols-3 lg:mb-0">
           <Card
             title="Alpha wstETH Maximizer"
             conic
