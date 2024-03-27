@@ -15,6 +15,7 @@ function Hero({ children, video, spline, img = "" }) {
               autoPlay
               muted={true}
               controls={false}
+              playsInline
               loop
             >
               <source src={video} type="video/mp4" />

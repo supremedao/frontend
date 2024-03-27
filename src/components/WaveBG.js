@@ -27,6 +27,7 @@ function WaveBG() {
           autoPlay
           muted={true}
           controls={false}
+          playsInline
           loop
         >
           <source src={"/videos/wave.mp4"} type="video/mp4" />
