@@ -95,7 +95,7 @@ export default function Social() {
 
         <li className={"flex"}>
           <Link
-            href="t.me/supremedaochat"
+            href="//t.me/supremedaochat"
             rel="noreferrer"
             target="_blank"
             data-twe-ripple-init

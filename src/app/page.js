@@ -5,6 +5,7 @@ import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import Spline from "@/components/Spline";
 import Link from "next/link";
+import WaveBG from "@/components/WaveBG";
 
 export default function Home() {
   return (
@@ -21,13 +22,15 @@ export default function Home() {
               token.
             </Typography>
             <div className="my-5 sm:flex md:mt-10">
-              <Button
-                color={"blue"}
-                size={"large"}
-                className={"xs:w-3/5 w-full md:w-3/5"}
+              <Link
+                href="https://twitter.com/supreme_dao"
+                className={"w-full sm:w-3/5 "}
+                target={"_blank"}
               >
-                Coming soon
-              </Button>
+                <Button color={"blue"} size={"large"} className={"w-full"}>
+                  Coming soon
+                </Button>
+              </Link>
             </div>
             <p className={"text-center text-xs sm:text-left"}>
               *Beta version now available for wstETH holders
@@ -88,36 +91,48 @@ export default function Home() {
           </Typography>
         </div>
         <div className={"mb-4 flex flex-wrap gap-4 lg:w-1/2 lg:flex-row"}>
-          <img
-            src="/partners/power-pool.png"
-            alt=""
-            className={"h-[60px] w-[180px]"}
-          />
-          <img
-            src="/partners/safe.png"
-            alt=""
-            className={"h-[60px] w-[180px]"}
-          />
-          <img
-            src="/partners/balancer.png"
-            alt=""
-            className={"h-[60px] w-[180px]"}
-          />
-          <img
-            src="/partners/prime-dao.png"
-            alt=""
-            className={"h-[60px] w-[180px]"}
-          />
-          <img
-            src="/partners/ceramic.png"
-            alt=""
-            className={"h-[60px] w-[180px]"}
-          />
-          <img
-            src="/partners/daoist.png"
-            alt=""
-            className={"h-[60px] w-[180px]"}
-          />
+          <Link href={"https://powerpool.finance/"} target={"_blank"}>
+            <img
+              src="/partners/power-pool.png"
+              alt=""
+              className={"h-[60px] w-[180px]"}
+            />
+          </Link>
+          <Link href={"https://safe.global/"} target={"_blank"}>
+            <img
+              src="/partners/safe.png"
+              alt=""
+              className={"h-[60px] w-[180px]"}
+            />
+          </Link>
+          <Link href={"https://balancer.fi/"} target={"_blank"}>
+            <img
+              src="/partners/balancer.png"
+              alt=""
+              className={"h-[60px] w-[180px]"}
+            />
+          </Link>
+          <Link href={"https://www.prime.xyz/"} target={"_blank"}>
+            <img
+              src="/partners/prime-dao.png"
+              alt=""
+              className={"h-[60px] w-[180px]"}
+            />
+          </Link>
+          <Link href={"https://ceramic.network/"} target={"_blank"}>
+            <img
+              src="/partners/ceramic.png"
+              alt=""
+              className={"h-[60px] w-[180px]"}
+            />
+          </Link>
+          <Link href={"https://www.thedaoist.co/"} target={"_blank"}>
+            <img
+              src="/partners/daoist.png"
+              alt=""
+              className={"h-[60px] w-[180px]"}
+            />
+          </Link>
           <Typography className={"ml-6 text-sm text-gray-500"}>
             *Our professional network
           </Typography>
@@ -141,9 +156,15 @@ export default function Home() {
                 leveraging vote-escrowed tokens effectively.
               </Typography>
               <div className={"mt-3"}>
-                <Button className={"w-full"} size={"large"} color={"white"}>
-                  Coming soon
-                </Button>
+                <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
+                  <Button
+                    className={"relative z-10 w-full"}
+                    size={"large"}
+                    color={"white"}
+                  >
+                    Coming soon
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
@@ -162,9 +183,15 @@ export default function Home() {
                 directly steered by the SupremeDAO community.
               </Typography>
               <div className={"mt-3"}>
-                <Button className={"w-full"} size={"large"} color={"white"}>
-                  Get notified
-                </Button>
+                <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
+                  <Button
+                    className={"relative z-10 w-full"}
+                    size={"large"}
+                    color={"white"}
+                  >
+                    Get notified
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
@@ -183,9 +210,15 @@ export default function Home() {
                 networks for our community.
               </Typography>
               <div className={"mt-3"}>
-                <Button className={"w-full"} size={"large"} color={"white"}>
-                  Get notified
-                </Button>
+                <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
+                  <Button
+                    className={"relative z-10 w-full"}
+                    size={"large"}
+                    color={"white"}
+                  >
+                    Get notified
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
@@ -206,7 +239,7 @@ export default function Home() {
         </Typography>
         <div className="my-5 sm:flex md:mt-8">
           <div className="">
-            <Button className="w-full" color={"blue"} size={"large"}>
+            <Button className="z-10 w-full" color={"blue"} size={"large"}>
               Coming soon
             </Button>
           </div>
@@ -215,33 +248,7 @@ export default function Home() {
 
       {/*<LatestArticles />*/}
 
-      <div
-        className={
-          "absolute right-0 top-[145rem] -z-10 grid h-[1150px] w-full overflow-hidden md:top-[82rem]"
-        }
-      >
-        <div
-          className={
-            "absolute left-1/2 top-0 -ml-[1250px] w-[2300px] lg:-ml-[1050px]"
-          }
-        >
-          <div
-            className={
-              "absolute inset-x-0 top-0 z-[1] h-1/2 bg-gradient-to-b from-[var(--background)] to-transparent"
-            }
-          />
-          <div
-            className={
-              "absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-b from-transparent via-[var(--background)] to-[var(--background)]"
-            }
-          />
-          <Spline
-            scene={
-              "https://prod.spline.design/67GWXoedqMNytxny/scene.splinecode"
-            }
-          />
-        </div>
-      </div>
+      <WaveBG />
     </>
   );
 }
