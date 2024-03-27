@@ -102,7 +102,7 @@ export default function Home() {
           <Partners />
           <div>
             <Typography className={"ml-6 text-sm text-gray-500"}>
-              *Our professional network
+              *Daoism Systems professional network
             </Typography>
           </div>
         </div>
