@@ -6,6 +6,7 @@ import Button from "@/components/Button";
 import Spline from "@/components/Spline";
 import Link from "next/link";
 import WaveBG from "@/components/WaveBG";
+import Partners from "@/components/Partners";
 
 export default function Home() {
   return (
@@ -91,48 +92,7 @@ export default function Home() {
           </Typography>
         </div>
         <div className={"mb-4 flex flex-wrap gap-4 lg:w-1/2 lg:flex-row"}>
-          <Link href={"https://powerpool.finance/"} target={"_blank"}>
-            <img
-              src="/partners/power-pool.png"
-              alt=""
-              className={"h-[60px] w-[180px]"}
-            />
-          </Link>
-          <Link href={"https://safe.global/"} target={"_blank"}>
-            <img
-              src="/partners/safe.png"
-              alt=""
-              className={"h-[60px] w-[180px]"}
-            />
-          </Link>
-          <Link href={"https://balancer.fi/"} target={"_blank"}>
-            <img
-              src="/partners/balancer.png"
-              alt=""
-              className={"h-[60px] w-[180px]"}
-            />
-          </Link>
-          <Link href={"https://www.prime.xyz/"} target={"_blank"}>
-            <img
-              src="/partners/prime-dao.png"
-              alt=""
-              className={"h-[60px] w-[180px]"}
-            />
-          </Link>
-          <Link href={"https://ceramic.network/"} target={"_blank"}>
-            <img
-              src="/partners/ceramic.png"
-              alt=""
-              className={"h-[60px] w-[180px]"}
-            />
-          </Link>
-          <Link href={"https://www.thedaoist.co/"} target={"_blank"}>
-            <img
-              src="/partners/daoist.png"
-              alt=""
-              className={"h-[60px] w-[180px]"}
-            />
-          </Link>
+          <Partners />
           <Typography className={"ml-6 text-sm text-gray-500"}>
             *Our professional network
           </Typography>

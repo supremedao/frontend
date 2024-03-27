@@ -1,0 +1,40 @@
+.partner-icon {
+    background-size: 556px 325px !important;
+    width: 180px; height: 60px;
+}
+.partner--power-pool {
+    background: url('/partners/partners_sprite.png') -5px -262px;
+}
+.partner--power-pool:hover {
+    background: url('/partners/partners_sprite.png') -375px -2px;
+}
+.partner--safe {
+    background: url('/partners/partners_sprite.png') -2px -2px;
+}
+.partner--safe:hover {
+    background: url('/partners/partners_sprite.png') -2px -132px;
+}
+.partner--balancer {
+    background: url('/partners/partners_sprite.png') -5px -393px;
+}
+.partner--balancer:hover {
+    background: url('/partners/partners_sprite.png') -747px -133px;
+}
+.partner--prime-dao {
+    background: url('/partners/partners_sprite.png') -188px -265px;
+}
+.partner--prime-dao:hover {
+    background: url('/partners/partners_sprite.png') -374px -395px;
+}
+.partner--ceramic {
+    background: url('/partners/partners_sprite.png') -188px -395px;
+}
+.partner--ceramic:hover {
+    background: url('/partners/partners_sprite.png') -3px -200px;
+}
+.partner--daoist {
+    background: url('/partners/partners_sprite.png') -188px -5px;
+}
+.partner--daoist:hover {
+    background: url('/partners/partners_sprite.png') -188px -200px;
+}
