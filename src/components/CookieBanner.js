@@ -61,17 +61,14 @@ function CookieBanner() {
           <div className={"flex w-full  flex-col gap-4 md:w-1/2 md:flex-row"}>
             <Button
               onClick={acceptSection}
-              className={
-                "w-full rounded-lg border-green-600 py-1 hover:border-green-400"
-              }
+              className={"w-full rounded-lg border-primary py-1"}
             >
               Accept Section
             </Button>
             <Button
+              color={"blue"}
               onClick={acceptAll}
-              className={
-                "w-full rounded-lg bg-green-600 py-1 hover:bg-green-400"
-              }
+              className={"w-full rounded-lg py-1 "}
             >
               Accept all
             </Button>
