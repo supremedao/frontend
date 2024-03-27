@@ -54,6 +54,7 @@ body {
   left: 0;
   opacity: .7;
   mix-blend-mode: overlay;
+  transform: translate3d(0,0,0)
 }
 
 .noise-bg {
