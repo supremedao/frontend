@@ -4,7 +4,7 @@ function WaveBG() {
   return (
     <div
       className={
-        "absolute right-0 top-[145rem] -z-10 grid h-[1150px] w-full overflow-hidden md:top-[82rem]"
+        "pointer-events-none absolute right-0 top-[145rem] -z-10 grid h-[1150px] w-full overflow-hidden md:top-[82rem]"
       }
     >
       <div
@@ -22,7 +22,12 @@ function WaveBG() {
             "absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-b from-transparent via-[var(--background)] to-[var(--background)]"
           }
         />
-        <video className={"mx-auto "} autoPlay muted={true} loop>
+        <video
+          className={"pointer-events-none mx-auto"}
+          autoPlay
+          muted={true}
+          loop
+        >
           <source src={"/videos/wave.mp4"} type="video/mp4" />
         </video>
         {/*<Spline*/}
