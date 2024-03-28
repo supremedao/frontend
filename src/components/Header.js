@@ -55,7 +55,7 @@ export default function Header() {
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
-            <Button size="medium">Launch dApp</Button>
+            <Button size="medium">Join Community</Button>
           </Link>
         </div>
       </nav>
