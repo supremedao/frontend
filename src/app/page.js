@@ -62,10 +62,10 @@ export default function Home() {
             makes investing in DeFi strategies straightforward and efficient.
           </Card>
           <Card title="DAO governed liquidity" icon={"icons/sup.svg"}>
-            SupremeDAO manages its liquidity by creating proprietary pools and
-            applying veTokenomics incentives and strategic investments to ensure
-            profitability and stability, with all operations automated and
-            governed by DAO
+            SupremeDAO manages its liquidity by creating DAO controlled pools
+            and applying veTokenomics incentives and strategic investments to
+            ensure profitability and stability, with all operations automated
+            and governed by DAO
           </Card>
         </div>
       </article>
@@ -145,10 +145,10 @@ export default function Home() {
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
-                Through proprietary liquidity pools and veTokenomics incentives,
-                our SupremePool strategy achieves superior returns and
-                community-driven stability. Access a fully automated strategy
-                directly steered by the SupremeDAO community.
+                Through DAO controlled liquidity pools and veTokenomics
+                incentives, our SupremePool strategy achieves superior returns
+                and community-driven stability. Access a fully automated
+                strategy directly steered by the SupremeDAO community.
               </Typography>
               <div className={"mt-3"}>
                 <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
