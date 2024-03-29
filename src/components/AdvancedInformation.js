@@ -1,5 +1,37 @@
+"use client";
+import Typography from "@/components/Typography";
+import StatusBar from "@/components/StatusBar";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+
 function AdvancedInformation() {
-  return <div>AdvancedInformation</div>;
+  const [collapsed, toggle] = useState(false);
+
+  return (
+    <article className={"mb-5"}>
+      <header className={"flex items-start justify-between"}>
+        <Typography variant={"h2"}>Advanced Information</Typography>
+        <button
+          onClick={() => toggle(!collapsed)}
+          className={
+            "mt-4 inline-block rounded-full border p-2  transition-all"
+          }
+        >
+          {!collapsed && <ChevronDownIcon className={"size-6 "} />}
+          {collapsed && <ChevronUpIcon className={"size-6"} />}
+        </button>
+      </header>
+      <div
+        className={`${collapsed ? "h-0 opacity-0 delay-0 duration-0" : "h-full opacity-100 duration-500"} transition-opacity ease-in-out`}
+      >
+        <div className={"mb-4 grid gap-4 sm:grid-cols-2"}>
+          <StatusBar />
+          <StatusBar />
+        </div>
+        <StatusBar />
+      </div>
+    </article>
+  );
 }
 
 export default AdvancedInformation;

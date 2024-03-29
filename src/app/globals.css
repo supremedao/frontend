@@ -68,3 +68,9 @@ body {
   z-index: 999;
 }
 
+.tooltipContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

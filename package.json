@@ -17,6 +17,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.0.87",
     "@types/mdx": "^2.0.12",
+    "microtip-react": "^1.0.2",
     "next": "14.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
