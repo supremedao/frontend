@@ -1,7 +1,10 @@
-"use client";
 import Typography from "@/components/Typography";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import Tooltip from "microtip-react";
+import dynamic from "next/dynamic";
+
+const DynamicTooltip = dynamic(() => import("microtip-react"), {
+  loading: () => <p>Loading...</p>,
+});
 
 function StatusBar({ title = "", value = 10 }) {
   return (
@@ -11,13 +14,13 @@ function StatusBar({ title = "", value = 10 }) {
           StatusBar
         </Typography>
         <div className="tooltipContainer ml-4">
-          <Tooltip
+          <DynamicTooltip
             label={"Additional Information"}
             position={"bottom"}
             size={"small"}
           >
             <InformationCircleIcon className={"size-6"} />
-          </Tooltip>
+          </DynamicTooltip>
         </div>
       </header>
 

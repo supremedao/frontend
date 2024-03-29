@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/components/Button";
 import Chart from "@/components/Chart";
 import TokensCockpit from "@/components/TokensCockpit";
@@ -6,8 +7,10 @@ import AdvancedInformation from "@/components/AdvancedInformation";
 import Typography from "@/components/Typography";
 import { Card } from "@/components/Card";
 import Information from "@/components/Information";
+import { config } from "@/auth";
+import { WagmiProvider } from "wagmi";
 
-export default function Product() {
+function Product() {
   return (
     <section>
       <div className={"mb-10 flex justify-end gap-2"}>
@@ -103,5 +106,12 @@ export default function Product() {
         </div>
       </article>
     </section>
+  );
+}
+export default function Page() {
+  return (
+    <WagmiProvider config={config}>
+      <Product />;
+    </WagmiProvider>
   );
 }

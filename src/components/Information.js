@@ -18,8 +18,8 @@ function Information() {
         }
       >
         <div
-          className={
-            "bg-gradient-to-t from-[var(--background)] from-10% via-transparent via-30% to-transparent pb-32 pt-36"
+          className={ // eslint-disable-line
+            "bg-gradient-to-t from-[var(--background)] from-10% via-transparent via-30% to-transparent pb-32 pt-36" // eslint-disable-line
           }
         >
           <img
