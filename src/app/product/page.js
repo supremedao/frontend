@@ -1,4 +1,3 @@
-"use client";
 import Button from "@/components/Button";
 import Chart from "@/components/Chart";
 import TokensCockpit from "@/components/TokensCockpit";
@@ -7,18 +6,20 @@ import AdvancedInformation from "@/components/AdvancedInformation";
 import Typography from "@/components/Typography";
 import { Card } from "@/components/Card";
 import Information from "@/components/Information";
-import { config } from "@/auth";
-import { WagmiProvider } from "wagmi";
+import { config } from "@/web3/config";
+import Web3ModalProvider from "@/web3/context";
+import { headers } from "next/headers";
+import { cookieToInitialState } from "wagmi";
 
 function Product() {
   return (
     <section>
       <div className={"mb-10 flex justify-end gap-2"}>
-        <Button>How it works</Button>
-        <Button>Connect wallet</Button>
+        <Button size={"small"}>How it works</Button>
+        <w3m-button />
       </div>
 
-      <div className={"mb-4 flex flex-row gap-4 sm:flex-row"}>
+      <div className={"mb-4 flex flex-col gap-4 sm:flex-row"}>
         <div className={"sm:w-2/3"}>
           <Chart />
         </div>
@@ -109,9 +110,11 @@ function Product() {
   );
 }
 export default function Page() {
+  const initialState = cookieToInitialState(config, headers().get("cookie"));
+
   return (
-    <WagmiProvider config={config}>
-      <Product />;
-    </WagmiProvider>
+    <Web3ModalProvider initialState={initialState}>
+      <Product />
+    </Web3ModalProvider>
   );
 }

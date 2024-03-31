@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@/components/Typography";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
@@ -15,7 +16,9 @@ function StatusBar({ title = "", value = 10 }) {
         </Typography>
         <div className="tooltipContainer ml-4">
           <DynamicTooltip
-            label={"Additional Information"}
+            label={
+              "Your transaction will revert if the price changes unfavourably by more than this percentage"
+            }
             position={"bottom"}
             size={"small"}
           >

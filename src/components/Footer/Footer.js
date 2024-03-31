@@ -51,7 +51,7 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link variant={"h4"} href="#strategies">
+                      <Link variant={"h4"} href="/#strategies">
                         Strategies
                       </Link>
                     </li>

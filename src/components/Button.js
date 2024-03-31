@@ -4,6 +4,7 @@ const Button = ({
   size = "medium",
   children,
   shadow,
+  type = "button",
   ...props
 }) => {
   const colorClasses = {
@@ -24,6 +25,7 @@ const Button = ({
 
   return (
     <button
+      type={type}
       className={`rounded-full border focus:outline-none focus:ring focus:ring-opacity-75  ${colorClass} ${sizeClass} ${className}`}
       {...props}
     >
