@@ -25,17 +25,23 @@ function Information() {
           <img
             src={"/icons/paladin.png"}
             alt="Paladin"
-            className={"absolute right-[120px] top-[95px] h-[137px]"}
+            className={
+              "absolute right-[120px] top-[95px] h-[137px] animate-pulse"
+            }
           />
           <img
             src={"/icons/aura.png"}
             alt="Aura"
-            className={"absolute right-[100px] top-[400px] h-[137px]"}
+            className={
+              "absolute right-[100px] top-[400px] h-[137px] animate-pulse"
+            }
           />
           <img
             src={"/icons/curve.png"}
             alt="Curve"
-            className={"absolute left-[80px] top-[200px] h-[137px]"}
+            className={
+              "absolute left-[80px] top-[200px] h-[137px] animate-pulse"
+            }
           />
           <div className={"mx-auto sm:w-1/2"}>
             <Typography variant={"h3"} className={"mb-8 text-primary"}>

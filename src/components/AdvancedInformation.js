@@ -3,6 +3,8 @@ import Typography from "@/components/Typography";
 import StatusBar from "@/components/StatusBar";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import HealthStatus from "@/components/Statuses/HealthStatus";
+import { LiquidationRange } from "@/components/Statuses/LiquidationRange";
 
 function AdvancedInformation() {
   const [collapsed, toggle] = useState(false);
@@ -25,10 +27,10 @@ function AdvancedInformation() {
         className={`${collapsed ? "h-0 opacity-0 delay-0 duration-0" : "h-full opacity-100 duration-500"} transition-opacity ease-in-out`}
       >
         <div className={"mb-4 grid gap-4 sm:grid-cols-2"}>
-          <StatusBar />
-          <StatusBar />
+          <HealthStatus />
+          <StatusBar title={"Average Incentivisation Range"} value={"N/A"} />
         </div>
-        <StatusBar />
+        <LiquidationRange />
       </div>
     </article>
   );

@@ -1,22 +1,48 @@
+"use client";
 import Button from "@/components/Button";
 import Chart from "@/components/Chart";
 import TokensCockpit from "@/components/TokensCockpit";
-import StatusBar from "@/components/StatusBar";
 import AdvancedInformation from "@/components/AdvancedInformation";
 import Typography from "@/components/Typography";
 import { Card } from "@/components/Card";
 import Information from "@/components/Information";
-import { config } from "@/web3/config";
-import Web3ModalProvider from "@/web3/context";
-import { headers } from "next/headers";
-import { cookieToInitialState } from "wagmi";
+import TVLStatus from "@/components/Statuses/TVLStatus";
+import CurrentBalanceStatus from "@/components/Statuses/CurrentBalanceStatus";
+import { DAppProvider, useEthers } from "@usedapp/core";
+import TotalRewadsEarnedStatus from "@/components/Statuses/TotalRewadsEarnedStatus";
+import { ContractsDataProvider } from "@/Context/ContractsDataProvider";
+import APRStatus from "@/components/Statuses/APRStatus";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "@/api/graphql";
+
+const ConnectButton = () => {
+  const { account, deactivate, activateBrowserWallet } = useEthers();
+
+  // 'account' being undefined means that we are not connected.
+  if (account)
+    return (
+      <Button size={"small"} onClick={() => deactivate()}>
+        Disconnect
+      </Button>
+    );
+  else
+    return (
+      <Button
+        size={"small"}
+        color={"blue"}
+        onClick={() => activateBrowserWallet()}
+      >
+        Connect
+      </Button>
+    );
+};
 
 function Product() {
   return (
     <section>
       <div className={"mb-10 flex justify-end gap-2"}>
         <Button size={"small"}>How it works</Button>
-        <w3m-button />
+        <ConnectButton />
       </div>
 
       <div className={"mb-4 flex flex-col gap-4 sm:flex-row"}>
@@ -27,12 +53,11 @@ function Product() {
           <TokensCockpit />
         </div>
       </div>
-      <div className={"mb-20 flex w-full flex-wrap gap-4"}>
-        <StatusBar title={"APR"} />
-        <StatusBar title={"APR"} />
-        <StatusBar title={"APR"} />
-        <StatusBar title={"APR"} />
-        <StatusBar title={"APR"} />
+      <div className={"mb-20 flex flex-wrap justify-items-stretch gap-4"}>
+        <APRStatus />
+        <TVLStatus />
+        <CurrentBalanceStatus />
+        <TotalRewadsEarnedStatus />
       </div>
 
       <div>
@@ -48,15 +73,30 @@ function Product() {
           The process is <span className={"text-primary"}>simple</span>
         </Typography>
         <div className="mb-28 grid w-full gap-4 py-6 md:grid-cols-3 lg:mb-0">
-          <Card title="Stake your wstETH" icon={"icons/1.svg"}>
+          <Card
+            title="Stake your wstETH"
+            icon={"icons/1.svg"}
+            variant={"gray"}
+            noise={false}
+          >
             We bribe Ve Points holders with cryptocurrency assets you transfer —
             they have the right to vote on what pools get yield.
           </Card>
-          <Card title="Track your progress" icon={"icons/2.svg"}>
+          <Card
+            title="Track your progress"
+            icon={"icons/2.svg"}
+            variant={"gray"}
+            noise={false}
+          >
             Ve Points holders exercise their voting rights to determine yield
             locations and enhance profitability for your funds.
           </Card>
-          <Card title="Withdraw wstETH" icon={"icons/3.svg"}>
+          <Card
+            title="Withdraw wstETH"
+            icon={"icons/3.svg"}
+            variant={"gray"}
+            noise={false}
+          >
             When the process is over we return tokens back to you, substantially
             increasing your yield based on the investments made.
           </Card>
@@ -109,12 +149,39 @@ function Product() {
     </section>
   );
 }
-export default function Page() {
-  const initialState = cookieToInitialState(config, headers().get("cookie"));
+export const TutorialChain = {
+  chainId: 1,
+  chainName: "Fork",
+  // Optional parameters:
+  rpcUrl: "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
+  nativeCurrency: {
+    name: "Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+};
+const config = {
+  readOnlyChainId: TutorialChain.chainId,
+  readOnlyUrls: {
+    [TutorialChain.chainId]:
+      "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
+  },
+};
 
+export default function Page() {
+  // const initialState = cookieToInitialState(config, headers().get("cookie"));
   return (
-    <Web3ModalProvider initialState={initialState}>
-      <Product />
-    </Web3ModalProvider>
+    <DAppProvider config={config}>
+      <ContractsDataProvider>
+        <ApolloProvider client={client}>
+          <Product />
+        </ApolloProvider>
+      </ContractsDataProvider>
+    </DAppProvider>
   );
+  // return (
+  //   <Web3ModalProvider initialState={initialState}>
+  //     <Product />
+  //   </Web3ModalProvider>
+  // );
 }

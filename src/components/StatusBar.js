@@ -7,28 +7,27 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
 });
 
-function StatusBar({ title = "", value = 10 }) {
+function StatusBar({
+  hint = "Your transaction will revert if the price changes unfavourably by more than this percentage",
+  title = "",
+  value = 0,
+  className = "",
+}) {
   return (
-    <div className={"rounded-md border bg-black/5 p-4"}>
+    <div className={`grow rounded-md border bg-black/5 p-4  ${className}`}>
       <header className={"mb-2 flex flex-row justify-between"}>
         <Typography variant={"lead"} className={"font-light text-primary"}>
-          StatusBar
+          {title}
         </Typography>
         <div className="tooltipContainer ml-4">
-          <DynamicTooltip
-            label={
-              "Your transaction will revert if the price changes unfavourably by more than this percentage"
-            }
-            position={"bottom"}
-            size={"small"}
-          >
+          <DynamicTooltip label={hint} position={"bottom"} size={"small"}>
             <InformationCircleIcon className={"size-6"} />
           </DynamicTooltip>
         </div>
       </header>
 
-      <Typography variant={"h3"} className={"font-normal"}>
-        $ {value}
+      <Typography variant={"h3"} className={`font-normal`}>
+        {value}
       </Typography>
     </div>
   );

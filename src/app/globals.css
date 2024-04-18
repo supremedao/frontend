@@ -43,7 +43,7 @@ body {
 .card {
   position: relative;
 }
-.card:after {
+.card--noise:after {
   content: '';
   display: block;
   position: absolute;
