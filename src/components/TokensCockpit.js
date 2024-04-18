@@ -5,6 +5,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import BigNumber from "bignumber.js";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -58,7 +59,8 @@ const ControllerPlus = ({
 );
 
 function TokensCockpit() {
-  const { wstEthBalance } = useContractsData();
+  // const { wstEthBalance } = useContractsData();
+  const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
       operation: "stake",
@@ -72,6 +74,7 @@ function TokensCockpit() {
     handleSubmit,
     watch,
     formState: { errors },
+    setValue,
   } = methods;
 
   const operation = watch("operation");
@@ -81,6 +84,13 @@ function TokensCockpit() {
   }
 
   const headerClassName = "header";
+
+  function fillStakeValue(percentage = 0) {
+    setValue(
+      "amount",
+      BigNumber(wstEthBalance).div(100).multipliedBy(percentage).toFixed(2),
+    );
+  }
 
   return (
     <article className={"rounded-md border bg-black/5 p-4"}>
@@ -167,6 +177,7 @@ function TokensCockpit() {
                   className={"grow rounded-lg"}
                   size={"small"}
                   disabled={!wstEthBalance || wstEthBalance <= 0}
+                  onClick={() => fillStakeValue(25)}
                 >
                   25%
                 </Button>
@@ -174,6 +185,7 @@ function TokensCockpit() {
                   className={"grow rounded-lg"}
                   size={"small"}
                   disabled={!wstEthBalance || wstEthBalance <= 0}
+                  onClick={() => fillStakeValue(50)}
                 >
                   50%
                 </Button>
@@ -181,6 +193,7 @@ function TokensCockpit() {
                   className={"grow rounded-lg"}
                   size={"small"}
                   disabled={!wstEthBalance || wstEthBalance <= 0}
+                  onClick={() => fillStakeValue(75)}
                 >
                   75%
                 </Button>
@@ -188,6 +201,7 @@ function TokensCockpit() {
                   className={"grow rounded-lg"}
                   size={"small"}
                   disabled={!wstEthBalance || wstEthBalance <= 0}
+                  onClick={() => fillStakeValue(100)}
                 >
                   Max
                 </Button>
