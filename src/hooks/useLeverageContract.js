@@ -7,7 +7,7 @@ export function useLeverageContract() {
   const { account } = useEthers();
   const [abi, setAbi] = useState();
   const gasPrice = useGasPrice();
-  console.log("gasPrice", gasPrice);
+
   useEffect(() => {
     import("@/contracts/abi/leverage-strategy.json").then((resp) => {
       setAbi(resp.default);
@@ -37,7 +37,7 @@ export function useLeverageContract() {
     });
   };
   const withdraw = (amount) => {
-    withdrawFn(amount, account, 0, {
+    withdrawFn(amount, account, account, 0, {
       gasPrice,
       gasLimit: 970000,
     });
