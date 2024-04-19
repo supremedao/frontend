@@ -59,13 +59,14 @@ export function Withdraw() {
               </button>
             </div>
           </div>
+          <div>Status: {withdrawState.status}</div>
           <Button
             type={"submit"}
             color={"blue"}
             className={"rounded-lg"}
             disabled={!account || !wstEthBalance || wstEthBalance <= 0}
           >
-            Withdraw {withdrawState.status}
+            Withdraw
           </Button>
         </article>
       </form>

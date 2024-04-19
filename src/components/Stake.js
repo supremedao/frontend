@@ -15,7 +15,7 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 
 export function Stake() {
   const { account } = useEthers();
-  const { stake, stakeStatus } = useLeverageContract();
+  const { stake, stakeState } = useLeverageContract();
 
   // const { wstEthBalance } = useContractsData();
   const wstEthBalance = 5;
@@ -147,13 +147,14 @@ export function Stake() {
               </div>
             </div>
           </div>
+          <div>Status: {stakeState.status}</div>
           <Button
             type={"submit"}
             color={"blue"}
             className={"rounded-lg"}
             disabled={!account || !wstEthBalance || wstEthBalance <= 0}
           >
-            Stake {stakeStatus}
+            Stake
           </Button>
         </article>
       </form>
