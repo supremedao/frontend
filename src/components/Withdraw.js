@@ -19,6 +19,7 @@ export function Withdraw() {
   const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
+      totalAmount: "10.00",
       amount: "0.00",
     },
   });
@@ -28,6 +29,7 @@ export function Withdraw() {
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = methods;
 
   async function submit(data) {
@@ -38,36 +40,75 @@ export function Withdraw() {
   return (
     <FormProvider {...methods}>
       <form action="#" onSubmit={handleSubmit(submit)}>
-        <article className={"flex flex-col justify-between"}>
-          <div className={"mb-20"}>
-            <div className={"mb-2"}>
-              <Typography className={""}>Claimable rewards</Typography>
-            </div>
-            <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
-              <FormattedInput
-                className={
-                  "mr-1 h-10 grow bg-transparent pl-1 text-lg outline-0"
-                }
-                control={control}
-                name="amount"
-                defaultValue=""
-                required
-              />
+        <article className={""}>
+          <div className={"mb-8 flex flex-col"}>
+            <div className={""}>
+              <div className={"mb-2"}>
+                <Typography className={""}>Claimable rewards</Typography>
+              </div>
+              <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
+                <FormattedInput
+                  className={
+                    "mr-1 h-10 grow bg-transparent pl-1 text-lg outline-0"
+                  }
+                  control={control}
+                  name="amount"
+                  defaultValue=""
+                  required
+                />
 
-              <button type={"button"} className={"rounded bg-white px-2"}>
-                wstETH
-              </button>
+                <button type={"button"} className={"rounded bg-white px-2"}>
+                  wstETH
+                </button>
+              </div>
             </div>
+            <Button
+              type={"submit"}
+              size={"small"}
+              color={"blue"}
+              className={"rounded-lg py-3"}
+              disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+            >
+              Withdraw
+            </Button>
           </div>
-          <div>Status: {withdrawState.status}</div>
-          <Button
-            type={"submit"}
-            color={"blue"}
-            className={"rounded-lg"}
-            disabled={!account || !wstEthBalance || wstEthBalance <= 0}
-          >
-            Withdraw
-          </Button>
+          <div className={"flex flex-col"}>
+            <div className={""}>
+              <div className={"mb-2"}>
+                <Typography className={""}>Total deposits</Typography>
+              </div>
+              <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
+                <FormattedInput
+                  className={
+                    "mr-1 h-10 grow bg-transparent pl-1 text-lg outline-0"
+                  }
+                  control={control}
+                  name="totalAmount"
+                  required
+                />
+
+                <button type={"button"} className={"rounded bg-white px-2"}>
+                  wstETH
+                </button>
+              </div>
+            </div>
+            <Button
+              onClick={async () => {
+                const totalAmount = getValues("totalAmount");
+                setValue("amount", totalAmount);
+              }}
+              type={"submit"}
+              color={"white"}
+              size={"small"}
+              className={"rounded-lg py-3"}
+              disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+            >
+              Withdraw
+            </Button>
+            <Typography className={"mt-2 px-2 text-xs"}>
+              Status: {withdrawState.status}
+            </Typography>
+          </div>
         </article>
       </form>
     </FormProvider>

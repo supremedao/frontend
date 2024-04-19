@@ -14,35 +14,37 @@ function Information() {
       </Typography>
       <article
         className={
-          "relative bg-[url('/product-bg.png')]  bg-[length:100%] bg-top bg-no-repeat "
+          "relative bg-[length:100%]  bg-top bg-no-repeat lg:bg-[url('/product-bg.png')] "
         }
       >
         <div
           className={ // eslint-disable-line
-            "bg-gradient-to-t from-[var(--background)] from-10% via-transparent via-30% to-transparent pb-32 pt-36" // eslint-disable-line
+            "bg-gradient-to-t from-[var(--background)] from-10% via-transparent via-30% to-transparent sm:pb-32 pt-10 sm:pt-36" // eslint-disable-line
           }
         >
-          <img
-            src={"/icons/paladin.png"}
-            alt="Paladin"
-            className={
-              "absolute right-[120px] top-[95px] h-[137px] animate-pulse"
-            }
-          />
-          <img
-            src={"/icons/aura.png"}
-            alt="Aura"
-            className={
-              "absolute right-[100px] top-[400px] h-[137px] animate-pulse"
-            }
-          />
-          <img
-            src={"/icons/curve.png"}
-            alt="Curve"
-            className={
-              "absolute left-[80px] top-[200px] h-[137px] animate-pulse"
-            }
-          />
+          <div className={"invisible lg:visible"}>
+            <img
+              src={"/icons/paladin.png"}
+              alt="Paladin"
+              className={
+                "absolute right-[120px] top-[95px] h-[137px] animate-pulse"
+              }
+            />
+            <img
+              src={"/icons/aura.png"}
+              alt="Aura"
+              className={
+                "absolute right-[100px] top-[400px] h-[137px] animate-pulse"
+              }
+            />
+            <img
+              src={"/icons/curve.png"}
+              alt="Curve"
+              className={
+                "absolute left-[80px] top-[200px] h-[137px] animate-pulse"
+              }
+            />
+          </div>
           <div className={"mx-auto sm:w-1/2"}>
             <Typography variant={"h3"} className={"mb-8 text-primary"}>
               How it works

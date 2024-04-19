@@ -25,13 +25,13 @@ function TokensCockpit() {
       >
         <button
           onClick={() => setTabName("stake")}
-          className={`cursor-pointer rounded-lg ${tabName === "stake" ? "bg-white" : ""} easy-in-out px-2 py-3 transition-colors`}
+          className={`cursor-pointer rounded-lg ${tabName === "stake" ? "bg-white" : "text-gray-600"} easy-in-out p-2 transition-colors`}
         >
           Stake
         </button>
         <button
           onClick={() => setTabName("withdraw")}
-          className={`cursor-pointer rounded-lg ${tabName === "withdraw" ? "bg-white" : ""} easy-in-out px-2 py-3 transition-colors`}
+          className={`cursor-pointer rounded-lg ${tabName === "withdraw" ? "bg-white" : "text-gray-600"} easy-in-out p-2 transition-colors`}
         >
           Withdraw
         </button>

@@ -48,7 +48,7 @@ export function Stake() {
     <FormProvider {...methods}>
       <form action="#" onSubmit={handleSubmit(submit)}>
         <article className={"flex flex-col justify-between"}>
-          <div className={"mb-20"}>
+          <div className={"mb-24"}>
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>
@@ -147,15 +147,18 @@ export function Stake() {
               </div>
             </div>
           </div>
-          <div>Status: {stakeState.status}</div>
           <Button
             type={"submit"}
+            size={"small"}
             color={"blue"}
-            className={"rounded-lg"}
+            className={"rounded-lg py-3"}
             disabled={!account || !wstEthBalance || wstEthBalance <= 0}
           >
             Stake
           </Button>
+          <Typography className={"mt-2 px-2 text-xs"}>
+            Status: {stakeState.status}
+          </Typography>
         </article>
       </form>
     </FormProvider>

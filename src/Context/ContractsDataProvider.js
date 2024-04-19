@@ -6,7 +6,8 @@ import BigNumber from "bignumber.js";
 import { useAPR } from "@/hooks/useAPR";
 import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
-import { useCall, useContractFunction, useEthers } from "@usedapp/core";
+import { useCall, useEthers } from "@usedapp/core";
+import { useCrvUSDController } from "@/hooks/useCrvUSDController";
 
 const ContractsDataContext = createContext(null);
 
@@ -17,36 +18,6 @@ export function useContractsData() {
   }
 
   return context;
-}
-
-function useCrvUSDController() {
-  const { account } = useEthers();
-  const [abi, setAbi] = useState();
-
-  useEffect(() => {
-    import("@/contracts/abi/crv-usd-controller.json").then(
-      (crvUSDAbiResponse) => {
-        setAbi(crvUSDAbiResponse.default);
-      },
-    );
-  }, []);
-
-  const { value, error } =
-    useCall(
-      abi &&
-        account && {
-          contract: new Contract(ADDRESSES.CRV_USD_CONTROLLER, abi),
-          method: "user_state",
-          args: [account],
-        },
-    ) ?? {};
-
-  if (error) {
-    console.error(error.message);
-    return undefined;
-  }
-
-  return value?.[0];
 }
 
 function useHealthStatus() {
@@ -61,8 +32,7 @@ function useHealthStatus() {
 
   const { value, error } =
     useCall(
-      false &&
-        abi &&
+      abi &&
         account && {
           contract: new Contract(ADDRESSES.LEVERAGE_STRATEGY, abi),
           method: "strategyHealth",

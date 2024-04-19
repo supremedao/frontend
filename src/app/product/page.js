@@ -161,6 +161,7 @@ export const TutorialChain = {
   },
 };
 const config = {
+  multicallVersion: 2,
   readOnlyChainId: TutorialChain.chainId,
   readOnlyUrls: {
     [TutorialChain.chainId]:
