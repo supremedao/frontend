@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useWstEthPrice } from "@/hooks/useWstEthPrice";
 import { useCurrentBalance } from "@/hooks/useCurrentBalance";
 import { formatEther } from "ethers/lib/utils";
@@ -6,7 +6,7 @@ import BigNumber from "bignumber.js";
 import { useAPR } from "@/hooks/useAPR";
 import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
-import { useCall, useEthers } from "@usedapp/core";
+import { useCall, useContractFunction, useEthers } from "@usedapp/core";
 
 const ContractsDataContext = createContext(null);
 
@@ -84,6 +84,7 @@ export function ContractsDataProvider({ children }) {
   const strategyHealth = useHealthStatus();
   const { price: wstETHvsUSDPrice } = useWstEthPrice();
   const [balanceOf, totalSupply, currentDeposits] = useCurrentBalance();
+  console.log("balanceOf", balanceOf);
   const wstEthBalance = balanceOf ? formatEther(balanceOf) : "";
 
   const [rewardRate, rewardTokenPriceContract] = aprData;

@@ -6,6 +6,9 @@ import dynamic from "next/dynamic";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import BigNumber from "bignumber.js";
+import { useSendTransaction } from "@usedapp/core";
+import { utils } from "ethers";
+import { useLeverageContract } from "@/hooks/useLeverageContract";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -59,6 +62,8 @@ const ControllerPlus = ({
 );
 
 function TokensCockpit() {
+  const { stake, stakeStatus, withdraw } = useLeverageContract();
+
   // const { wstEthBalance } = useContractsData();
   const wstEthBalance = 5;
   const methods = useForm({
@@ -80,7 +85,8 @@ function TokensCockpit() {
   const operation = watch("operation");
 
   async function submit(data) {
-    console.log(data);
+    const { amount } = data;
+    stake(utils.parseEther(amount));
   }
 
   const headerClassName = "header";
@@ -233,7 +239,7 @@ function TokensCockpit() {
               className={"rounded-lg"}
               disabled={!wstEthBalance || wstEthBalance <= 0}
             >
-              Stake
+              Stake {stakeStatus}
             </Button>
           </article>
         </form>
