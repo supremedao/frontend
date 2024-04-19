@@ -8,6 +8,7 @@ import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
 import { useCall, useEthers } from "@usedapp/core";
 import { useCrvUSDController } from "@/hooks/useCrvUSDController";
+import { useHealthStatus } from "@/hooks/useHealthStatus";
 
 const ContractsDataContext = createContext(null);
 
@@ -18,34 +19,6 @@ export function useContractsData() {
   }
 
   return context;
-}
-
-function useHealthStatus() {
-  const { account } = useEthers();
-  const [abi, setAbi] = useState();
-
-  useEffect(() => {
-    import("@/contracts/abi/leverage-strategy.json").then((resp) => {
-      setAbi(resp.default);
-    });
-  }, []);
-
-  const { value, error } =
-    useCall(
-      abi &&
-        account && {
-          contract: new Contract(ADDRESSES.LEVERAGE_STRATEGY, abi),
-          method: "strategyHealth",
-          args: [],
-        },
-    ) ?? {};
-
-  if (error) {
-    console.error(error.message);
-    return undefined;
-  }
-
-  return value?.[0];
 }
 
 export function ContractsDataProvider({ children }) {

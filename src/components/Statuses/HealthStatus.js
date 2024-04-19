@@ -41,7 +41,7 @@ function HealthStatus(props) {
     <StatusBar
       title={"Status"}
       value={
-        strategyHealthValue ? (
+        strategyHealthValue !== "" ? (
           <span className={"align-center flex items-center"}>
             <span
               className={COLORS[status].TEXT}
