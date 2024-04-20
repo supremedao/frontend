@@ -1,6 +1,9 @@
 import Typography from "@/components/Typography";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
+import { useContractsData } from "@/Context/ContractsDataProvider";
+import BigNumber from "bignumber.js";
+import { formatEther } from "ethers/lib/utils";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -10,7 +13,9 @@ export function LiquidationRange({
   className = "",
   hint = "lorem ipsum dolot lorem ipsum dolot ",
 }) {
+  const { debt } = useContractsData();
   const value = "N/A";
+
   return (
     <div
       className={`relative grow rounded-md border bg-black/5 p-4 ${className}`}
@@ -37,7 +42,7 @@ export function LiquidationRange({
             <Typography className={"mb-4 font-light"}>
               Current Balance
             </Typography>
-            <Typography>$ N/A</Typography>
+            <Typography>$ {formatEther(debt)}</Typography>
           </div>
           <div>
             <Typography className={"mb-4 font-light"}>Deposited</Typography>

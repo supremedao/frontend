@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useWstEthPrice } from "@/hooks/useWstEthPrice";
-import { useCurrentBalance } from "@/hooks/useCurrentBalance";
+import { useLeverageStrategyRead } from "@/hooks/useLeverageStrategyRead";
 import { formatEther } from "ethers/lib/utils";
 import BigNumber from "bignumber.js";
 import { useAPR } from "@/hooks/useAPR";
@@ -23,10 +23,10 @@ export function useContractsData() {
 
 export function ContractsDataProvider({ children }) {
   const aprData = useAPR();
-  const userState = useCrvUSDController();
+  const [userState, debt] = useCrvUSDController();
   const strategyHealth = useHealthStatus();
   const { price: wstETHvsUSDPrice } = useWstEthPrice();
-  const [balanceOf, totalSupply, currentDeposits] = useCurrentBalance();
+  const [balanceOf, totalSupply, currentDeposits] = useLeverageStrategyRead();
   console.log("balanceOf", balanceOf);
   const wstEthBalance = balanceOf ? formatEther(balanceOf) : "";
 
@@ -40,6 +40,7 @@ export function ContractsDataProvider({ children }) {
   return (
     <ContractsDataContext.Provider
       value={{
+        debt,
         strategyHealth,
         balanceOf,
         currentDeposits,

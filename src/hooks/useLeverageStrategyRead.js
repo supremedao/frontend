@@ -5,7 +5,7 @@ import { ADDRESSES } from "@/contracts/addresses";
 
 // Calculate the summ of summ = user_state[0] * wstETHPrice + user_state[1] - this will return overall value locked in usd
 // Return balanceOf/totalSupply * summ, it will return current user balance
-export function useCurrentBalance() {
+export function useLeverageStrategyRead() {
   const [leverageAbi, setLeverageAbi] = useState(false);
   const { account, chainId } = useEthers();
 
@@ -47,6 +47,6 @@ export function useCurrentBalance() {
       );
     }
   });
-  console.log(results);
+  console.log("useLeverageStrategyRead", results);
   return results.map((result) => result?.value?.[0]);
 }

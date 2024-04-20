@@ -1,4 +1,4 @@
-import { useCall, useEthers } from "@usedapp/core";
+import { useCalls, useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
 import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
@@ -15,20 +15,30 @@ export function useCrvUSDController() {
     );
   }, []);
 
-  const { value, error } =
-    useCall(
-      abi &&
-        account && {
-          contract: new Contract(ADDRESSES.CRV_USD_CONTROLLER, abi),
-          method: "user_state",
-          args: [account],
-        },
-    ) ?? {};
+  const calls =
+    abi && account
+      ? [
+          {
+            contract: new Contract(ADDRESSES.CRV_USD_CONTROLLER, abi),
+            method: "user_state",
+            args: [account],
+          },
+          {
+            contract: new Contract(ADDRESSES.CRV_USD_CONTROLLER, abi),
+            method: "debt",
+            args: [ADDRESSES.LEVERAGE_STRATEGY],
+          },
+        ]
+      : [];
 
-  if (error) {
-    console.error(error.message);
-    return undefined;
-  }
-
-  return value?.[0];
+  const results = useCalls(calls) ?? [];
+  results.forEach((result, idx) => {
+    if (result && result.error) {
+      console.error(
+        `Error encountered calling 'totalSupply' on ${calls[idx]?.contract.address}: ${result.error.message}`,
+      );
+    }
+  });
+  console.log("useCrvUSDController", results);
+  return results.map((result) => result?.value?.[0]);
 }

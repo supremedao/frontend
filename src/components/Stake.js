@@ -48,7 +48,7 @@ export function Stake() {
     <FormProvider {...methods}>
       <form action="#" onSubmit={handleSubmit(submit)}>
         <article className={"flex flex-col justify-between"}>
-          <div className={"mb-24"}>
+          <div className={"mb-36"}>
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>

@@ -3,7 +3,7 @@ import StatusBar from "@/components/StatusBar";
 import { formatEther } from "ethers/lib/utils";
 import BigNumber from "bignumber.js";
 import { useWstEthPrice } from "@/hooks/useWstEthPrice";
-import { useCurrentBalance } from "@/hooks/useCurrentBalance";
+import { useLeverageStrategyRead } from "@/hooks/useLeverageStrategyRead";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 
 function CurrentBalanceStatus(props) {

@@ -72,7 +72,7 @@ export function Withdraw() {
               Withdraw
             </Button>
           </div>
-          <div className={"flex flex-col"}>
+          <div className={"mb-12 flex flex-col"}>
             <div className={""}>
               <div className={"mb-2"}>
                 <Typography className={""}>Total deposits</Typography>
