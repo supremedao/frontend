@@ -42,7 +42,7 @@ export function LiquidationRange({
             <Typography className={"mb-4 font-light"}>
               Current Balance
             </Typography>
-            <Typography>$ {formatEther(debt)}</Typography>
+            <Typography>$ {debt ? formatEther(debt) : "N/A"}</Typography>
           </div>
           <div>
             <Typography className={"mb-4 font-light"}>Deposited</Typography>
