@@ -14,6 +14,7 @@ import { ContractsDataProvider } from "@/Context/ContractsDataProvider";
 import APRStatus from "@/components/Statuses/APRStatus";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@/api/graphql";
+import { WalletConnectV2Connector } from "@usedapp/wallet-connect-v2-connector";
 
 const ConnectButton = () => {
   const { account, deactivate, activateBrowserWallet } = useEthers();
@@ -161,6 +162,15 @@ export const TutorialChain = {
   },
 };
 const config = {
+  // connectors: {
+  //   walletConnectV2: new WalletConnectV2Connector({
+  //     chains: [TutorialChain],
+  //     projectId: "3708dfbebb6e80b01917f1c8b75ecbd5",
+  //     rpcMap: {
+  //       1: "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
+  //     },
+  //   }),
+  // },
   multicallVersion: 2,
   readOnlyChainId: TutorialChain.chainId,
   readOnlyUrls: {

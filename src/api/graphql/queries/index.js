@@ -1,5 +1,12 @@
 import { gql } from "@apollo/client";
 
+export const GET_BALANCER_POOL = gql`
+  query BALANCER_POOL($id: ID!) {
+    pool(id: $id) {
+      totalLiquidity
+    }
+  }
+`;
 export const GET_POOLS = gql`
   mutation AllDocuments($input: AllDocumentsInput!) {
     response(input: $input)

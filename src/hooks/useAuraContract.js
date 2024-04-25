@@ -3,31 +3,41 @@ import { useCalls, useEthers } from "@usedapp/core";
 import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
 
-export function useAPR() {
-  const [auraVaultAbi, setAuraVaultAbi] = useState(false);
+export function useAuraContract() {
+  const [auraAbi, setAuraAbi] = useState(false);
   const { account } = useEthers();
 
   useEffect(() => {
-    if (!auraVaultAbi) {
-      Promise.all([import("@/contracts/abi/aura-vault-abi.json")]).then(
+    if (!auraAbi) {
+      Promise.all([import("@/contracts/abi/aura-abi.json")]).then(
         ([auraVaultAbiResponse]) => {
-          setAuraVaultAbi(auraVaultAbiResponse.default);
+          setAuraAbi(auraVaultAbiResponse.default);
         },
       );
     }
-  }, [auraVaultAbi]);
-
+  }, [auraAbi]);
+  const contract = auraAbi && new Contract(ADDRESSES.AURA, auraAbi);
   const calls =
-    auraVaultAbi && account
+    auraAbi && account
       ? [
           {
-            contract: new Contract(ADDRESSES.AURA_VAULT, auraVaultAbi),
-            method: "rewardRate",
+            contract,
+            method: "reductionPerCliff",
             args: [],
           },
           {
-            contract: new Contract(ADDRESSES.AURA_VAULT, auraVaultAbi),
-            method: "rewardToken",
+            contract,
+            method: "maxSupply",
+            args: [],
+          },
+          {
+            contract,
+            method: "totalSupply",
+            args: [],
+          },
+          {
+            contract,
+            method: "totalCliffs",
             args: [],
           },
         ]
@@ -40,6 +50,6 @@ export function useAPR() {
       );
     }
   });
-  console.log(results);
+  console.log("useAuraVault", results);
   return results.map((result) => result?.value?.[0]);
 }

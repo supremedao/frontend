@@ -1,7 +1,7 @@
 const BASE_API = "https://api.coingecko.com/api/v3";
 
 export async function getSimplePrice(
-  ids = "wrapped-steth",
+  ids = "wrapped-steth,balancer",
   vs_currencies = "ETH,USD",
 ) {
   try {

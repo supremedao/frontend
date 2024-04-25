@@ -2,7 +2,7 @@
 import StatusBar from "@/components/StatusBar";
 import { formatEther } from "ethers/lib/utils";
 import BigNumber from "bignumber.js";
-import { useWstEthPrice } from "@/hooks/useWstEthPrice";
+import { useCoinGeckoSimplePrice } from "@/hooks/useCoinGeckoSimplePrice";
 import { useLeverageStrategyRead } from "@/hooks/useLeverageStrategyRead";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 

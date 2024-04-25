@@ -10,7 +10,8 @@ export function createClient() {
 
   const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
-    link: from([authMiddleware, link]),
+    // link: from([authMiddleware, link]),
+    uri: "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2",
   });
 
   return apolloClient;

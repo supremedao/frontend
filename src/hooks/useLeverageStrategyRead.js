@@ -19,22 +19,29 @@ export function useLeverageStrategyRead() {
     }
   }, [leverageAbi]);
 
+  const contract =
+    leverageAbi && new Contract(ADDRESSES.LEVERAGE_STRATEGY, leverageAbi);
   const calls =
     leverageAbi && account
       ? [
           {
-            contract: new Contract(ADDRESSES.LEVERAGE_STRATEGY, leverageAbi),
+            contract,
             method: "balanceOf",
             args: [account],
           },
           {
-            contract: new Contract(ADDRESSES.LEVERAGE_STRATEGY, leverageAbi),
+            contract,
             method: "totalSupply",
             args: [],
           },
           {
-            contract: new Contract(ADDRESSES.LEVERAGE_STRATEGY, leverageAbi),
+            contract,
             method: "currentDeposits",
+            args: [],
+          },
+          {
+            contract,
+            method: "fee",
             args: [],
           },
         ]
