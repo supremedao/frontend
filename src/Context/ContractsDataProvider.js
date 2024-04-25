@@ -1,12 +1,8 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext } from "react";
 import { useCoinGeckoSimplePrice } from "@/hooks/useCoinGeckoSimplePrice";
 import { useLeverageStrategyRead } from "@/hooks/useLeverageStrategyRead";
-import { formatEther } from "ethers/lib/utils";
 import BigNumber from "bignumber.js";
 import { useAuraVault } from "@/hooks/useAuraVault";
-import { Contract } from "ethers";
-import { ADDRESSES } from "@/contracts/addresses";
-import { useCall, useEthers } from "@usedapp/core";
 import { useCrvUSDController } from "@/hooks/useCrvUSDController";
 import { useHealthStatus } from "@/hooks/useHealthStatus";
 import { useAuraContract } from "@/hooks/useAuraContract";
@@ -30,7 +26,7 @@ export function ContractsDataProvider({ children }) {
   const { wstETHvsUSDPrice, balancerVsUSDPrice } = useCoinGeckoSimplePrice();
   const [balanceOf, totalSupply, currentDeposits, fee] =
     useLeverageStrategyRead();
-  const wstEthBalance = balanceOf ? formatEther(balanceOf) : "";
+  const wstEthBalance = balanceOf ? balanceOf : "";
 
   const summ =
     BigNumber(userState?.[0])

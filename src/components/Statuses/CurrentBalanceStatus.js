@@ -1,9 +1,6 @@
 "use client";
 import StatusBar from "@/components/StatusBar";
-import { formatEther } from "ethers/lib/utils";
 import BigNumber from "bignumber.js";
-import { useCoinGeckoSimplePrice } from "@/hooks/useCoinGeckoSimplePrice";
-import { useLeverageStrategyRead } from "@/hooks/useLeverageStrategyRead";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 
 function CurrentBalanceStatus(props) {

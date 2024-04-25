@@ -1,18 +1,18 @@
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useLeverageContract } from "@/hooks/useLeverageContract";
-import { utils } from "ethers";
 import dynamic from "next/dynamic";
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
+import { parseEther } from "viem";
+
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
 });
 
 export function Withdraw() {
-  const { account } = useEthers();
+  const account = useAccount();
   const { withdraw, withdrawState } = useLeverageContract();
 
   // const { wstEthBalance } = useContractsData();
@@ -34,7 +34,7 @@ export function Withdraw() {
 
   async function submit(data) {
     const { amount } = data;
-    withdraw(utils.parseEther(amount));
+    withdraw(parseEther(amount));
   }
 
   return (

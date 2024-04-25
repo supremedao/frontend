@@ -4,17 +4,17 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useLeverageContract } from "@/hooks/useLeverageContract";
-import { utils } from "ethers";
 import dynamic from "next/dynamic";
 import BigNumber from "bignumber.js";
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
+import { formatUnits } from "viem";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
 });
 
 export function Stake() {
-  const { account } = useEthers();
+  const account = useAccount();
   const { stake, stakeState } = useLeverageContract();
 
   // const { wstEthBalance } = useContractsData();
@@ -34,7 +34,7 @@ export function Stake() {
 
   async function submit(data) {
     const { amount } = data;
-    stake(utils.parseEther(amount));
+    stake(formatUnits(amount, 18));
   }
 
   function fillStakeValue(percentage = 0) {

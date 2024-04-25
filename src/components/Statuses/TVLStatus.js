@@ -1,8 +1,8 @@
 "use client";
 import StatusBar from "@/components/StatusBar";
 import BigNumber from "bignumber.js";
-import { formatEther } from "ethers/lib/utils";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { formatEther } from "viem";
 
 function TVLStatus(props) {
   const { wstETHvsUSDPrice, currentDeposits } = useContractsData();

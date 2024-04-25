@@ -1,10 +1,9 @@
-import { useCalls, useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
-import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
+import { useAccount, useReadContracts } from "wagmi";
 
 export function useCrvUSDController() {
-  const { account } = useEthers();
+  const account = useAccount();
   const [abi, setAbi] = useState();
 
   useEffect(() => {
@@ -15,30 +14,30 @@ export function useCrvUSDController() {
     );
   }, []);
 
-  const calls =
-    abi && account
-      ? [
-          {
-            contract: new Contract(ADDRESSES.CRV_USD_CONTROLLER, abi),
-            method: "user_state",
-            args: [account],
-          },
-          {
-            contract: new Contract(ADDRESSES.CRV_USD_CONTROLLER, abi),
-            method: "debt",
-            args: [ADDRESSES.LEVERAGE_STRATEGY],
-          },
-        ]
-      : [];
+  const contracts = [
+    {
+      address: ADDRESSES.CRV_USD_CONTROLLER,
+      abi,
+      functionName: "user_state",
+      args: [account?.address],
+      enabled: !!account,
+    },
+    {
+      address: ADDRESSES.CRV_USD_CONTROLLER,
+      abi,
+      functionName: "debt",
+      args: [ADDRESSES.LEVERAGE_STRATEGY],
+      enabled: !!account,
+    },
+  ];
 
-  const results = useCalls(calls) ?? [];
-  results.forEach((result, idx) => {
-    if (result && result.error) {
-      console.error(
-        `Error encountered calling 'totalSupply' on ${calls[idx]?.contract.address}: ${result.error.message}`,
-      );
-    }
-  });
-  console.log("useCrvUSDController", results);
-  return results.map((result) => result?.value?.[0]);
+  const { data, error } = useReadContracts({ contracts });
+
+  if (error) {
+    console.error(
+      `[useCrvUSDController] Error encountered calling on ${ADDRESSES.CRV_USD_CONTROLLER}: ${error}`,
+    );
+  }
+  console.log("useCrvUSDController", data);
+  return data?.map((value) => value.result) || [];
 }

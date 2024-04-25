@@ -3,7 +3,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import BigNumber from "bignumber.js";
-import { formatEther } from "ethers/lib/utils";
+import { formatEther } from "viem";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,

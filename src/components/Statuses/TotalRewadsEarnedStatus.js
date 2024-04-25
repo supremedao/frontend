@@ -1,10 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
 import StatusBar from "@/components/StatusBar";
-import { ADDRESSES } from "@/contracts/addresses";
-import { useCall, useCalls, useEthers } from "@usedapp/core";
-import { Contract } from "ethers";
-import { formatEther } from "ethers/lib/utils";
+import { formatEther } from "viem";
 import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 

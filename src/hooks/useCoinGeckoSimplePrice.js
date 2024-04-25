@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getSimplePrice } from "@/api/coingecko";
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
 
 export function useCoinGeckoSimplePrice() {
   const [price, setPrice] = useState();
-  const { account } = useEthers();
+  const account = useAccount();
 
   useEffect(() => {
     if (account) {
