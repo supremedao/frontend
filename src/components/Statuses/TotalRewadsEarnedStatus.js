@@ -24,8 +24,11 @@ function TotalRewadsEarnedStatus(props) {
     .plus(userState?.[1])
     .toFixed(0);
   const rew = BigNumber(summ).minus(formatEther(currentDeposits || ""));
-  const amount = BigNumber(wstEthBalance).div(totalSupply).multipliedBy(rew);
+  const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(rew);
   console.log(`
+    balanceOf=${balanceOf}
+    wstEthBalance=${wstEthBalance}
+    totalSupply=${totalSupply}
     currentDeposits=${currentDeposits}
     formattedCurrentDeposits=${formatEther(currentDeposits || "")}
     wstETHvsUSDPrice=${wstETHvsUSDPrice}
