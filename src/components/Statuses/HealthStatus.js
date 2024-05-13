@@ -2,6 +2,7 @@
 import StatusBar from "@/components/StatusBar";
 import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { formatEther } from "viem";
 
 const POSITIVE_THRESHOLD = 25;
 const AVERAGE_THRESHOLD = 15;
@@ -29,10 +30,11 @@ function getStatus(value) {
 
 function HealthStatus(props) {
   const { strategyHealth } = useContractsData();
-
-  const strategyHealthValue = BigNumber(strategyHealth).isNaN()
+  console.log("strategyHealth=", strategyHealth);
+  const formattedHealth = formatEther(strategyHealth || "");
+  const strategyHealthValue = BigNumber(formattedHealth).isNaN()
     ? ""
-    : BigNumber(strategyHealth).toFixed(0);
+    : BigNumber(formattedHealth).toFixed(2);
 
   const status = getStatus(strategyHealthValue);
 

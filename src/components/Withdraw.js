@@ -6,6 +6,7 @@ import { useLeverageContract } from "@/hooks/useLeverageContract";
 import dynamic from "next/dynamic";
 import { useAccount } from "wagmi";
 import { parseEther } from "viem";
+import { useContractsData } from "@/Context/ContractsDataProvider";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -13,10 +14,10 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 
 export function Withdraw() {
   const account = useAccount();
-  const { withdraw, withdrawState } = useLeverageContract();
+  const { withdraw, status, error } = useLeverageContract();
+  const { wstEthBalance } = useContractsData();
 
-  // const { wstEthBalance } = useContractsData();
-  const wstEthBalance = 5;
+  // const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
       totalAmount: "10.00",
@@ -67,7 +68,9 @@ export function Withdraw() {
               size={"small"}
               color={"blue"}
               className={"rounded-lg py-3"}
-              disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+              disabled={
+                !account?.address || !wstEthBalance || wstEthBalance <= 0
+              }
             >
               Withdraw
             </Button>
@@ -101,12 +104,17 @@ export function Withdraw() {
               color={"white"}
               size={"small"}
               className={"rounded-lg py-3"}
-              disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+              disabled={
+                !account?.address || !wstEthBalance || wstEthBalance <= 0
+              }
             >
               Withdraw
             </Button>
             <Typography className={"mt-2 px-2 text-xs"}>
-              Status: {withdrawState.status}
+              Status: {status}
+            </Typography>
+            <Typography className={"mt-2 px-2 text-xs"}>
+              {error && error.shortMessage}
             </Typography>
           </div>
         </article>

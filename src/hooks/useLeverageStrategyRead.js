@@ -25,7 +25,7 @@ export function useLeverageStrategyRead() {
       ...contract,
       functionName: "balanceOf",
       args: [account?.address],
-      enabled: !!account,
+      enabled: !!account?.address,
     },
     {
       ...contract,

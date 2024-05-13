@@ -1,12 +1,19 @@
 import { gql } from "@apollo/client";
 
-export const GET_BALANCER_POOL = gql`
-  query BALANCER_POOL($id: ID!) {
-    pool(id: $id) {
-      totalLiquidity
+export const GET_POOL_TVLs = gql`
+  query POOL_TVL($id: ID!, $days: Int) {
+    poolSnapshots(
+      first: $days
+      orderBy: timestamp
+      orderDirection: desc
+      where: { pool: $id }
+    ) {
+      timestamp
+      liquidity
     }
   }
 `;
+
 export const GET_POOLS = gql`
   mutation AllDocuments($input: AllDocumentsInput!) {
     response(input: $input)

@@ -13,44 +13,42 @@ import { ContractsDataProvider } from "@/Context/ContractsDataProvider";
 import APRStatus from "@/components/Statuses/APRStatus";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@/api/graphql";
-import { useAccount, useConnect, useDisconnect, WagmiProvider } from "wagmi";
+import {
+  useAccount,
+  useDisconnect,
+  useSwitchChain,
+  WagmiProvider,
+} from "wagmi";
 import { config } from "@/auth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import ConnectWalletDropdown from "@/components/ConnectWalletDropdown";
 
 const ConnectButton = () => {
   const account = useAccount();
-  const { connectors, connect, status, error } = useConnect();
   const { disconnect } = useDisconnect();
 
   return (
-    <>
+    <div className={"flex flex-wrap content-start gap-3"}>
       {account?.status === "connected" && (
-        <Button size={"small"} onClick={() => disconnect()}>
-          Disconnect
-        </Button>
-      )}
-      {!account &&
-        connectors.map((connector) => (
-          <Button
-            key={connector.uid}
-            size={"small"}
-            color={"blue"}
-            onClick={() => connect({ connector })}
-            type="button"
-          >
-            {connector.name}
+        <div className={" "}>
+          <Button size={"small"} color={"blue"} onClick={() => disconnect()}>
+            Disconnect
           </Button>
-        ))}
-    </>
+        </div>
+      )}
+      {!account?.address && <ConnectWalletDropdown />}
+    </div>
   );
 };
 
 function Product() {
   return (
     <section>
-      <div className={"mb-10 flex justify-end gap-2"}>
-        <Button size={"small"}>How it works</Button>
+      <div className={"mb-10 flex content-start justify-end gap-2"}>
+        <div className={"shrink-0"}>
+          <Button size={"small"}>How it works</Button>
+        </div>
         <ConnectButton />
       </div>
 

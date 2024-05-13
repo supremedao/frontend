@@ -1,17 +1,22 @@
 "use client";
 import StatusBar from "@/components/StatusBar";
-import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { calculateWstEthBalanceInUSD } from "@/helpers";
 
 function CurrentBalanceStatus(props) {
-  const { balanceOf, totalSupply, wstEthBalance, summ } = useContractsData();
-
-  const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(summ);
+  const { wstEthBalance, balanceOf, totalSupply, userState, wstETHvsUSDPrice } =
+    useContractsData();
+  const amount = calculateWstEthBalanceInUSD({
+    balanceOf,
+    totalSupply,
+    userState,
+    wstETHvsUSDPrice,
+  });
 
   return (
     <StatusBar
       title={"Your current Balance"}
-      value={`${wstEthBalance || "N/A"} wstETH / ${amount.isNaN() ? "-" : amount.toFixed(2)} USD`}
+      value={`${wstEthBalance} wstETH / ${amount.isNaN() ? "-" : amount.toFixed(2)} USD`}
       {...props}
     />
   );

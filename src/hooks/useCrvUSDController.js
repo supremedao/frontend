@@ -20,24 +20,40 @@ export function useCrvUSDController() {
       abi,
       functionName: "user_state",
       args: [account?.address],
-      enabled: !!account,
+      enabled: !!account.address,
     },
     {
       address: ADDRESSES.CRV_USD_CONTROLLER,
       abi,
       functionName: "debt",
       args: [ADDRESSES.LEVERAGE_STRATEGY],
-      enabled: !!account,
+      enabled: !!account.address,
+    },
+    {
+      address: ADDRESSES.CRV_USD_CONTROLLER,
+      abi,
+      functionName: "user_prices",
+      args: [ADDRESSES.LEVERAGE_STRATEGY],
+      enabled: !!account.address,
+    },
+    {
+      address: ADDRESSES.CRV_USD_CONTROLLER,
+      abi,
+      functionName: "user_state",
+      args: [ADDRESSES.LEVERAGE_STRATEGY],
+      enabled: !!account.address,
     },
   ];
 
   const { data, error } = useReadContracts({ contracts });
 
-  if (error) {
-    console.error(
-      `[useCrvUSDController] Error encountered calling on ${ADDRESSES.CRV_USD_CONTROLLER}: ${error}`,
-    );
-  }
+  data?.forEach(({ error }) => {
+    if (error) {
+      console.error(
+        `[useCrvUSDController] Error encountered calling on ${error.contractAddress}: ${error.message}`,
+      );
+    }
+  });
   console.log("useCrvUSDController", data);
   return data?.map((value) => value.result) || [];
 }

@@ -22,7 +22,7 @@ export const fork = {
 };
 
 export const config = createConfig({
-  chains: [fork],
+  chains: [mainnet],
   connectors: [
     injected(),
     coinbaseWallet({ appName: "Create Wagmi" }),
@@ -30,6 +30,7 @@ export const config = createConfig({
   ],
   ssr: true,
   transports: {
-    [fork.id]: http(),
+    // [fork.id]: http(),
+    [mainnet.id]: http(),
   },
 });

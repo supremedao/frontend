@@ -21,25 +21,25 @@ export function useAuraContract() {
       ...contract,
       functionName: "reductionPerCliff",
       args: [],
-      enabled: !!account,
+      enabled: !!account?.address,
     },
     {
       ...contract,
       functionName: "EMISSIONS_MAX_SUPPLY",
       args: [],
-      enabled: !!account,
+      enabled: !!account?.address,
     },
     {
       ...contract,
       functionName: "totalSupply",
       args: [],
-      enabled: !!account,
+      enabled: !!account?.address,
     },
     {
       ...contract,
       functionName: "totalCliffs",
       args: [],
-      enabled: !!account,
+      enabled: !!account?.address,
     },
   ];
   const { data, error } = useReadContracts({ contracts });

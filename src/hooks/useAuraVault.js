@@ -24,13 +24,13 @@ export function useAuraVault() {
         ...contract,
         functionName: "rewardRate",
         args: [],
-        enabled: !!account,
+        enabled: !!account?.address,
       },
       {
         ...contract,
         functionName: "rewardToken",
         args: [],
-        enabled: !!account,
+        enabled: !!account?.address,
       },
     ],
   });
