@@ -38,10 +38,26 @@ export function ContractsDataProvider({ children }) {
   ).multipliedBy(wstETHvsUSDPrice);
   const loss = currentDepositsInUSD.minus(userStateInUSD);
   const lossPercentage = loss.div(currentDepositsInUSD);
+  const summ = BigNumber(userState?.[0])
+    .multipliedBy(wstETHvsUSDPrice)
+    .plus(userState?.[1])
+    .toFixed(0);
+  const currentBalance = BigNumber(balanceOf)
+    .div(totalSupply)
+    .multipliedBy(summ)
+    .div(wstETHvsUSDPrice);
+
+  console.log(`
+    balanceOf=${balanceOf}
+    totalSupply=${totalSupply}
+    summ=${summ}
+    wstETHvsUSDPrice=${wstETHvsUSDPrice}
+  `);
 
   return (
     <ContractsDataContext.Provider
       value={{
+        currentBalance,
         loss,
         userState,
         lossPercentage,

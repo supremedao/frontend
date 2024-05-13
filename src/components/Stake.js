@@ -17,9 +17,9 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 export function Stake() {
   const account = useAccount();
   const { stake, status, error } = useLeverageContract();
-  const { wstEthBalance } = useContractsData();
+  const { currentBalance } = useContractsData();
 
-  // const wstEthBalance = 5;
+  // const currentBalance = 5;
   const methods = useForm({
     defaultValues: {
       amount: "0.00",
@@ -47,7 +47,7 @@ export function Stake() {
   function fillStakeValue(percentage = 0) {
     setValue(
       "amount",
-      BigNumber(wstEthBalance).div(100).multipliedBy(percentage).toFixed(2),
+      currentBalance.div(100).multipliedBy(percentage).toFixed(2),
     );
   }
 
@@ -59,7 +59,8 @@ export function Stake() {
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>
-                {BigNumber(wstEthBalance).toFixed(3)} wstETH available
+                {currentBalance.isNaN() ? 0 : currentBalance.toFixed(3)} wstETH
+                available
               </Typography>
             </div>
             <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
@@ -103,7 +104,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!wstEthBalance || wstEthBalance <= 0}
+                disabled={!currentBalance || currentBalance <= 0}
                 onClick={() => fillStakeValue(25)}
               >
                 25%
@@ -111,7 +112,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!wstEthBalance || wstEthBalance <= 0}
+                disabled={!currentBalance || currentBalance <= 0}
                 onClick={() => fillStakeValue(50)}
               >
                 50%
@@ -119,7 +120,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!wstEthBalance || wstEthBalance <= 0}
+                disabled={!currentBalance || currentBalance <= 0}
                 onClick={() => fillStakeValue(75)}
               >
                 75%
@@ -127,7 +128,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!wstEthBalance || wstEthBalance <= 0}
+                disabled={!currentBalance || currentBalance <= 0}
                 onClick={() => fillStakeValue(100)}
               >
                 Max
@@ -164,7 +165,9 @@ export function Stake() {
             size={"small"}
             color={"blue"}
             className={"rounded-lg py-3"}
-            disabled={!account?.address || !wstEthBalance || wstEthBalance <= 0}
+            disabled={
+              !account?.address || !currentBalance || currentBalance <= 0
+            }
           >
             Stake
           </Button>
