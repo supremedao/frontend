@@ -11,9 +11,18 @@ import { useContractsData } from "@/Context/ContractsDataProvider";
 // return balanceOf/totalSupply * rew for specific person
 
 function TotalRewadsEarnedStatus(props) {
-  const { balanceOf, totalSupply, wstEthBalance, currentDeposits, summ } =
-    useContractsData();
-
+  const {
+    balanceOf,
+    totalSupply,
+    userState,
+    wstEthBalance,
+    currentDeposits,
+    wstETHvsUSDPrice,
+  } = useContractsData();
+  const summ = BigNumber(userState?.[0])
+    .multipliedBy(wstETHvsUSDPrice)
+    .plus(userState?.[1])
+    .toFixed(0);
   const rew = BigNumber(summ).minus(currentDeposits);
   const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(rew);
   const wstEth = `${currentDeposits ? formatEther(currentDeposits) : 0} wstETH`;

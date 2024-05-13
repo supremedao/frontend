@@ -8,16 +8,20 @@ const requestsCache = {
 
 const ongoingRequests = {};
 
-async function fetchSimpletPrices(ids, vs_currencies = "ETH,USD") {
-  const response = await fetch(
-    `${BASE_API}/simple/price?ids=${ids}&vs_currencies=${vs_currencies}`,
-  );
+async function fetchSimplePrices(ids, vs_currencies = "ETH,USD") {
+  try {
+    const response = await fetch(
+      `${BASE_API}/simple/price?ids=${ids}&vs_currencies=${vs_currencies}`,
+    );
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.log(error);
   }
-
-  return await response.json();
 }
 
 export async function getSimplePrices(
@@ -30,7 +34,7 @@ export async function getSimplePrices(
     }
 
     if (!ongoingRequests[ids]) {
-      ongoingRequests[ids] = fetchSimpletPrices(ids, vs_currencies);
+      ongoingRequests[ids] = fetchSimplePrices(ids, vs_currencies);
     }
 
     const data = await ongoingRequests[ids];
@@ -44,15 +48,19 @@ export async function getSimplePrices(
 }
 
 async function fetchHistoricalData(id, days) {
-  const response = await fetch(
-    `${BASE_API}/coins/${id}/market_chart?days=${days}&vs_currency=usd&interval=daily`,
-  );
+  try {
+    const response = await fetch(
+      `${BASE_API}/coins/${id}/market_chart?days=${days}&vs_currency=usd&interval=daily`,
+    );
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.log(error);
   }
-
-  return await response.json();
 }
 
 export async function getHistoricalChartDataById(id = "balancer", days = 30) {
@@ -72,6 +80,6 @@ export async function getHistoricalChartDataById(id = "balancer", days = 30) {
     console.error("Error fetching historical data:", error);
     throw error;
   } finally {
-    delete ongoingRequests[id]; // Clean up ongoing requests
+    delete ongoingRequests[id + days]; // Clean up ongoing requests
   }
 }

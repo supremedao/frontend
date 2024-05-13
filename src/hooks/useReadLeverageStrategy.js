@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { ADDRESSES } from "@/contracts/addresses";
 import { useAccount, useReadContracts } from "wagmi";
 
-// Calculate the summ of summ = user_state[0] * wstETHPrice + user_state[1] - this will return overall value locked in usd
-// Return balanceOf/totalSupply * summ, it will return current user balance
-export function useLeverageStrategyRead() {
+export function useReadLeverageStrategy() {
   const [leverageAbi, setLeverageAbi] = useState(false);
   const account = useAccount();
 
@@ -53,6 +51,6 @@ export function useLeverageStrategyRead() {
       `[useLeverageStrategyRead] Error encountered calling on ${contract.address}: ${error}`,
     );
   }
-  console.log("useLeverageStrategyRead", data);
+  console.log("useReadLeverageStrategy", data);
   return data?.map((value) => value.result) || [];
 }

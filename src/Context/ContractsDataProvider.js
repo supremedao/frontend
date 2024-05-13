@@ -1,12 +1,11 @@
 import { createContext, useContext } from "react";
 import { useCoinGeckoSimplePrice } from "@/hooks/useCoinGeckoSimplePrice";
-import { useLeverageStrategyRead } from "@/hooks/useLeverageStrategyRead";
+import { useReadLeverageStrategy } from "@/hooks/useReadLeverageStrategy";
 import BigNumber from "bignumber.js";
 import { useAuraVault } from "@/hooks/useAuraVault";
 import { useCrvUSDController } from "@/hooks/useCrvUSDController";
 import { useHealthStatus } from "@/hooks/useHealthStatus";
 import { useAuraContract } from "@/hooks/useAuraContract";
-import { useAPR } from "@/hooks/useAPR";
 
 const ContractsDataContext = createContext(null);
 
@@ -24,16 +23,12 @@ export function ContractsDataProvider({ children }) {
   const auraData = useAuraContract();
   const [userState, debt, user_prices, user_state_deposited] =
     useCrvUSDController();
-  const strategyHealth = useHealthStatus();
+
   const { wstETHvsUSDPrice, ethereumVsUSDPrice, balancerVsUSDPrice } =
     useCoinGeckoSimplePrice();
   const [balanceOf, totalSupply, currentDeposits, fee] =
-    useLeverageStrategyRead();
+    useReadLeverageStrategy();
   const wstEthBalance = balanceOf ? balanceOf : 0;
-  const summ = BigNumber(userState?.[0])
-    .multipliedBy(wstETHvsUSDPrice)
-    .plus(userState?.[1])
-    .toFixed(0);
   console.log("currentDeposits", currentDeposits, "user_state", userState?.[0]);
   const currentDepositsInUSD = BigNumber(currentDeposits || 0)
     .div(Math.pow(10, 18))
@@ -56,10 +51,8 @@ export function ContractsDataProvider({ children }) {
         ethereumVsUSDPrice,
         debt,
         balancerVsUSDPrice,
-        strategyHealth,
         balanceOf,
         currentDeposits,
-        summ,
         user_prices,
         user_state_deposited,
         fee,
