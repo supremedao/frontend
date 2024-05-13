@@ -59,7 +59,7 @@ export function Stake() {
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>
-                {wstEthBalance} wstETH available
+                {BigNumber(wstEthBalance).toFixed(3)} wstETH available
               </Typography>
             </div>
             <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>

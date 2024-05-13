@@ -6,6 +6,7 @@ import { useAuraVault } from "@/hooks/useAuraVault";
 import { useCrvUSDController } from "@/hooks/useCrvUSDController";
 import { useHealthStatus } from "@/hooks/useHealthStatus";
 import { useAuraContract } from "@/hooks/useAuraContract";
+import { formatEther } from "viem";
 
 const ContractsDataContext = createContext(null);
 
@@ -28,17 +29,15 @@ export function ContractsDataProvider({ children }) {
     useCoinGeckoSimplePrice();
   const [balanceOf, totalSupply, currentDeposits, fee] =
     useReadLeverageStrategy();
-  const wstEthBalance = balanceOf ? balanceOf : 0;
-  console.log("currentDeposits", currentDeposits, "user_state", userState?.[0]);
-  const currentDepositsInUSD = BigNumber(currentDeposits || 0)
-    .div(Math.pow(10, 18))
-    .multipliedBy(wstETHvsUSDPrice);
-  const userStateInUSD = BigNumber(userState?.[0] || 0)
-    .div(Math.pow(10, 18))
-    .multipliedBy(wstETHvsUSDPrice);
+  const wstEthBalance = formatEther(balanceOf || 0);
+  const currentDepositsInUSD = BigNumber(
+    formatEther(currentDeposits || ""),
+  ).multipliedBy(wstETHvsUSDPrice);
+  const userStateInUSD = BigNumber(
+    formatEther(userState?.[0] || ""),
+  ).multipliedBy(wstETHvsUSDPrice);
   const loss = currentDepositsInUSD.minus(userStateInUSD);
   const lossPercentage = loss.div(currentDepositsInUSD);
-  console.log(wstETHvsUSDPrice, currentDepositsInUSD, loss, lossPercentage);
 
   return (
     <ContractsDataContext.Provider
