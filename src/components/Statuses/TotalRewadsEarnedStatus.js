@@ -23,15 +23,23 @@ function TotalRewadsEarnedStatus(props) {
     .multipliedBy(wstETHvsUSDPrice)
     .plus(userState?.[1])
     .toFixed(0);
-  const rew = BigNumber(summ).minus(currentDeposits);
+  const rew = BigNumber(summ).minus(formatEther(currentDeposits || ""));
   const amount = BigNumber(wstEthBalance).div(totalSupply).multipliedBy(rew);
-  // const wstEth = `${currentDeposits ? formatEther(currentDeposits) : 0} wstETH`;
-  // const vs_usd = `${currentDeposits ? BigNumber(formatEther(currentDeposits)).multipliedBy(0) : 0} USD`;
+  console.log(`
+    currentDeposits=${currentDeposits}
+    formattedCurrentDeposits=${formatEther(currentDeposits || "")}
+    wstETHvsUSDPrice=${wstETHvsUSDPrice}
+    userState[0]=${userState?.[0]}
+    userState[1]=${userState?.[1]}
+    summ=${summ}, 
+    rew=${rew}
+    amount=${amount?.toFixed(3)}
+  `);
 
   return (
     <StatusBar
       title={"Total Rewards Earned"}
-      value={`${BigNumber(wstEthBalance).toFixed(3)} wstETH / ${amount.isNaN() ? "-" : amount.toFixed(2)} USD`}
+      value={`${BigNumber(amount).div(wstETHvsUSDPrice).toFixed(3)} wstETH / ${amount.isNaN() ? "" : amount.toFixed(3)} USD`}
       {...props}
     />
   );
