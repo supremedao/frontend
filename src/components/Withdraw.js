@@ -1,22 +1,23 @@
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useLeverageContract } from "@/hooks/useLeverageContract";
-import { utils } from "ethers";
 import dynamic from "next/dynamic";
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
+import { parseEther } from "viem";
+import { useContractsData } from "@/Context/ContractsDataProvider";
+
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
 });
 
 export function Withdraw() {
-  const { account } = useEthers();
-  const { withdraw, withdrawState } = useLeverageContract();
+  const account = useAccount();
+  const { withdraw, status, error } = useLeverageContract();
+  const { wstEthBalance } = useContractsData();
 
-  // const { wstEthBalance } = useContractsData();
-  const wstEthBalance = 5;
+  // const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
       totalAmount: "10.00",
@@ -34,7 +35,7 @@ export function Withdraw() {
 
   async function submit(data) {
     const { amount } = data;
-    withdraw(utils.parseEther(amount));
+    withdraw(parseEther(amount));
   }
 
   return (
@@ -67,7 +68,9 @@ export function Withdraw() {
               size={"small"}
               color={"blue"}
               className={"rounded-lg py-3"}
-              disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+              disabled={
+                !account?.address || !wstEthBalance || wstEthBalance <= 0
+              }
             >
               Withdraw
             </Button>
@@ -101,12 +104,17 @@ export function Withdraw() {
               color={"white"}
               size={"small"}
               className={"rounded-lg py-3"}
-              disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+              disabled={
+                !account?.address || !wstEthBalance || wstEthBalance <= 0
+              }
             >
               Withdraw
             </Button>
             <Typography className={"mt-2 px-2 text-xs"}>
-              Status: {withdrawState.status}
+              Status: {status}
+            </Typography>
+            <Typography className={"mt-2 px-2 text-xs"}>
+              {error && error.shortMessage}
             </Typography>
           </div>
         </article>

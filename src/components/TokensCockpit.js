@@ -1,14 +1,4 @@
 "use client";
-import Typography from "@/components/Typography";
-import Button from "@/components/Button";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import dynamic from "next/dynamic";
-import { Controller, FormProvider, useForm } from "react-hook-form";
-import { useContractsData } from "@/Context/ContractsDataProvider";
-import BigNumber from "bignumber.js";
-import { useSendTransaction } from "@usedapp/core";
-import { utils } from "ethers";
-import { useLeverageContract } from "@/hooks/useLeverageContract";
 import { Stake } from "@/components/Stake";
 import { useState } from "react";
 import { Withdraw } from "@/components/Withdraw";

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useCalls, useEthers } from "@usedapp/core";
-import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
+import { useAccount, useReadContracts } from "wagmi";
 
 export function useAuraContract() {
   const [auraAbi, setAuraAbi] = useState(false);
-  const { account } = useEthers();
+  const account = useAccount();
 
   useEffect(() => {
     if (!auraAbi) {
@@ -16,40 +15,40 @@ export function useAuraContract() {
       );
     }
   }, [auraAbi]);
-  const contract = auraAbi && new Contract(ADDRESSES.AURA, auraAbi);
-  const calls =
-    auraAbi && account
-      ? [
-          {
-            contract,
-            method: "reductionPerCliff",
-            args: [],
-          },
-          {
-            contract,
-            method: "maxSupply",
-            args: [],
-          },
-          {
-            contract,
-            method: "totalSupply",
-            args: [],
-          },
-          {
-            contract,
-            method: "totalCliffs",
-            args: [],
-          },
-        ]
-      : [];
-  const results = useCalls(calls) ?? [];
-  results.forEach((result, idx) => {
-    if (result && result.error) {
-      console.error(
-        `Error encountered calling 'totalSupply' on ${calls[idx]?.contract.address}: ${result.error.message}`,
-      );
-    }
-  });
-  console.log("useAuraVault", results);
-  return results.map((result) => result?.value?.[0]);
+  const contract = { address: ADDRESSES.AURA, abi: auraAbi };
+  const contracts = [
+    {
+      ...contract,
+      functionName: "reductionPerCliff",
+      args: [],
+      enabled: !!account?.address,
+    },
+    {
+      ...contract,
+      functionName: "EMISSIONS_MAX_SUPPLY",
+      args: [],
+      enabled: !!account?.address,
+    },
+    {
+      ...contract,
+      functionName: "totalSupply",
+      args: [],
+      enabled: !!account?.address,
+    },
+    {
+      ...contract,
+      functionName: "totalCliffs",
+      args: [],
+      enabled: !!account?.address,
+    },
+  ];
+  const { data, error } = useReadContracts({ contracts });
+
+  if (error) {
+    console.error(
+      `[useAuraContract] Error encountered calling on ${contract.address}: ${error}`,
+    );
+  }
+  console.log("useAuraContract", data);
+  return data?.map((value) => value.result) || [];
 }

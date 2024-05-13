@@ -1,11 +1,10 @@
-import { useCall, useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
-import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
+import { useAccount, useReadContract } from "wagmi";
 
 export function useHealthStatus() {
-  const { account } = useEthers();
   const [abi, setAbi] = useState();
+  const account = useAccount();
 
   useEffect(() => {
     import("@/contracts/abi/leverage-strategy.json").then((resp) => {
@@ -13,20 +12,21 @@ export function useHealthStatus() {
     });
   }, []);
 
-  const { value, error } =
-    useCall(
-      abi &&
-        account && {
-          contract: new Contract(ADDRESSES.LEVERAGE_STRATEGY, abi),
-          method: "strategyHealth",
-          args: [],
-        },
-    ) ?? {};
+  const { data: value, error } = useReadContract({
+    address: ADDRESSES.LEVERAGE_STRATEGY,
+    abi,
+    functionName: "strategyHealth",
+    args: [],
+    enabled: !!account,
+  });
 
   if (error) {
-    console.error(error.message);
+    if (error.message?.includes("Loan doesn't exist")) return 0;
+    console.error(
+      `[useHealthStatus] Error encountered calling on ${ADDRESSES.LEVERAGE_STRATEGY}: ${error}`,
+    );
     return 0;
   }
 
-  return value?.[0];
+  return value;
 }

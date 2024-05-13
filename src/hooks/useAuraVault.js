@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useCalls, useEthers } from "@usedapp/core";
-import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
+import { useAccount, useReadContracts } from "wagmi";
 
 export function useAuraVault() {
   const [auraVaultAbi, setAuraVaultAbi] = useState(false);
-  const { account } = useEthers();
+  const account = useAccount();
 
   useEffect(() => {
     if (!auraVaultAbi) {
@@ -16,31 +15,31 @@ export function useAuraVault() {
       );
     }
   }, [auraVaultAbi]);
-  const contract =
-    auraVaultAbi && new Contract(ADDRESSES.AURA_VAULT, auraVaultAbi);
-  const calls =
-    auraVaultAbi && account
-      ? [
-          {
-            contract,
-            method: "rewardRate",
-            args: [],
-          },
-          {
-            contract,
-            method: "rewardToken",
-            args: [],
-          },
-        ]
-      : [];
-  const results = useCalls(calls) ?? [];
-  results.forEach((result, idx) => {
-    if (result && result.error) {
-      console.error(
-        `Error encountered calling 'totalSupply' on ${calls[idx]?.contract.address}: ${result.error.message}`,
-      );
-    }
+
+  const contract = { address: ADDRESSES.AURA_VAULT, abi: auraVaultAbi };
+
+  const { data, error } = useReadContracts({
+    contracts: [
+      {
+        ...contract,
+        functionName: "rewardRate",
+        args: [],
+        enabled: !!account?.address,
+      },
+      {
+        ...contract,
+        functionName: "rewardToken",
+        args: [],
+        enabled: !!account?.address,
+      },
+    ],
   });
-  console.log("useAuraVault", results);
-  return results.map((result) => result?.value?.[0]);
+
+  if (error) {
+    console.error(
+      `[useAuraVault] Error encountered calling on ${contract.address}: ${error}`,
+    );
+  }
+  console.log("useAuraVault", data);
+  return data?.map((value) => value.result) || [];
 }

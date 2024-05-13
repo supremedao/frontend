@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { Contract } from "ethers";
 import { ADDRESSES } from "@/contracts/addresses";
-import { useContractFunction, useEthers, useGasPrice } from "@usedapp/core";
+import { useGasPrice, useAccount, useWriteContract } from "wagmi";
+import BigNumber from "bignumber.js";
+import { useContractsData } from "@/Context/ContractsDataProvider";
 
 export function useLeverageContract() {
-  const { account } = useEthers();
+  const account = useAccount();
   const [abi, setAbi] = useState();
   const gasPrice = useGasPrice();
+  const { wstETHvsUSDPrice } = useContractsData();
+  const { writeContract, status, error, ...rest } = useWriteContract();
 
   useEffect(() => {
     import("@/contracts/abi/leverage-strategy.json").then((resp) => {
@@ -14,34 +17,62 @@ export function useLeverageContract() {
     });
   }, []);
 
-  const contract = useMemo(
-    () => abi && new Contract(ADDRESSES.LEVERAGE_STRATEGY, abi),
-    [abi],
-  );
+  const contract = { address: ADDRESSES.LEVERAGE_STRATEGY, abi };
 
-  const { state: stakeState, send: stakeFn } = useContractFunction(
-    contract,
-    "depositAndInvest",
-    { transactionName: "Stake", gasLimitBufferPercentage: 10 },
-  );
-  const { state: withdrawState, send: withdrawFn } = useContractFunction(
-    contract,
-    "redeemWstEth",
-    { transactionName: "Withdraw" },
-  );
+  const stake = (amount, { keeper = false }) => {
+    if (!abi) {
+      console.log("abi is not loaded");
+      return;
+    }
 
-  const stake = (amount) => {
-    stakeFn(amount, account, 0, {
-      gasPrice,
-      gasLimit: 970000,
+    writeContract({
+      ...contract,
+      functionName: "approve",
+      args: [amount],
+      enabled: !!account?.address,
     });
+
+    if (keeper) {
+      return writeContract({
+        ...contract,
+        functionName: "deposit",
+        args: [amount, account?.address],
+        enabled: !!account?.address,
+      });
+    } else {
+      return writeContract({
+        ...contract,
+        functionName: "depositAndInvest",
+        args: [
+          amount,
+          account?.address,
+          BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(),
+          // {
+          //   gasPrice,
+          //   gasLimit: 970000,
+          // },
+        ],
+        enabled: !!account?.address,
+      });
+    }
+    // stakeFn(amount, account, 0, {
+    //   gasPrice,
+    //   gasLimit: 970000,
+    // });
   };
   const withdraw = (amount) => {
-    withdrawFn(amount, account, account, 0, {
-      gasPrice,
-      gasLimit: 970000,
+    return writeContract({
+      abi,
+      address: ADDRESSES.LEVERAGE_STRATEGY,
+      functionName: "redeemWstEth",
+      args: [amount, account?.address, account?.address, 0],
+      enabled: !!account?.address,
     });
+    // withdrawFn(amount, account, account, 0, {
+    //   gasPrice,
+    //   gasLimit: 970000,
+    // });
   };
 
-  return { stake, withdraw, stakeState, withdrawState };
+  return { stake, withdraw, status, error };
 }

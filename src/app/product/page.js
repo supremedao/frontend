@@ -8,41 +8,47 @@ import { Card } from "@/components/Card";
 import Information from "@/components/Information";
 import TVLStatus from "@/components/Statuses/TVLStatus";
 import CurrentBalanceStatus from "@/components/Statuses/CurrentBalanceStatus";
-import { DAppProvider, useEthers } from "@usedapp/core";
 import TotalRewadsEarnedStatus from "@/components/Statuses/TotalRewadsEarnedStatus";
 import { ContractsDataProvider } from "@/Context/ContractsDataProvider";
 import APRStatus from "@/components/Statuses/APRStatus";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@/api/graphql";
-import { WalletConnectV2Connector } from "@usedapp/wallet-connect-v2-connector";
+import {
+  useAccount,
+  useDisconnect,
+  useSwitchChain,
+  WagmiProvider,
+} from "wagmi";
+import { config } from "@/auth";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+import ConnectWalletDropdown from "@/components/ConnectWalletDropdown";
 
 const ConnectButton = () => {
-  const { account, deactivate, activateBrowserWallet } = useEthers();
+  const account = useAccount();
+  const { disconnect } = useDisconnect();
 
-  // 'account' being undefined means that we are not connected.
-  if (account)
-    return (
-      <Button size={"small"} onClick={() => deactivate()}>
-        Disconnect
-      </Button>
-    );
-  else
-    return (
-      <Button
-        size={"small"}
-        color={"blue"}
-        onClick={() => activateBrowserWallet()}
-      >
-        Connect
-      </Button>
-    );
+  return (
+    <div className={"flex flex-wrap content-start gap-3"}>
+      {account?.status === "connected" && (
+        <div className={" "}>
+          <Button size={"small"} color={"blue"} onClick={() => disconnect()}>
+            Disconnect
+          </Button>
+        </div>
+      )}
+      {!account?.address && <ConnectWalletDropdown />}
+    </div>
+  );
 };
 
 function Product() {
   return (
     <section>
-      <div className={"mb-10 flex justify-end gap-2"}>
-        <Button size={"small"}>How it works</Button>
+      <div className={"mb-10 flex content-start justify-end gap-2"}>
+        <div className={"shrink-0"}>
+          <Button size={"small"}>How it works</Button>
+        </div>
         <ConnectButton />
       </div>
 
@@ -150,45 +156,20 @@ function Product() {
     </section>
   );
 }
-export const TutorialChain = {
-  chainId: 1,
-  chainName: "Fork",
-  // Optional parameters:
-  rpcUrl: "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
-  nativeCurrency: {
-    name: "Ether",
-    symbol: "ETH",
-    decimals: 18,
-  },
-};
-const config = {
-  // connectors: {
-  //   walletConnectV2: new WalletConnectV2Connector({
-  //     chains: [TutorialChain],
-  //     projectId: "3708dfbebb6e80b01917f1c8b75ecbd5",
-  //     rpcMap: {
-  //       1: "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
-  //     },
-  //   }),
-  // },
-  multicallVersion: 2,
-  readOnlyChainId: TutorialChain.chainId,
-  readOnlyUrls: {
-    [TutorialChain.chainId]:
-      "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
-  },
-};
 
 export default function Page() {
-  // const initialState = cookieToInitialState(config, headers().get("cookie"));
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <DAppProvider config={config}>
-      <ContractsDataProvider>
-        <ApolloProvider client={client}>
-          <Product />
-        </ApolloProvider>
-      </ContractsDataProvider>
-    </DAppProvider>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <ContractsDataProvider>
+          <ApolloProvider client={client}>
+            <Product />
+          </ApolloProvider>
+        </ContractsDataProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
   );
   // return (
   //   <Web3ModalProvider initialState={initialState}>

@@ -4,28 +4,31 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useLeverageContract } from "@/hooks/useLeverageContract";
-import { utils } from "ethers";
 import dynamic from "next/dynamic";
 import BigNumber from "bignumber.js";
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
+import { formatUnits } from "viem";
+import { useContractsData } from "@/Context/ContractsDataProvider";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
 });
 
 export function Stake() {
-  const { account } = useEthers();
-  const { stake, stakeState } = useLeverageContract();
+  const account = useAccount();
+  const { stake, status, error } = useLeverageContract();
+  const { wstEthBalance } = useContractsData();
 
-  // const { wstEthBalance } = useContractsData();
-  const wstEthBalance = 5;
+  // const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
       amount: "0.00",
+      keeper: false,
     },
   });
 
   const {
+    register,
     control,
     handleSubmit,
     formState: { errors },
@@ -33,8 +36,12 @@ export function Stake() {
   } = methods;
 
   async function submit(data) {
-    const { amount } = data;
-    stake(utils.parseEther(amount));
+    const { amount, keeper } = data;
+    const formattedAmount = BigNumber(amount)
+      .multipliedBy(Math.pow(10, 18))
+      .toFixed();
+    console.log(formattedAmount, "keeper", keeper);
+    stake(formattedAmount, { keeper });
   }
 
   function fillStakeValue(percentage = 0) {
@@ -52,7 +59,7 @@ export function Stake() {
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>
-                {wstEthBalance || "N/A"} wstETH available
+                {wstEthBalance} wstETH available
               </Typography>
             </div>
             <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
@@ -128,7 +135,12 @@ export function Stake() {
             </div>
             <div className={"flex"}>
               <label className="ml-1 inline-flex cursor-pointer items-center">
-                <input type="checkbox" value="" className="peer sr-only" />
+                <input
+                  type="checkbox"
+                  value=""
+                  {...register("keeper")}
+                  className="peer sr-only"
+                />
                 <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
                 <Typography className={"ms-3 font-medium "}>
                   Stake with Keeper
@@ -152,12 +164,15 @@ export function Stake() {
             size={"small"}
             color={"blue"}
             className={"rounded-lg py-3"}
-            disabled={!account || !wstEthBalance || wstEthBalance <= 0}
+            disabled={!account?.address || !wstEthBalance || wstEthBalance <= 0}
           >
             Stake
           </Button>
           <Typography className={"mt-2 px-2 text-xs"}>
-            Status: {stakeState.status}
+            Status: {status}
+          </Typography>
+          <Typography className={"mt-2 px-2 text-xs"}>
+            {error && error.shortMessage}
           </Typography>
         </article>
       </form>
