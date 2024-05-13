@@ -8,7 +8,7 @@ import { Card } from "@/components/Card";
 import Information from "@/components/Information";
 import TVLStatus from "@/components/Statuses/TVLStatus";
 import CurrentBalanceStatus from "@/components/Statuses/CurrentBalanceStatus";
-import TotalRewadsEarnedStatus from "@/components/Statuses/TotalRewadsEarnedStatus";
+import TotalRewardsEarnedStatus from "@/components/Statuses/TotalRewardsEarnedStatus";
 import { ContractsDataProvider } from "@/Context/ContractsDataProvider";
 import APRStatus from "@/components/Statuses/APRStatus";
 import { ApolloProvider } from "@apollo/client";
@@ -64,7 +64,7 @@ function Product() {
         <APRStatus />
         <TVLStatus />
         <CurrentBalanceStatus />
-        <TotalRewadsEarnedStatus />
+        <TotalRewardsEarnedStatus />
       </div>
 
       <div>

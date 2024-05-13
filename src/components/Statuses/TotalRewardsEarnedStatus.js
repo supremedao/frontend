@@ -10,7 +10,7 @@ import { useContractsData } from "@/Context/ContractsDataProvider";
 // calculate rew = summ - currentDeposits()
 // return balanceOf/totalSupply * rew for specific person
 
-function TotalRewadsEarnedStatus(props) {
+function TotalRewardsEarnedStatus(props) {
   const {
     balanceOf,
     totalSupply,
@@ -48,4 +48,4 @@ function TotalRewadsEarnedStatus(props) {
   );
 }
 
-export default TotalRewadsEarnedStatus;
+export default TotalRewardsEarnedStatus;
