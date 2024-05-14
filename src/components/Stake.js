@@ -7,8 +7,9 @@ import { useLeverageContract } from "@/hooks/useLeverageContract";
 import dynamic from "next/dynamic";
 import BigNumber from "bignumber.js";
 import { useAccount } from "wagmi";
-import { formatUnits } from "viem";
+import { formatEther, formatUnits } from "viem";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { log } from "next/dist/server/typescript/utils";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -17,9 +18,10 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 export function Stake() {
   const account = useAccount();
   const { stake, status, error } = useLeverageContract();
-  const { currentBalance } = useContractsData();
-
-  // const currentBalance = 5;
+  const { balanceOf } = useContractsData();
+  console.log("balanceOf", balanceOf);
+  const formattedBalance = formatEther(balanceOf || "");
+  // const balanceOf = 5;
   const methods = useForm({
     defaultValues: {
       amount: "0.00",
@@ -37,6 +39,7 @@ export function Stake() {
 
   async function submit(data) {
     const { amount, keeper } = data;
+    console.log("data", data);
     const formattedAmount = BigNumber(amount)
       .multipliedBy(Math.pow(10, 18))
       .toFixed();
@@ -45,10 +48,17 @@ export function Stake() {
   }
 
   function fillStakeValue(percentage = 0) {
-    setValue(
-      "amount",
-      currentBalance.div(100).multipliedBy(percentage).toFixed(2),
-    );
+    if (percentage === 100) {
+      setValue("amount", formattedBalance);
+    } else {
+      setValue(
+        "amount",
+        BigNumber(formattedBalance)
+          .div(100)
+          .multipliedBy(percentage)
+          .toFixed(2),
+      );
+    }
   }
 
   return (
@@ -59,8 +69,8 @@ export function Stake() {
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>
-                {currentBalance.isNaN() ? 0 : currentBalance.toFixed(3)} wstETH
-                available
+                {!formattedBalance ? 0 : BigNumber(formattedBalance).toFixed(5)}{" "}
+                wstETH available
               </Typography>
             </div>
             <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
@@ -104,7 +114,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!currentBalance || currentBalance <= 0}
+                disabled={!balanceOf || balanceOf <= 0}
                 onClick={() => fillStakeValue(25)}
               >
                 25%
@@ -112,7 +122,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!currentBalance || currentBalance <= 0}
+                disabled={!balanceOf || balanceOf <= 0}
                 onClick={() => fillStakeValue(50)}
               >
                 50%
@@ -120,7 +130,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!currentBalance || currentBalance <= 0}
+                disabled={!balanceOf || balanceOf <= 0}
                 onClick={() => fillStakeValue(75)}
               >
                 75%
@@ -128,7 +138,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!currentBalance || currentBalance <= 0}
+                disabled={!balanceOf || balanceOf <= 0}
                 onClick={() => fillStakeValue(100)}
               >
                 Max
@@ -165,9 +175,7 @@ export function Stake() {
             size={"small"}
             color={"blue"}
             className={"rounded-lg py-3"}
-            disabled={
-              !account?.address || !currentBalance || currentBalance <= 0
-            }
+            disabled={!account?.address || !balanceOf || balanceOf <= 0}
           >
             Stake
           </Button>
