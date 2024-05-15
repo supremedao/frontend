@@ -25,36 +25,42 @@ export function useLeverageContract() {
       return;
     }
 
-    writeContract({
-      ...contract,
-      functionName: "approve",
-      args: [amount],
-      enabled: !!account?.address,
-    });
+    writeContract(
+      {
+        ...contract,
+        functionName: "approve",
+        args: [ADDRESSES.LEVERAGE_STRATEGY, amount],
+        enabled: !!account?.address,
+      },
+      {
+        onSuccess: () => {
+          if (keeper) {
+            return writeContract({
+              ...contract,
+              functionName: "deposit",
+              args: [amount, account?.address],
+              enabled: !!account?.address,
+            });
+          } else {
+            return writeContract({
+              ...contract,
+              functionName: "depositAndInvest",
+              args: [
+                amount,
+                account?.address,
+                BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(),
+                // {
+                //   gasPrice,
+                //   gasLimit: 970000,
+                // },
+              ],
+              enabled: !!account?.address,
+            });
+          }
+        },
+      },
+    );
 
-    if (keeper) {
-      return writeContract({
-        ...contract,
-        functionName: "deposit",
-        args: [amount, account?.address],
-        enabled: !!account?.address,
-      });
-    } else {
-      return writeContract({
-        ...contract,
-        functionName: "depositAndInvest",
-        args: [
-          amount,
-          account?.address,
-          BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(),
-          // {
-          //   gasPrice,
-          //   gasLimit: 970000,
-          // },
-        ],
-        enabled: !!account?.address,
-      });
-    }
     // stakeFn(amount, account, 0, {
     //   gasPrice,
     //   gasLimit: 970000,

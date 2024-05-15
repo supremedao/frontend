@@ -6,10 +6,11 @@ import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useLeverageContract } from "@/hooks/useLeverageContract";
 import dynamic from "next/dynamic";
 import BigNumber from "bignumber.js";
-import { useAccount } from "wagmi";
+import { useAccount, useBalance, useReadContract } from "wagmi";
 import { formatEther, formatUnits } from "viem";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import { log } from "next/dist/server/typescript/utils";
+import { ADDRESSES } from "@/contracts/addresses";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -18,10 +19,13 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 export function Stake() {
   const account = useAccount();
   const { stake, status, error } = useLeverageContract();
-  const { balanceOf } = useContractsData();
-  console.log("balanceOf", balanceOf);
-  const formattedBalance = formatEther(balanceOf || "");
-  // const balanceOf = 5;
+  const { data, error: balanceError } = useBalance({
+    address: account?.address,
+    token: ADDRESSES.wstETH,
+  });
+
+  const formattedBalance = BigNumber(data?.formatted || 0).toFixed(5);
+
   const methods = useForm({
     defaultValues: {
       amount: "0.00",
@@ -69,8 +73,7 @@ export function Stake() {
             <div className={"mb-2 flex justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
               <Typography className={"text-black/50"}>
-                {!formattedBalance ? 0 : BigNumber(formattedBalance).toFixed(5)}{" "}
-                wstETH available
+                {!data ? 0 : formattedBalance} wstETH available
               </Typography>
             </div>
             <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
@@ -114,7 +117,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!balanceOf || balanceOf <= 0}
+                disabled={!data || BigNumber(formattedBalance).lte(0)}
                 onClick={() => fillStakeValue(25)}
               >
                 25%
@@ -122,7 +125,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!balanceOf || balanceOf <= 0}
+                disabled={!data || BigNumber(formattedBalance).lte(0)}
                 onClick={() => fillStakeValue(50)}
               >
                 50%
@@ -130,7 +133,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!balanceOf || balanceOf <= 0}
+                disabled={!data || BigNumber(formattedBalance).lte(0)}
                 onClick={() => fillStakeValue(75)}
               >
                 75%
@@ -138,7 +141,7 @@ export function Stake() {
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
-                disabled={!balanceOf || balanceOf <= 0}
+                disabled={!data || BigNumber(formattedBalance).lte(0)}
                 onClick={() => fillStakeValue(100)}
               >
                 Max
@@ -175,7 +178,9 @@ export function Stake() {
             size={"small"}
             color={"blue"}
             className={"rounded-lg py-3"}
-            disabled={!account?.address || !balanceOf || balanceOf <= 0}
+            disabled={
+              !account?.address || !data || BigNumber(formattedBalance).lte(0)
+            }
           >
             Stake
           </Button>
