@@ -3,6 +3,7 @@ import { ADDRESSES } from "@/contracts/addresses";
 import { useGasPrice, useAccount, useWriteContract } from "wagmi";
 import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { erc20Abi } from "viem";
 
 export function useLeverageContract() {
   const account = useAccount();
@@ -17,7 +18,7 @@ export function useLeverageContract() {
     });
   }, []);
 
-  const contract = { address: ADDRESSES.wstETH };
+  const contract = { address: ADDRESSES.wstETH, abi: erc20Abi };
   const leverageContract = { address: ADDRESSES.LEVERAGE_STRATEGY, abi };
 
   const stake = (amount, { keeper = false }) => {
