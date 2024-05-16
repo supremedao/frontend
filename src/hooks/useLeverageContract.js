@@ -17,7 +17,8 @@ export function useLeverageContract() {
     });
   }, []);
 
-  const contract = { address: ADDRESSES.LEVERAGE_STRATEGY, abi };
+  const contract = { address: ADDRESSES.wstETH };
+  const leverageContract = { address: ADDRESSES.LEVERAGE_STRATEGY, abi };
 
   const stake = (amount, { keeper = false }) => {
     if (!abi) {
@@ -36,14 +37,14 @@ export function useLeverageContract() {
         onSuccess: () => {
           if (keeper) {
             return writeContract({
-              ...contract,
+              ...leverageContract,
               functionName: "deposit",
               args: [amount, account?.address],
               enabled: !!account?.address,
             });
           } else {
             return writeContract({
-              ...contract,
+              ...leverageContract,
               functionName: "depositAndInvest",
               args: [
                 amount,
