@@ -4,12 +4,12 @@ import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 
 export const fork = {
   id: 1,
-  name: "Fork",
+  name: "Fork2",
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
   rpcUrls: {
     default: {
       http: [
-        "https://rpc.tenderly.co/fork/7b8d8af9-72ed-431c-92d7-6f4c9505cefc",
+        "https://virtual.mainnet.rpc.tenderly.co/1f43359a-cd24-49cf-a991-01675a2a5d4f",
       ],
     },
   },
@@ -30,7 +30,7 @@ export const config = createConfig({
   ],
   ssr: true,
   transports: {
-    // [fork.id]: http(),
-    [mainnet.id]: http(),
+    [fork.id]: http(),
+    // [mainnet.id]: http(),
   },
 });
