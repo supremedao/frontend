@@ -6,6 +6,7 @@ import {
   useWriteContract,
   useEstimateGas,
   useWaitForTransactionReceipt,
+  useReadContract,
 } from "wagmi";
 import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
@@ -16,6 +17,13 @@ export function useStake() {
   const [abi, setAbi] = useState();
   const gasPrice = useGasPrice();
   const { wstETHvsUSDPrice } = useContractsData();
+
+  const { data: approvedAmount } = useReadContract({
+    address: ADDRESSES.wstETH,
+    abi: erc20Abi,
+    functionName: "allowance",
+    args: [account?.address, ADDRESSES.LEVERAGE_STRATEGY],
+  });
 
   const {
     data: hash,
@@ -51,73 +59,128 @@ export function useStake() {
       return Promise.reject("abi is not loaded");
     }
 
+    console.log("approved:", approvedAmount);
+
     return new Promise((resolve, reject) => {
-      return writeContractAsync(
-        {
-          address: ADDRESSES.wstETH,
-          abi: erc20Abi,
-          functionName: "approve",
-          args: [ADDRESSES.LEVERAGE_STRATEGY, amount],
-          gas: 97000,
-          gasPrice: formattedGasPrice,
-          enabled: !!account?.address,
-        },
-        {
-          onError: (error) => {
-            reject();
+      if (BigNumber(approvedAmount).gte(amount)) {
+        if (keeper) {
+          return writeContractAsync(
+            {
+              ...leverageContract,
+              functionName: "deposit",
+              onSuccess: () => {
+                resolve();
+              },
+              onError: (error) => {
+                reject(error);
+              },
+              gasPrice: formattedGasPrice,
+              args: [amount, account?.address],
+              enabled: !!account?.address,
+            },
+            {
+              onSuccess: () => {
+                resolve();
+              },
+              onError: (error) => {
+                reject(error);
+              },
+            },
+          );
+        } else {
+          return writeContractAsync(
+            {
+              ...leverageContract,
+              functionName: "depositAndInvest",
+              // gasPrice: formattedGasPrice,
+              maxFeePerGas: estimationData?.maxFeePerGas,
+              args: [
+                amount,
+                account?.address,
+                BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(),
+              ],
+              enabled: !!account?.address,
+            },
+            {
+              onSuccess: () => {
+                resolve();
+              },
+              onError: (error) => {
+                reject(error);
+              },
+            },
+          );
+        }
+      } else {
+        return writeContractAsync(
+          {
+            address: ADDRESSES.wstETH,
+            abi: erc20Abi,
+            functionName: "approve",
+            args: [ADDRESSES.LEVERAGE_STRATEGY, amount],
+            gas: 97000,
+            gasPrice: formattedGasPrice,
+            enabled: !!account?.address,
           },
-          onSuccess: () => {
-            if (keeper) {
-              return writeContractAsync(
-                {
-                  ...leverageContract,
-                  functionName: "deposit",
-                  onSuccess: () => {
-                    resolve();
+          {
+            onError: (error) => {
+              reject();
+            },
+            onSuccess: () => {
+              if (keeper) {
+                return writeContractAsync(
+                  {
+                    ...leverageContract,
+                    functionName: "deposit",
+                    onSuccess: () => {
+                      resolve();
+                    },
+                    onError: (error) => {
+                      reject(error);
+                    },
+                    gasPrice: formattedGasPrice,
+                    args: [amount, account?.address],
+                    enabled: !!account?.address,
                   },
-                  onError: (error) => {
-                    reject(error);
+                  {
+                    onSuccess: () => {
+                      resolve();
+                    },
+                    onError: (error) => {
+                      reject(error);
+                    },
                   },
-                  gasPrice: formattedGasPrice,
-                  args: [amount, account?.address],
-                  enabled: !!account?.address,
-                },
-                {
-                  onSuccess: () => {
-                    resolve();
+                );
+              } else {
+                return writeContractAsync(
+                  {
+                    ...leverageContract,
+                    functionName: "depositAndInvest",
+                    // gasPrice: formattedGasPrice,
+                    maxFeePerGas: estimationData?.maxFeePerGas,
+                    args: [
+                      amount,
+                      account?.address,
+                      BigNumber(amount)
+                        .multipliedBy(wstETHvsUSDPrice)
+                        .toFixed(),
+                    ],
+                    enabled: !!account?.address,
                   },
-                  onError: (error) => {
-                    reject(error);
+                  {
+                    onSuccess: () => {
+                      resolve();
+                    },
+                    onError: (error) => {
+                      reject(error);
+                    },
                   },
-                },
-              );
-            } else {
-              return writeContractAsync(
-                {
-                  ...leverageContract,
-                  functionName: "depositAndInvest",
-                  // gasPrice: formattedGasPrice,
-                  maxFeePerGas: estimationData?.maxFeePerGas,
-                  args: [
-                    amount,
-                    account?.address,
-                    BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(),
-                  ],
-                  enabled: !!account?.address,
-                },
-                {
-                  onSuccess: () => {
-                    resolve();
-                  },
-                  onError: (error) => {
-                    reject(error);
-                  },
-                },
-              );
-            }
+                );
+              }
+            },
           },
-        },
-      );
+        );
+      }
     });
   };
 
