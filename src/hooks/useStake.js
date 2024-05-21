@@ -64,7 +64,6 @@ export function useStake() {
         },
         {
           onError: (error) => {
-            alert("reject");
             reject();
           },
           onSuccess: () => {

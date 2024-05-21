@@ -48,7 +48,6 @@ export function Stake() {
     try {
       await stake(formattedAmount, { keeper });
       setValue("amount", 0);
-      alert("done");
     } catch (error) {
       console.log("rejection", error);
     }
