@@ -30,7 +30,7 @@ export const config = createConfig({
   ],
   ssr: true,
   transports: {
-    [fork.id]: http(),
-    // [mainnet.id]: http(),
+    // [fork.id]: http(),
+    [mainnet.id]: http(),
   },
 });

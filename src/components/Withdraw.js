@@ -2,11 +2,11 @@ import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
-import { useLeverageContract } from "@/hooks/useLeverageContract";
 import dynamic from "next/dynamic";
 import { useAccount } from "wagmi";
 import { parseEther } from "viem";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { useWithdraw } from "@/hooks/useWithdraw";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -14,7 +14,8 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 
 export function Withdraw() {
   const account = useAccount();
-  const { withdraw, status, error } = useLeverageContract();
+  const { withdraw, isPending, isConfirmed, isConfirming, error } =
+    useWithdraw();
   const { wstEthBalance } = useContractsData();
 
   // const wstEthBalance = 5;
@@ -69,10 +70,13 @@ export function Withdraw() {
               color={"blue"}
               className={"rounded-lg py-3"}
               disabled={
-                !account?.address || !wstEthBalance || wstEthBalance <= 0
+                isPending ||
+                !account?.address ||
+                !wstEthBalance ||
+                wstEthBalance <= 0
               }
             >
-              Withdraw
+              {isPending ? "Confirming..." : "Withdraw"}
             </Button>
           </div>
           <div className={"mb-12 flex flex-col"}>
@@ -105,13 +109,17 @@ export function Withdraw() {
               size={"small"}
               className={"rounded-lg py-3"}
               disabled={
-                !account?.address || !wstEthBalance || wstEthBalance <= 0
+                isPending ||
+                !account?.address ||
+                !wstEthBalance ||
+                wstEthBalance <= 0
               }
             >
-              Withdraw
+              {isPending ? "Confirming..." : "Withdraw"}
             </Button>
             <Typography className={"mt-2 px-2 text-xs"}>
-              Status: {status}
+              {isConfirming && <div>Waiting for confirmation...</div>}
+              {isConfirmed && <div>Transaction confirmed.</div>}
             </Typography>
             <Typography className={"mt-2 px-2 text-xs"}>
               {error && error.shortMessage}

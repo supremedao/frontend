@@ -3,13 +3,11 @@ import Button from "@/components/Button";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
-import { useLeverageContract } from "@/hooks/useLeverageContract";
+import { useStake } from "@/hooks/useStake";
 import dynamic from "next/dynamic";
 import BigNumber from "bignumber.js";
-import { useAccount, useBalance, useReadContract } from "wagmi";
-import { formatEther, formatUnits } from "viem";
-import { useContractsData } from "@/Context/ContractsDataProvider";
-import { log } from "next/dist/server/typescript/utils";
+import { useAccount, useBalance } from "wagmi";
+
 import { ADDRESSES } from "@/contracts/addresses";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
@@ -18,12 +16,11 @@ const DynamicTooltip = dynamic(() => import("microtip-react"), {
 
 export function Stake() {
   const account = useAccount();
-  const { stake, status, error } = useLeverageContract();
+  const { stake, error, isPending, isConfirming, isConfirmed } = useStake();
   const { data, error: balanceError } = useBalance({
     address: account?.address,
     token: ADDRESSES.wstETH,
   });
-
   const formattedBalance = BigNumber(data?.formatted || 0).toFixed(5);
 
   const methods = useForm({
@@ -48,7 +45,13 @@ export function Stake() {
       .multipliedBy(Math.pow(10, 18))
       .toFixed();
     console.log(formattedAmount, "keeper", keeper);
-    stake(formattedAmount, { keeper });
+    try {
+      await stake(formattedAmount, { keeper });
+      setValue("amount", 0);
+      alert("done");
+    } catch (error) {
+      console.log("rejection", error);
+    }
   }
 
   function fillStakeValue(percentage = 0) {
@@ -78,15 +81,6 @@ export function Stake() {
             </div>
             <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
               <FormattedInput
-                // transform={
-                //   {
-                //     input: (value) => (isNaN(value) ? "" : value.toString()),
-                //     output: (e) => {
-                //       const output = parseInt(e.target.value, 10);
-                //       return isNaN(output) ? 0 : output;
-                //     },
-                //   }
-                // }
                 className={
                   "mr-1 h-10 grow bg-transparent pl-1 text-lg outline-0"
                 }
@@ -97,23 +91,11 @@ export function Stake() {
                 // onkeypress="return (event.charCode >= 48 && event.charCode <= 57) ||event.charCode == 46 || event.charCode == 0 "
                 // onfocusout="validateinput(this)"
               />
-              {/*<input*/}
-              {/*  {...register("amount", {*/}
-              {/*    required: true,*/}
-              {/*    pattern: { value: /^[0-9]*\.?[0-9]*$/ },*/}
-              {/*  })}*/}
-              {/*  */}
-              {/*  name={"amount"}*/}
-              {/*  type="text"*/}
-              {/*  className={*/}
-              {/*    "mr-1 h-10 grow bg-transparent pl-1 text-lg outline-0"*/}
-              {/*  }*/}
-              {/*/>*/}
               <button type={"button"} className={"rounded bg-white px-2"}>
                 wstETH
               </button>
             </div>
-            <div className={"mb-5 flex gap-2"}>
+            <article className={"mb-5 flex gap-2"}>
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
@@ -146,7 +128,7 @@ export function Stake() {
               >
                 Max
               </Button>
-            </div>
+            </article>
             <div className={"flex"}>
               <label className="ml-1 inline-flex cursor-pointer items-center">
                 <input
@@ -179,13 +161,17 @@ export function Stake() {
             color={"blue"}
             className={"rounded-lg py-3"}
             disabled={
-              !account?.address || !data || BigNumber(formattedBalance).lte(0)
+              isPending ||
+              !account?.address ||
+              !data ||
+              BigNumber(formattedBalance).lte(0)
             }
           >
-            Stake
+            {isPending ? "Confirming..." : "Stake"}
           </Button>
           <Typography className={"mt-2 px-2 text-xs"}>
-            Status: {status}
+            {isConfirming && <div>Waiting for confirmation...</div>}
+            {isConfirmed && <div>Transaction confirmed.</div>}
           </Typography>
           <Typography className={"mt-2 px-2 text-xs"}>
             {error && error.shortMessage}
