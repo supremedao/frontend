@@ -22,7 +22,7 @@ function CurrentBalanceStatus(props) {
   return (
     <StatusBar
       title={"Your current Balance"}
-      value={`${!currentBalance.isNaN() ? currentBalance.toFixed(3) : 0} wstETH / ${amount.isNaN() ? "-" : amount.toFixed(2)} USD`}
+      value={`${!currentBalance.isNaN() ? currentBalance.toFixed(5) : 0} wstETH / ${amount.isNaN() ? "-" : amount.toFixed(5)} USD`}
       {...props}
     />
   );

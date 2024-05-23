@@ -16,12 +16,12 @@ export function Withdraw() {
   const account = useAccount();
   const { withdraw, isPending, isConfirmed, isConfirming, error } =
     useWithdraw();
-  const { wstEthBalance } = useContractsData();
+  const { wstEthBalance, currentBalance } = useContractsData();
 
   // const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
-      totalAmount: "10.00",
+      totalAmount: !currentBalance.isNaN() ? currentBalance.toFixed(5) : 0,
       amount: "0.00",
     },
   });

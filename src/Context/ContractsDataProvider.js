@@ -74,6 +74,7 @@ export function ContractsDataProvider({ children }) {
         totalSupply,
         wstETHvsUSDPrice,
         wstEthBalance,
+        summ,
       }}
     >
       {children}

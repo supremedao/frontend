@@ -7,11 +7,11 @@ import {
   useEstimateGas,
   useWaitForTransactionReceipt,
 } from "wagmi";
+import BigNumber from "bignumber.js";
 
 export function useWithdraw() {
   const account = useAccount();
   const [abi, setAbi] = useState();
-  const gasPrice = useGasPrice();
 
   const {
     data: hash,
@@ -40,7 +40,6 @@ export function useWithdraw() {
       abi,
       address: ADDRESSES.LEVERAGE_STRATEGY,
       functionName: "redeemWstEth",
-      maxFeePerGas: estimationData?.maxFeePerGas,
       args: [amount, account?.address, account?.address, 0],
       enabled: !!account?.address,
     });

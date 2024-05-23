@@ -10,7 +10,7 @@ import {
 } from "wagmi";
 import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
-import { erc20Abi } from "viem";
+import { erc20Abi, formatUnits } from "viem";
 
 export function useStake() {
   const account = useAccount();
@@ -62,6 +62,7 @@ export function useStake() {
     console.log("approved:", approvedAmount);
 
     return new Promise((resolve, reject) => {
+      // if already approved amount is bigger, no need to call "approve" again
       if (BigNumber(approvedAmount).gte(amount)) {
         if (keeper) {
           return writeContractAsync(
@@ -74,7 +75,6 @@ export function useStake() {
               onError: (error) => {
                 reject(error);
               },
-              gasPrice: formattedGasPrice,
               args: [amount, account?.address],
               enabled: !!account?.address,
             },
@@ -92,8 +92,6 @@ export function useStake() {
             {
               ...leverageContract,
               functionName: "depositAndInvest",
-              // gasPrice: formattedGasPrice,
-              maxFeePerGas: estimationData?.maxFeePerGas,
               args: [
                 amount,
                 account?.address,
@@ -156,8 +154,6 @@ export function useStake() {
                   {
                     ...leverageContract,
                     functionName: "depositAndInvest",
-                    // gasPrice: formattedGasPrice,
-                    maxFeePerGas: estimationData?.maxFeePerGas,
                     args: [
                       amount,
                       account?.address,
