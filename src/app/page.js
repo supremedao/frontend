@@ -6,6 +6,7 @@ import Button from "@/components/Button";
 import Link from "next/link";
 import WaveBG from "@/components/WaveBG";
 import Partners from "@/components/Partners";
+import Noise from "@/components/Noise";
 
 export default function Home() {
   return (
@@ -217,6 +218,7 @@ export default function Home() {
       {/*<LatestArticles />*/}
 
       <WaveBG />
+      <Noise />
     </>
   );
 }

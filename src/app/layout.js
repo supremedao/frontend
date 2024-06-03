@@ -42,7 +42,6 @@ export default function RootLayout({ children }) {
           </NoSSR>
           <Footer />
         </main>
-        <Noise />
       </body>
     </html>
   );
