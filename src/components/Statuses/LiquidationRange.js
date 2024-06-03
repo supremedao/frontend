@@ -63,18 +63,19 @@ export function LiquidationRange({
     loss,
     lossPercentage,
     user_prices,
-    user_state,
+    userState,
     ethereumVsUSDPrice,
   } = useContractsData();
   const formattedDebt = formatEther(debt || "", "wei");
   const deposited = convertEthToUsd(
-    user_state?.[0],
+    userState?.[0],
     ethereumVsUSDPrice,
-  )?.toFixed(0);
+  )?.toFixed(2);
   const maxRange = BigNumber(formatEther(user_prices?.[0] || ""));
   const minRange = BigNumber(formatEther(user_prices?.[1] || ""));
 
-  console.log(`
+  console.log(`======== Liquidation Range ======
+    user_state[0]=${userState?.[0]}
     user_prices=${user_prices}
     formatted debt=${formattedDebt}
     deposited=${deposited}
@@ -145,9 +146,7 @@ export function LiquidationRange({
           </div>
           <div>
             <Typography className={"mb-4 font-light"}>Deposited</Typography>
-            <Typography>
-              $ {BigNumber(deposited).div(Math.pow(10, 18)).toFixed(2)}
-            </Typography>
+            <Typography>$ {deposited}</Typography>
           </div>
           <div>
             <Typography className={"mb-4 font-light"}>Loss Amount</Typography>

@@ -9,8 +9,7 @@ import { useContractsData } from "@/Context/ContractsDataProvider";
 // Get the summ from current balance
 // calculate rew = summ - currentDeposits()
 // return balanceOf/totalSupply * rew for specific person
-
-function TotalRewardsEarnedStatus(props) {
+function useTotalRewards() {
   const {
     balanceOf,
     totalSupply,
@@ -20,7 +19,10 @@ function TotalRewardsEarnedStatus(props) {
     wstETHvsUSDPrice,
     summ,
   } = useContractsData();
-  const rew = BigNumber(summ).minus(formatEther(currentDeposits || ""));
+
+  const rew = BigNumber(summ).minus(
+    BigNumber(currentDeposits).multipliedBy(wstETHvsUSDPrice),
+  );
   const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(rew);
   console.log(`====== Total Rewards Earned ======
     balanceOf=${balanceOf}
@@ -33,13 +35,20 @@ function TotalRewardsEarnedStatus(props) {
     userState[1]=${userState?.[1]}
     summ=${summ}, 
     rew=${rew}
-    amount=${amount?.toFixed(3)}
+    amount=${amount}
   `);
+
+  return !amount.isNaN() ? formatEther(amount) : 0;
+}
+
+function TotalRewardsEarnedStatus(props) {
+  const { wstETHvsUSDPrice } = useContractsData();
+  const amount = useTotalRewards();
 
   return (
     <StatusBar
       title={"Total Rewards Earned"}
-      value={`${BigNumber(amount).div(wstETHvsUSDPrice).toFixed(3)} wstETH / ${amount.isNaN() ? "" : amount.toFixed(3)} USD`}
+      value={`${BigNumber(amount).div(wstETHvsUSDPrice).toFixed(3)} wstETH / ${amount} USD`}
       {...props}
     />
   );
