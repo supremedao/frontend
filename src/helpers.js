@@ -1,6 +1,7 @@
 import BigNumber from "bignumber.js";
 
 export function convertEthToUsd(amount, ethToUsdRate) {
+  if (!ethToUsdRate) return 0;
   return BigNumber(amount).div(Math.pow(10, 18)).multipliedBy(ethToUsdRate);
 }
 
