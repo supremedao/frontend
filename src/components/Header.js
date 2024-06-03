@@ -1,12 +1,10 @@
 "use client";
 
-import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Popover } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 import Button from "@/components/Button";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -53,11 +51,7 @@ export default function Header() {
         {/*  </a>*/}
         {/*</Popover.Group>*/}
 
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
-            <Button size="medium">Join Community</Button>
-          </Link>
-        </div>
+        {children}
       </nav>
       {/*<Dialog*/}
       {/*  as="div"*/}

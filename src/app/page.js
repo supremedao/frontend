@@ -7,10 +7,18 @@ import Link from "next/link";
 import WaveBG from "@/components/WaveBG";
 import Partners from "@/components/Partners";
 import Noise from "@/components/Noise";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <>
+      <Header>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
+            <Button size="medium">Join Community</Button>
+          </Link>
+        </div>
+      </Header>
       <article className={"mb-36"}>
         <Hero video={"/videos/pyramid.mp4"}>
           <div className={"-mt-8 sm:mt-0"}>
