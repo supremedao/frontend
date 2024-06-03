@@ -19,29 +19,19 @@ export function useCrvUSDController() {
       address: ADDRESSES.CRV_USD_CONTROLLER,
       abi,
       functionName: "user_state",
-      args: [account?.address],
-      enabled: !!account.address,
+      args: [ADDRESSES.LEVERAGE_STRATEGY],
     },
     {
       address: ADDRESSES.CRV_USD_CONTROLLER,
       abi,
       functionName: "debt",
       args: [ADDRESSES.LEVERAGE_STRATEGY],
-      enabled: !!account.address,
     },
     {
       address: ADDRESSES.CRV_USD_CONTROLLER,
       abi,
       functionName: "user_prices",
       args: [ADDRESSES.LEVERAGE_STRATEGY],
-      enabled: !!account.address,
-    },
-    {
-      address: ADDRESSES.CRV_USD_CONTROLLER,
-      abi,
-      functionName: "user_state",
-      args: [ADDRESSES.LEVERAGE_STRATEGY],
-      enabled: !!account.address,
     },
   ];
 
