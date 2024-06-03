@@ -7,6 +7,7 @@ import { useAccount } from "wagmi";
 import { parseEther } from "viem";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import { useWithdraw } from "@/hooks/useWithdraw";
+import { useCurrentWSTBalance } from "@/hooks/useCurrentWSTBalance";
 
 const DynamicTooltip = dynamic(() => import("microtip-react"), {
   loading: () => <p>Loading...</p>,
@@ -16,12 +17,13 @@ export function Withdraw() {
   const account = useAccount();
   const { withdraw, isPending, isConfirmed, isConfirming, error } =
     useWithdraw();
-  const { wstEthBalance, currentBalance } = useContractsData();
+  const { wstEthBalance } = useContractsData();
+  const currentBalance = useCurrentWSTBalance();
 
   // const wstEthBalance = 5;
   const methods = useForm({
     defaultValues: {
-      totalAmount: !currentBalance.isNaN() ? currentBalance.toFixed(5) : 0,
+      totalAmount: currentBalance,
       amount: "0.00",
     },
   });

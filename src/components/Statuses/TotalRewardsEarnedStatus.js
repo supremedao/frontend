@@ -18,14 +18,11 @@ function TotalRewardsEarnedStatus(props) {
     wstEthBalance,
     currentDeposits,
     wstETHvsUSDPrice,
+    summ,
   } = useContractsData();
-  const summ = BigNumber(userState?.[0])
-    .multipliedBy(wstETHvsUSDPrice)
-    .plus(userState?.[1])
-    .toFixed(0);
   const rew = BigNumber(summ).minus(formatEther(currentDeposits || ""));
   const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(rew);
-  console.log(`
+  console.log(`====== Total Rewards Earned ======
     balanceOf=${balanceOf}
     wstEthBalance=${wstEthBalance}
     totalSupply=${totalSupply}

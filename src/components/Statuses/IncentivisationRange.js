@@ -5,7 +5,7 @@ import BigNumber from "bignumber.js";
 import StatusBar from "@/components/StatusBar";
 
 function IncentivisationRange() {
-  const { balanceOf, totalSupply, userState, wstETHvsUSDPrice } =
+  const { balanceOf, summ, totalSupply, userState, wstETHvsUSDPrice } =
     useContractsData();
   const aprData = useAPR(1);
   const apr = aprData?.[0];
@@ -13,6 +13,7 @@ function IncentivisationRange() {
     balanceOf,
     totalSupply,
     userState,
+    summ,
     wstETHvsUSDPrice,
   });
   console.log("apr, amount: ", apr, amount);
