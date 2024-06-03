@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
 
 export function convertEthToUsd(amount, ethToUsdRate) {
-  return BigNumber(amount).multipliedBy(ethToUsdRate);
+  return BigNumber(amount).div(Math.pow(10, 18)).multipliedBy(ethToUsdRate);
 }
 
 export function getRewardPerYear(rewardRate) {
