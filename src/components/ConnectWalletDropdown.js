@@ -1,8 +1,8 @@
+"use client";
 import { Fragment, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Button from "@/components/Button";
-import { useAccount, useConnect } from "wagmi";
+import { useConnect } from "wagmi";
 import Typography from "@/components/Typography";
 import Link from "@/components/Link";
 

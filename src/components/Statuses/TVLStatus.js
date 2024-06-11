@@ -22,7 +22,7 @@ function TVLStatus(props) {
           <Typography>TVL (Total Value Locked):</Typography>
           <Typography>
             TVL represents the total amount of assets, in terms of value, that
-            are currently invested or locked in SupremeDAO's strategies.
+            are currently invested or locked in SupremeDAO&apos;s strategies.
           </Typography>
         </div>
       }

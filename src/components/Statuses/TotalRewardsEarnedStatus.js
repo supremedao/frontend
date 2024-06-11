@@ -54,8 +54,9 @@ function TotalRewardsEarnedStatus(props) {
           <Typography>Total Rewards Earned:</Typography>
           <Typography>
             This parameter displays the total amount of rewards or earnings you
-            have accumulated from your investments in SupremeDAO's strategies.
-            It reflects the performance of your investments over time.
+            have accumulated from your investments in SupremeDAO&apos;s
+            strategies. It reflects the performance of your investments over
+            time.
           </Typography>
         </div>
       }
