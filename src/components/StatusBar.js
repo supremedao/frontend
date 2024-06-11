@@ -5,12 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Tooltip } from "react-tooltip";
 import { useMemo } from "react";
 
-function StatusBar({
-  hint = "Your transaction will revert if the price changes unfavourably by more than this percentage",
-  title = "",
-  value = 0,
-  className = "",
-}) {
+function StatusBar({ hint = "", title = "", value = 0, className = "" }) {
   const tooltipID = useMemo(() => `tooltip-${uuidv4()}`, []);
   return (
     <div className={`grow rounded-md border bg-black/5 p-4  ${className}`}>
