@@ -70,8 +70,17 @@ export default function ConnectWalletDropdown() {
                       <Typography className={"mb-4"}>
                         Connecting your wallet is like “logging in” to Web3.
                         Select your wallet from the options to get started. If
-                        you don’t have a wallet jet, you can find an overview
-                        here.
+                        you don’t have a wallet jet, you can find an overview{" "}
+                        <Link
+                          className={"text-primary"}
+                          href={
+                            "https://ethereum.org/en/wallets/find-wallet/#main-content"
+                          }
+                          target={"_blank"}
+                        >
+                          here
+                        </Link>
+                        .
                       </Typography>
                       <div>
                         <label className={"flex"}>
