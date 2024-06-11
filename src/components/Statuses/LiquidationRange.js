@@ -117,10 +117,9 @@ export function LiquidationRange({ className = "" }) {
       className={`relative grow rounded-md border bg-black/5 p-4 ${className}`}
     >
       <div className="tooltipContainer absolute right-4 top-4">
-        <InformationCircleIcon
-          id={"liquidation-tooltip"}
-          className={"size-6"}
-        />
+        <span id={"liquidation-tooltip"}>
+          <InformationCircleIcon className={"size-6"} />
+        </span>
         <Tooltip anchorSelect={"#liquidation-tooltip"} place={"bottom"}>
           <div className={"max-w-72"}>
             <Typography>Liquidation Range:</Typography>

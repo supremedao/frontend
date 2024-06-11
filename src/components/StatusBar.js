@@ -11,7 +11,7 @@ function StatusBar({
   value = 0,
   className = "",
 }) {
-  const tooltipID = useMemo(() => uuidv4(), []);
+  const tooltipID = useMemo(() => `tooltip-${uuidv4()}`, []);
   return (
     <div className={`grow rounded-md border bg-black/5 p-4  ${className}`}>
       <header className={"mb-2 flex flex-row justify-between"}>
@@ -22,9 +22,7 @@ function StatusBar({
           <span id={tooltipID}>
             <InformationCircleIcon className={"size-6"} />
           </span>
-          <Tooltip anchorSelect={`#${tooltipID}`} place={"bottom"}>
-            {hint}
-          </Tooltip>
+          <Tooltip anchorSelect={`#${tooltipID}`}>{hint}</Tooltip>
         </div>
       </header>
 
