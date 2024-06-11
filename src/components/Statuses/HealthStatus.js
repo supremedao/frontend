@@ -4,6 +4,7 @@ import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import { formatEther } from "viem";
 import { useHealthStatus } from "@/hooks/useHealthStatus";
+import Typography from "@/components/Typography";
 
 const POSITIVE_THRESHOLD = 25;
 const AVERAGE_THRESHOLD = 15;
@@ -46,6 +47,15 @@ function HealthStatus(props) {
   return (
     <StatusBar
       title={"Status"}
+      hint={
+        <div className={"max-w-72"}>
+          <Typography>Status:</Typography>
+          <Typography>
+            The status shows the current state of our loan on Curve of this
+            strategy.
+          </Typography>
+        </div>
+      }
       value={
         strategyHealthValue !== "" ? (
           <span className={"align-center flex items-center"}>

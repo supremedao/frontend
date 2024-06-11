@@ -1,11 +1,9 @@
 "use client";
 import Typography from "@/components/Typography";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import dynamic from "next/dynamic";
-
-const DynamicTooltip = dynamic(() => import("microtip-react"), {
-  loading: () => <p>Loading...</p>,
-});
+import { v4 as uuidv4 } from "uuid";
+import { Tooltip } from "react-tooltip";
+import { useMemo } from "react";
 
 function StatusBar({
   hint = "Your transaction will revert if the price changes unfavourably by more than this percentage",
@@ -13,6 +11,7 @@ function StatusBar({
   value = 0,
   className = "",
 }) {
+  const tooltipID = useMemo(() => uuidv4(), []);
   return (
     <div className={`grow rounded-md border bg-black/5 p-4  ${className}`}>
       <header className={"mb-2 flex flex-row justify-between"}>
@@ -20,9 +19,12 @@ function StatusBar({
           {title}
         </Typography>
         <div className="tooltipContainer ml-4">
-          <DynamicTooltip label={hint} position={"bottom"} size={"small"}>
+          <span id={tooltipID}>
             <InformationCircleIcon className={"size-6"} />
-          </DynamicTooltip>
+          </span>
+          <Tooltip anchorSelect={`#${tooltipID}`} place={"bottom"}>
+            {hint}
+          </Tooltip>
         </div>
       </header>
 

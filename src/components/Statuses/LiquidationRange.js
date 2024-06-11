@@ -8,9 +8,7 @@ import { useState } from "react";
 import { convertEthToUsd } from "@/helpers";
 import { LinearChart } from "@/components/LinearChart";
 
-const DynamicTooltip = dynamic(() => import("microtip-react"), {
-  loading: () => <p>Loading...</p>,
-});
+import { Tooltip } from "react-tooltip";
 
 function useLiquidationRange() {
   const [value, setValue] = useState(0);
@@ -54,10 +52,7 @@ const options = {
   },
 };
 
-export function LiquidationRange({
-  className = "",
-  hint = "lorem ipsum dolot lorem ipsum dolot ",
-}) {
+export function LiquidationRange({ className = "" }) {
   const {
     debt,
     loss,
@@ -122,9 +117,21 @@ export function LiquidationRange({
       className={`relative grow rounded-md border bg-black/5 p-4 ${className}`}
     >
       <div className="tooltipContainer absolute right-4 top-4">
-        <DynamicTooltip label={hint} position={"bottom"} size={"small"}>
-          <InformationCircleIcon className={"size-6"} />
-        </DynamicTooltip>
+        <InformationCircleIcon
+          id={"liquidation-tooltip"}
+          className={"size-6"}
+        />
+        <Tooltip anchorSelect={"#liquidation-tooltip"} place={"bottom"}>
+          <div className={"max-w-72"}>
+            <Typography>Liquidation Range:</Typography>
+            <Typography>
+              This parameter indicates the range within which our collateralized
+              position may be liquidated if the value of our assets drops below
+              a certain threshold. It is crucial for managing the risks
+              associated with leveraged investments.
+            </Typography>
+          </div>
+        </Tooltip>
       </div>
       <article className={"flex flex-col sm:flex-row"}>
         <div className={"mb-4 sm:mb-0 sm:w-1/3"}>

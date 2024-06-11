@@ -68,21 +68,6 @@ body {
   z-index: 999;
 }
 
-.tooltipContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-[role~=tooltip]:before,
-[role~=tooltip]:after {
-  display: none;
-}
-[role~=tooltip]:hover:before,
-[role~=tooltip]:hover:after {
-  display: block;
-}
-[role~=tooltip][data-microtip-size=small]:after {
-  min-width: 180px;
-  width: auto;
+[role~=tooltip] {
+  z-index: 999;
 }

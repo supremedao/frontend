@@ -9,10 +9,7 @@ import BigNumber from "bignumber.js";
 import { useAccount, useBalance } from "wagmi";
 
 import { ADDRESSES } from "@/contracts/addresses";
-
-const DynamicTooltip = dynamic(() => import("microtip-react"), {
-  loading: () => <p>Loading...</p>,
-});
+import { Tooltip } from "react-tooltip";
 
 export function Stake() {
   const account = useAccount();
@@ -142,15 +139,22 @@ export function Stake() {
                 </Typography>
               </label>
               <div className="tooltipContainer ml-4">
-                <DynamicTooltip
-                  label={
-                    "Your transaction will revert if the price changes unfavourably by more than this percentage"
-                  }
-                  position={"bottom"}
-                  size={"small"}
-                >
+                <span id={"keeper-tooltip"}>
                   <InformationCircleIcon className={"size-6"} />
-                </DynamicTooltip>
+                </span>
+                <Tooltip anchorSelect={"#keeper-tooltip"} place={"bottom"}>
+                  <div className={"max-w-72"}>
+                    <Typography variant={"h5"}>Keeper Function</Typography>
+                    <Typography>
+                      When the Keeper is activated, your stake is automatically
+                      processed together with other stakes. We execute this
+                      process once a day or when the total staked amount reaches
+                      at least 10 ETH. This helps you save on gas fees. If you
+                      turn off the Keeper function, your stake will be processed
+                      immediately, but you will be responsible for the gas fees.
+                    </Typography>
+                  </div>
+                </Tooltip>
               </div>
             </div>
           </div>

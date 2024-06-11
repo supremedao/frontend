@@ -4,6 +4,7 @@ import { useContractsData } from "@/Context/ContractsDataProvider";
 import { calculateWstEthBalanceInUSD } from "@/helpers";
 import BigNumber from "bignumber.js";
 import { useCurrentWSTBalance } from "@/hooks/useCurrentWSTBalance";
+import Typography from "@/components/Typography";
 
 function CurrentBalanceStatus(props) {
   const { balanceOf, summ, totalSupply, userState, wstETHvsUSDPrice } =
@@ -21,6 +22,16 @@ function CurrentBalanceStatus(props) {
   return (
     <StatusBar
       title={"Your current Balance"}
+      hint={
+        <div className={"max-w-72"}>
+          <Typography>Your Current Balance:</Typography>
+          <Typography>
+            This is the amount of your deposited assets currently held in the
+            vault. It shows the total value of your investments within
+            SupremeDAO.
+          </Typography>
+        </div>
+      }
       value={`${currentBalance} wstETH / ${amount} USD`}
       {...props}
     />

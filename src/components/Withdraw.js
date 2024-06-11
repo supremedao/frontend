@@ -2,16 +2,11 @@ import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
-import dynamic from "next/dynamic";
 import { useAccount } from "wagmi";
 import { parseEther } from "viem";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import { useWithdraw } from "@/hooks/useWithdraw";
 import { useCurrentWSTBalance } from "@/hooks/useCurrentWSTBalance";
-
-const DynamicTooltip = dynamic(() => import("microtip-react"), {
-  loading: () => <p>Loading...</p>,
-});
 
 export function Withdraw() {
   const account = useAccount();
