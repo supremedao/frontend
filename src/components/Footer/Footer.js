@@ -65,8 +65,8 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link variant={"h4"} href="/content/imprint">
-                        Imprint & Terms
+                      <Link variant={"h4"} href="/content/terms-of-use">
+                        Terms of use
                       </Link>
                     </li>
                   </ul>
