@@ -5,18 +5,20 @@ import Typography from "@/components/Typography";
 import { useState } from "react";
 
 function CookieBanner() {
-  const [consent, setConsent] = useState(localStorage.getItem("consent"));
+  const [consent, setConsent] = useState(
+    window.localStorage.getItem("consent"),
+  );
 
   function acceptSection() {
-    if (localStorage) {
-      localStorage.setItem("consent", "necessary");
+    if (window.localStorage) {
+      window.localStorage.setItem("consent", "necessary");
     }
     setConsent("necessary");
   }
 
   function acceptAll() {
-    if (localStorage) {
-      localStorage.setItem("consent", "all");
+    if (window.localStorage) {
+      window.localStorage.setItem("consent", "all");
     }
     setConsent("all");
   }

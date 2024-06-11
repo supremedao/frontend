@@ -33,7 +33,9 @@ export default function RootLayout({ children }) {
       <body className={Gilroy.className}>
         <main className="container mx-auto max-w-screen-xl px-3">
           {children}
-          <CookieBanner />
+          <NoSSR>
+            <CookieBanner />
+          </NoSSR>
           <Footer />
         </main>
       </body>

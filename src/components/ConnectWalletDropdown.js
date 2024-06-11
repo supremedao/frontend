@@ -24,8 +24,11 @@ export default function ConnectWalletDropdown() {
 
   function handleAgreeTerms(event) {
     setChecked(event.currentTarget.checked);
-    if (localStorage) {
-      localStorage.setItem("agreed-to-terms", event.currentTarget.checked);
+    if (window.localStorage) {
+      window.localStorage.setItem(
+        "agreed-to-terms",
+        event.currentTarget.checked,
+      );
     }
   }
 

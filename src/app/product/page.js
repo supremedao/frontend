@@ -24,6 +24,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import ConnectWalletDropdown from "@/components/ConnectWalletDropdown";
 import Header from "@/components/Header";
+import NoSSR from "@/app/NoSSR";
 
 const ConnectButton = () => {
   const account = useAccount();
@@ -38,7 +39,11 @@ const ConnectButton = () => {
           </Button>
         </div>
       )}
-      {!account?.address && <ConnectWalletDropdown />}
+      {!account?.address && (
+        <NoSSR>
+          <ConnectWalletDropdown />
+        </NoSSR>
+      )}
     </div>
   );
 };
