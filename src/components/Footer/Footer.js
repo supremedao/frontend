@@ -66,7 +66,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <Link variant={"h4"} href="/content/terms-of-use">
-                        Terms of use
+                        Terms
                       </Link>
                     </li>
                   </ul>
@@ -87,7 +87,7 @@ export default function Footer() {
 
                     <li>
                       <Link variant={"h4"} href="/content/privacy">
-                        Terms &amp; Privacy
+                        Privacy
                       </Link>
                     </li>
                   </ul>
