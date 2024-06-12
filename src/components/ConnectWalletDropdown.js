@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import { useConnect } from "wagmi";
 import Typography from "@/components/Typography";
 import Link from "@/components/Link";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -64,9 +65,24 @@ export default function ConnectWalletDropdown() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-4xl overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <div className="mt-2 grid grid-cols-1 lg:grid-cols-2">
-                    <div className={"flex flex-col justify-between"}>
+                <Dialog.Panel className="relative w-full max-w-4xl rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                  <div className="absolute right-0 z-10 ">
+                    {/*-mr-4 -mt-4*/}
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center px-3 py-2 text-gray-900"
+                      onClick={closeModal}
+                      data-autofocus
+                    >
+                      <XMarkIcon className={"size-6"} />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div
+                      className={
+                        "flex min-h-80 flex-col justify-between bg-[rgba(37,76,247,.1)] px-4 py-8 sm:p-10"
+                      }
+                    >
                       <Typography variant="h3" className="text-primary">
                         Connect your wallet
                       </Typography>
@@ -89,14 +105,14 @@ export default function ConnectWalletDropdown() {
                         <label className={"flex"}>
                           <input
                             type={"checkbox"}
-                            className={"mr-2"}
+                            className={"mr-2 w-4"}
                             onChange={handleAgreeTerms}
                           />
-                          <Typography>
+                          <Typography className={"text-sm"}>
                             I agree to the{" "}
                             <Link
                               target={"_blank"}
-                              className={"text-primary"}
+                              className={"text-sm text-primary"}
                               href={"/content/terms-of-use"}
                             >
                               Terms &amp; Conditions
@@ -105,7 +121,7 @@ export default function ConnectWalletDropdown() {
                             <Link
                               href={"/content/privacy"}
                               target={"_blank"}
-                              className={"text-primary"}
+                              className={"text-sm text-primary"}
                             >
                               Privacy policy
                             </Link>
@@ -114,7 +130,7 @@ export default function ConnectWalletDropdown() {
                         </label>
                       </div>
                     </div>
-                    <div className="px-6 py-4">
+                    <div className="p-4 sm:p-10">
                       {connectors.map((connector) => (
                         <Menu.Item key={connector.uid}>
                           {({ active }) => (
@@ -134,7 +150,7 @@ export default function ConnectWalletDropdown() {
                                 active && checked
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
-                                `block px-4 py-5 text-sm rounded border my-3 ${checked ? "" : "opacity-30"}`,
+                                `block px-4 py-5  rounded-xl border-dashed border border-black my-3 ${checked ? "" : "opacity-30"}`,
                               )}
                             >
                               {connector.name}
@@ -143,16 +159,6 @@ export default function ConnectWalletDropdown() {
                         </Menu.Item>
                       ))}
                     </div>
-                  </div>
-                  <div className="px-4 sm:flex sm:flex-row-reverse sm:px-6">
-                    <button
-                      type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                      onClick={closeModal}
-                      data-autofocus
-                    >
-                      Close
-                    </button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

@@ -17,9 +17,9 @@ export default function Header({ children }) {
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Supreme DAO</span>
             <img
-              width={258}
+              className={"w-44 sm:w-64"}
+              // width={258}
               height={49}
-              className=""
               src="/logotype.png"
               alt="Supreme DAO"
             />
