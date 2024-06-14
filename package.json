@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@tanstack/react-query": "^5.37.1",
     "@types/mdx": "^2.0.13",
+    "@web3-onboard/wagmi": "^2.0.1",
     "apollo-link-rest": "^0.9.0",
     "bignumber.js": "^9.1.2",
     "chart.js": "^4.4.3",

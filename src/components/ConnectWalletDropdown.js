@@ -11,6 +11,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+function getIcon(id) {
+  switch (id) {
+    case "metaMaskSDK":
+      return "/icons/wallets/metamask.svg";
+    case "walletConnect":
+      return "/icons/wallets/wallet-connect.svg";
+    case "coinbaseWalletSDK":
+      return "/icons/wallets/coinbase.svg";
+    default:
+      return "";
+  }
+}
+
 export default function ConnectWalletDropdown() {
   const { connectors, connect, status, error } = useConnect();
   const [isOpen, setIsOpen] = useState(true);
@@ -32,6 +45,8 @@ export default function ConnectWalletDropdown() {
       );
     }
   }
+
+  console.log("connectors", connectors);
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -80,7 +95,7 @@ export default function ConnectWalletDropdown() {
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div
                       className={
-                        "flex min-h-80 flex-col justify-between bg-[rgba(37,76,247,.1)] px-4 py-8 sm:p-10"
+                        "flex min-h-60 flex-col justify-between bg-[rgba(37,76,247,.1)] px-4 py-8 sm:min-h-80 sm:p-10"
                       }
                     >
                       <Typography variant="h3" className="text-primary">
@@ -101,7 +116,9 @@ export default function ConnectWalletDropdown() {
                         </Link>
                         .
                       </Typography>
-                      <div>
+                    </div>
+                    <div className="p-4 sm:p-10">
+                      <div className={"mb-6"}>
                         <label className={"flex"}>
                           <input
                             type={"checkbox"}
@@ -129,8 +146,6 @@ export default function ConnectWalletDropdown() {
                           </Typography>
                         </label>
                       </div>
-                    </div>
-                    <div className="p-4 sm:p-10">
                       {connectors.map((connector) => (
                         <Menu.Item key={connector.uid}>
                           {({ active }) => (
@@ -150,9 +165,13 @@ export default function ConnectWalletDropdown() {
                                 active && checked
                                   ? "bg-gray-100 text-gray-900"
                                   : "text-gray-700",
-                                `block px-4 py-5  rounded-xl border-dashed border border-black my-3 ${checked ? "" : "opacity-30"}`,
+                                `flex px-4 py-5  rounded-xl border-dashed border border-black my-3 ${checked ? "" : "opacity-25"}`,
                               )}
                             >
+                              <img
+                                src={getIcon(connector.id)}
+                                className={"mr-2 w-6"}
+                              />
                               {connector.name}
                             </a>
                           )}
