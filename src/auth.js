@@ -1,6 +1,6 @@
 import { http, createConfig } from "wagmi";
 import { mainnet } from "wagmi/chains";
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
+import { coinbaseWallet, metaMask, walletConnect } from "wagmi/connectors";
 
 export const fork = {
   id: 1,
@@ -24,7 +24,7 @@ export const fork = {
 export const config = createConfig({
   chains: [mainnet],
   connectors: [
-    injected(),
+    metaMask(),
     coinbaseWallet({ appName: "Create Wagmi" }),
     walletConnect({ projectId: process.env.NEXT_PUBLIC_PROJECT_ID }),
   ],
