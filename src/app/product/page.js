@@ -25,6 +25,7 @@ import { useState } from "react";
 import ConnectWalletDropdown from "@/components/ConnectWalletDropdown";
 import Header from "@/components/Header";
 import NoSSR from "@/app/NoSSR";
+import Link from "next/link";
 
 const ConnectButton = () => {
   const account = useAccount();
@@ -54,7 +55,9 @@ function Product() {
       <Header>
         <div className={"flex content-start justify-end gap-2"}>
           <div className={"hidden shrink-0 lg:block"}>
-            <Button size={"small"}>How it works</Button>
+            <Link href={"/product/#how-it-works"}>
+              <Button size={"small"}>How it works</Button>
+            </Link>
           </div>
           <ConnectButton />
         </div>
