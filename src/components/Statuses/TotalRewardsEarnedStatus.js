@@ -21,10 +21,12 @@ function useTotalRewards() {
     summ,
   } = useContractsData();
 
-  const rew = BigNumber(summ).minus(
+  const rev = BigNumber(summ).minus(
     BigNumber(currentDeposits).multipliedBy(wstETHvsUSDPrice),
   );
-  const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(rew);
+  const revenue = rev.lt(0) ? 0 : rev;
+  const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(revenue);
+
   console.log(`====== Total Rewards Earned ======
     balanceOf=${balanceOf}
     wstEthBalance=${wstEthBalance}
@@ -35,7 +37,8 @@ function useTotalRewards() {
     userState[0]=${userState?.[0]}
     userState[1]=${userState?.[1]}
     summ=${summ}, 
-    rew=${rew}
+    rev=${rev}
+    revenue=${revenue}
     amount=${amount}
   `);
 

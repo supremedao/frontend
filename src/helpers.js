@@ -119,5 +119,5 @@ export function calculateWstEthBalanceInUSD({
     summ=${summ}
   `);
 
-  return !amount.isNaN() ? formatEther(amount) : 0;
+  return !amount.isNaN() ? BigNumber(formatEther(amount)).toFixed(2) : 0;
 }

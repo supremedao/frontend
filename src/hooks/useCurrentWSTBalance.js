@@ -5,9 +5,9 @@ import { formatEther } from "viem";
 export function useCurrentWSTBalance() {
   const { balanceOf, totalSupply, summ, wstETHvsUSDPrice } = useContractsData();
 
-  const currentBalance = BigNumber(balanceOf)
-    .div(totalSupply)
-    .multipliedBy(summ)
+  const currentBalance = BigNumber(formatEther(balanceOf || ""))
+    .div(formatEther(totalSupply || ""))
+    .multipliedBy(formatEther(summ || ""))
     .div(wstETHvsUSDPrice);
 
   console.log(`================= currentBalance ========
@@ -18,5 +18,5 @@ export function useCurrentWSTBalance() {
     wstETHvsUSDPrice=${wstETHvsUSDPrice}
   `);
 
-  return !currentBalance.isNaN() ? formatEther(currentBalance) : 0;
+  return !currentBalance.isNaN() ? BigNumber(currentBalance).toFixed(5) : 0;
 }
