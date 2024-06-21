@@ -21,9 +21,9 @@ function useTotalRewards() {
     summ,
   } = useContractsData();
 
-  const rev = BigNumber(summ).minus(
-    BigNumber(currentDeposits).multipliedBy(wstETHvsUSDPrice),
-  );
+  const rev = BigNumber(summ)
+    .minus(BigNumber(currentDeposits).multipliedBy(wstETHvsUSDPrice))
+    .div(Math.pow(10, 18));
   const revenue = rev.lt(0) ? 0 : rev;
   const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(revenue);
 
@@ -42,7 +42,7 @@ function useTotalRewards() {
     amount=${amount}
   `);
 
-  return !amount.isNaN() ? formatEther(amount) : 0;
+  return !amount.isNaN() ? amount.toFixed(2) : 0;
 }
 
 function TotalRewardsEarnedStatus(props) {
