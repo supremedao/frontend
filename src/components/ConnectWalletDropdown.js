@@ -1,0 +1,190 @@
+"use client";
+import { Fragment, useState } from "react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
+import Button from "@/components/Button";
+import { useConnect } from "wagmi";
+import Typography from "@/components/Typography";
+import Link from "@/components/Link";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function getIcon(id) {
+  switch (id) {
+    case "metaMaskSDK":
+      return "/icons/wallets/metamask.svg";
+    case "walletConnect":
+      return "/icons/wallets/wallet-connect.svg";
+    case "coinbaseWalletSDK":
+      return "/icons/wallets/coinbase.svg";
+    default:
+      return "";
+  }
+}
+
+export default function ConnectWalletDropdown() {
+  const { connectors, connect, status, error } = useConnect();
+  const [isOpen, setIsOpen] = useState(true);
+  const [checked, setChecked] = useState(false);
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function handleAgreeTerms(event) {
+    setChecked(event.currentTarget.checked);
+    if (window.localStorage) {
+      window.localStorage.setItem(
+        "agreed-to-terms",
+        event.currentTarget.checked,
+      );
+    }
+  }
+
+  console.log("connectors", connectors);
+
+  return (
+    <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <Button size={"small"} onClick={openModal} color={"blue"} className="">
+          Connect wallet
+        </Button>
+      </div>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="relative w-full max-w-4xl rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                  <div className="absolute right-0 z-10 ">
+                    {/*-mr-4 -mt-4*/}
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center px-3 py-2 text-gray-900"
+                      onClick={closeModal}
+                      data-autofocus
+                    >
+                      <XMarkIcon className={"size-6"} />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div
+                      className={
+                        "flex min-h-60 flex-col justify-between bg-[rgba(37,76,247,.1)] px-4 py-8 sm:min-h-80 sm:p-10"
+                      }
+                    >
+                      <Typography variant="h3" className="text-primary">
+                        Connect your wallet
+                      </Typography>
+                      <Typography className={"mb-4"}>
+                        Connecting your wallet is like “logging in” to Web3.
+                        Select your wallet from the options to get started. If
+                        you don’t have a wallet jet, you can find an overview{" "}
+                        <Link
+                          className={"text-primary"}
+                          href={
+                            "https://ethereum.org/en/wallets/find-wallet/#main-content"
+                          }
+                          target={"_blank"}
+                        >
+                          here
+                        </Link>
+                        .
+                      </Typography>
+                    </div>
+                    <div className="p-4 sm:p-10">
+                      <div className={"mb-6"}>
+                        <label className={"flex"}>
+                          <input
+                            type={"checkbox"}
+                            className={"mr-2 w-4"}
+                            onChange={handleAgreeTerms}
+                          />
+                          <Typography className={"text-sm"}>
+                            I agree to the{" "}
+                            <Link
+                              target={"_blank"}
+                              className={"text-sm text-primary"}
+                              href={"/content/terms-of-use"}
+                            >
+                              Terms &amp; Conditions
+                            </Link>{" "}
+                            and{" "}
+                            <Link
+                              href={"/content/privacy"}
+                              target={"_blank"}
+                              className={"text-sm text-primary"}
+                            >
+                              Privacy policy
+                            </Link>
+                            .
+                          </Typography>
+                        </label>
+                      </div>
+                      {connectors.map((connector) => (
+                        <Menu.Item key={connector.uid}>
+                          {({ active }) => (
+                            <a
+                              href={"#"}
+                              onClick={(event) => {
+                                event.preventDefault();
+
+                                try {
+                                  if (!checked) return;
+                                  connect({ connector });
+                                } catch (error) {
+                                  console.log("error connecting wallet", error);
+                                }
+                              }}
+                              className={classNames(
+                                active && checked
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                `flex px-4 py-5  rounded-xl border-dashed border border-black my-3 ${checked ? "" : "opacity-25"}`,
+                              )}
+                            >
+                              <img
+                                src={getIcon(connector.id)}
+                                className={"mr-2 w-6"}
+                              />
+                              {connector.name}
+                            </a>
+                          )}
+                        </Menu.Item>
+                      ))}
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </Menu>
+  );
+}

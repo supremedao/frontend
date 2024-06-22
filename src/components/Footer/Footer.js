@@ -51,7 +51,7 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link variant={"h4"} href="#strategies">
+                      <Link variant={"h4"} href="/#strategies">
                         Strategies
                       </Link>
                     </li>
@@ -65,8 +65,8 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link variant={"h4"} href="/content/imprint">
-                        Imprint & Terms
+                      <Link variant={"h4"} href="/content/terms-of-use">
+                        Terms
                       </Link>
                     </li>
                   </ul>
@@ -87,7 +87,7 @@ export default function Footer() {
 
                     <li>
                       <Link variant={"h4"} href="/content/privacy">
-                        Terms &amp; Privacy
+                        Privacy
                       </Link>
                     </li>
                   </ul>

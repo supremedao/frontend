@@ -4,13 +4,14 @@ const Button = ({
   size = "medium",
   children,
   shadow,
+  type = "button",
+  disabled = false,
   ...props
 }) => {
   const colorClasses = {
-    light: "bg-black/5 hover:bg-black/10 border-black/10 focus:ring-slate-100",
-    blue: " bg-primary hover:bg-blue-600 border-0 focus:ring-blue-100 text-white",
-    white:
-      "bg-white/40 hover:bg-white/50 border-white focus:ring-slate-100 text-black",
+    light: `bg-black/5 ${disabled ? "opacity-75" : "hover:bg-black/10"} border-black/10 focus:ring-slate-100`,
+    blue: `bg-primary ${disabled ? "opacity-75" : "hover:bg-blue-600"} border-0 focus:ring-blue-100 text-white`,
+    white: `bg-white/40 ${disabled ? "opacity-75" : "hover:bg-white/50"} border-white focus:ring-slate-100 text-black`,
   };
 
   const sizeClasses = {
@@ -24,6 +25,8 @@ const Button = ({
 
   return (
     <button
+      type={type}
+      disabled={disabled}
       className={`rounded-full border focus:outline-none focus:ring focus:ring-opacity-75  ${colorClass} ${sizeClass} ${className}`}
       {...props}
     >

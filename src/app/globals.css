@@ -28,6 +28,9 @@
 /*    --background-end-rgb: 0, 0, 0;*/
 /*  }*/
 /*}*/
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -43,7 +46,7 @@ body {
 .card {
   position: relative;
 }
-.card:after {
+.card--noise:after {
   content: '';
   display: block;
   position: absolute;
@@ -68,3 +71,6 @@ body {
   z-index: 999;
 }
 
+[role~=tooltip] {
+  z-index: 999;
+}
