@@ -18,5 +18,5 @@ export function useCurrentWSTBalance() {
     wstETHvsUSDPrice=${wstETHvsUSDPrice}
   `);
 
-  return !currentBalance.isNaN() ? BigNumber(currentBalance).toFixed(5) : 0;
+  return !currentBalance.isNaN() ? BigNumber(currentBalance).toFixed(5, 1) : 0;
 }

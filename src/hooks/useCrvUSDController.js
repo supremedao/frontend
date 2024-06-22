@@ -33,6 +33,12 @@ export function useCrvUSDController() {
       functionName: "user_prices",
       args: [ADDRESSES.LEVERAGE_STRATEGY],
     },
+    {
+      address: ADDRESSES.CRV_USD_CONTROLLER,
+      abi,
+      functionName: "liquidation_discounts",
+      args: [ADDRESSES.LEVERAGE_STRATEGY],
+    },
   ];
 
   const { data, error } = useReadContracts({ contracts });

@@ -22,7 +22,7 @@ export function useContractsData() {
 export function ContractsDataProvider({ children }) {
   const auraVaultData = useAuraVault();
   const auraData = useAuraContract();
-  const [userState, debt, user_prices] = useCrvUSDController();
+  const [userState, debt, user_prices, liqDiscount] = useCrvUSDController();
 
   const { wstETHvsUSDPrice, ethereumVsUSDPrice, balancerVsUSDPrice } =
     useCoinGeckoSimplePrice();
@@ -61,6 +61,7 @@ export function ContractsDataProvider({ children }) {
         wstETHvsUSDPrice,
         wstEthBalance,
         summ,
+        liqDiscount: BigNumber(liqDiscount).div(Math.pow(10, 18)),
       }}
     >
       {children}

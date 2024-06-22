@@ -32,10 +32,10 @@ function getStatus(value) {
 
 function HealthStatus(props) {
   const strategyHealth = useHealthStatus();
-  const formattedHealth = BigNumber(strategyHealth).div(Math.pow(10, 16));
+  const formattedHealth = strategyHealth;
   const strategyHealthValue = BigNumber(formattedHealth).isNaN()
     ? ""
-    : formattedHealth.toFixed(2);
+    : formattedHealth;
 
   console.log(`======= Strategy Health =======
     strategyHealth=${strategyHealth}

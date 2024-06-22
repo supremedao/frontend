@@ -121,3 +121,30 @@ export function calculateWstEthBalanceInUSD({
 
   return !amount.isNaN() ? BigNumber(formatEther(amount)).toFixed(2) : 0;
 }
+
+export function calculateHealth({ s = 0, debt = 0, liqDiscount, p = 0 }) {
+  console.log(
+    "------- calculate Health ------",
+    `
+    liqDiscount: ${liqDiscount}
+    BigNumber(1).minus(liqDiscount): ${BigNumber(1).minus(liqDiscount)}
+    BigNumber(s)
+    .multipliedBy($above): ${BigNumber(s).multipliedBy(
+      BigNumber(1).minus(liqDiscount),
+    )}
+    plus P: ${BigNumber(s)
+      .multipliedBy(BigNumber(1).minus(liqDiscount))
+      .plus(p)}
+    debt: ${debt}
+    div(debt): ${BigNumber(s)
+      .multipliedBy(BigNumber(1).minus(liqDiscount))
+      .plus(p)
+      .div(debt)}
+  `,
+  );
+  return BigNumber(s)
+    .multipliedBy(BigNumber(1).minus(liqDiscount))
+    .plus(p)
+    .div(debt)
+    .minus(1);
+}

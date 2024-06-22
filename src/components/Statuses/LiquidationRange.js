@@ -76,6 +76,8 @@ export function LiquidationRange({ className = "" }) {
     deposited=${deposited}
     loss=${loss?.toFixed(2)}
     loss % =${lossPercentage?.toFixed(2)}
+    maxRange = ${maxRange}
+    minRange = ${minRange}
   `);
 
   const data = {

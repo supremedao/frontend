@@ -3,17 +3,21 @@ import Button from "@/components/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useAccount } from "wagmi";
-import { parseEther } from "viem";
+import { formatEther, parseEther } from "viem";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import { useWithdraw } from "@/hooks/useWithdraw";
 import { useCurrentWSTBalance } from "@/hooks/useCurrentWSTBalance";
+import BigNumber from "bignumber.js";
+import { useState } from "react";
 
 export function Withdraw() {
   const account = useAccount();
+  const [validationError, setValidationError] = useState("");
   const { withdraw, isPending, isConfirmed, isConfirming, error } =
     useWithdraw();
   const { wstEthBalance } = useContractsData();
   const currentBalance = useCurrentWSTBalance();
+  const { balanceOf } = useContractsData();
 
   // const wstEthBalance = 5;
   const methods = useForm({
@@ -32,8 +36,28 @@ export function Withdraw() {
   } = methods;
 
   async function submit(data) {
+    setValidationError("");
+
     const { amount } = data;
-    withdraw(parseEther(amount));
+    if (BigNumber(amount).gt(currentBalance)) {
+      setValidationError("Value exceeds total balance");
+      return;
+    }
+
+    const shares = BigNumber(amount)
+      .div(currentBalance)
+      .multipliedBy(balanceOf)
+      .toFixed(0);
+    console.log(
+      "------- shares",
+      `
+      amount: ${amount}
+      currentBalance: ${currentBalance}
+      balanceOf: ${balanceOf}
+      shares: ${shares}
+    `,
+    );
+    withdraw(shares);
   }
 
   return (
@@ -118,8 +142,8 @@ export function Withdraw() {
               {isConfirming && <div>Waiting for confirmation...</div>}
               {isConfirmed && <div>Transaction confirmed.</div>}
             </Typography>
-            <Typography className={"mt-2 px-2 text-xs"}>
-              {error && error.shortMessage}
+            <Typography className={"mt-2 px-2 text-xs text-red-600"}>
+              {(error && error.shortMessage) || validationError}
             </Typography>
           </div>
         </article>
