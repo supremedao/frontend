@@ -1,20 +1,12 @@
 import Typography from "@/components/Typography";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import dynamic from "next/dynamic";
 import { useContractsData } from "@/Context/ContractsDataProvider";
 import BigNumber from "bignumber.js";
 import { formatEther } from "viem";
 import { useState } from "react";
 import { convertEthToUsd } from "@/helpers";
 import { LinearChart } from "@/components/LinearChart";
-
-import { Tooltip } from "react-tooltip";
-
-function useLiquidationRange() {
-  const [value, setValue] = useState(0);
-
-  return value;
-}
+import Tooltip from "@/components/Tooltip";
 
 const options = {
   responsive: true,
@@ -118,20 +110,21 @@ export function LiquidationRange({ className = "" }) {
     <div
       className={`relative grow rounded-md border bg-black/5 p-4 ${className}`}
     >
-      <div className="tooltipContainer absolute right-4 top-4">
-        <span id={"liquidation-tooltip"}>
+      <div className="absolute right-4 top-4">
+        <Tooltip
+          content={
+            <div className={"max-w-72"}>
+              <Typography>Liquidation Range:</Typography>
+              <Typography>
+                This parameter indicates the range within which our
+                collateralized position may be liquidated if the value of our
+                assets drops below a certain threshold. It is crucial for
+                managing the risks associated with leveraged investments.
+              </Typography>
+            </div>
+          }
+        >
           <InformationCircleIcon className={"size-6"} />
-        </span>
-        <Tooltip anchorSelect={"#liquidation-tooltip"} place={"bottom"}>
-          <div className={"max-w-72"}>
-            <Typography>Liquidation Range:</Typography>
-            <Typography>
-              This parameter indicates the range within which our collateralized
-              position may be liquidated if the value of our assets drops below
-              a certain threshold. It is crucial for managing the risks
-              associated with leveraged investments.
-            </Typography>
-          </div>
         </Tooltip>
       </div>
       <article className={"flex flex-col sm:flex-row"}>
