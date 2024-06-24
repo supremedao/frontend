@@ -19,7 +19,12 @@ export function useHealthStatus() {
   const p = BigNumber(ethereumVsUSDPrice)
     .minus(maxRange)
     .multipliedBy(formattedUserState);
-  const value = calculateHealth({ p, s, debt, liqDiscount });
+  const health = calculateHealth({ p, s, debt, liqDiscount });
+  const value = health.lt(0)
+    ? BigNumber(0)
+    : health.lt(1)
+      ? BigNumber(1)
+      : health;
 
   useEffect(() => {
     import("@/contracts/abi/leverage-strategy.json").then((resp) => {
