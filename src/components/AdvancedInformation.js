@@ -28,7 +28,7 @@ function AdvancedInformation() {
       >
         <div className={"mb-4 grid gap-4 sm:grid-cols-2"}>
           <HealthStatus />
-          <IncentivisationRange />
+          {/*<IncentivisationRange />*/}
         </div>
         <LiquidationRange />
       </div>

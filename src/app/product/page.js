@@ -150,21 +150,21 @@ function Product() {
           </div>
         </article>
 
-        <article className={"mb-10 flex flex-col gap-4 sm:flex-row"}>
-          <div className={"sm:w-3/5"}>
-            <Typography variant={"h2"}>
-              Learn more{" "}
-              <span className={"text-primary"}>about the platforms</span>
-            </Typography>
-          </div>
-          <div className={"sm:w-2/5"}>
-            <div className={"grid grid-cols-3 justify-end align-top"}>
-              <img src="/aura.png" alt="" />
-              <img src="/paladin.png" alt="" />
-              <img src="/curve.png" alt="" />
-            </div>
-          </div>
-        </article>
+        {/*<article className={"mb-10 flex flex-col gap-4 sm:flex-row"}>*/}
+        {/*  <div className={"sm:w-3/5"}>*/}
+        {/*    <Typography variant={"h2"}>*/}
+        {/*      Learn more{" "}*/}
+        {/*      <span className={"text-primary"}>about the platforms</span>*/}
+        {/*    </Typography>*/}
+        {/*  </div>*/}
+        {/*  <div className={"sm:w-2/5"}>*/}
+        {/*    <div className={"grid grid-cols-3 justify-end align-top"}>*/}
+        {/*      <img src="/aura.png" alt="" />*/}
+        {/*      <img src="/paladin.png" alt="" />*/}
+        {/*      <img src="/curve.png" alt="" />*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</article>*/}
       </section>
     </>
   );

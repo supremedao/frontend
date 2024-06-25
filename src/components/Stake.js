@@ -139,12 +139,6 @@ export function Stake() {
                   Stake with Keeper
                 </Typography>
               </label>
-              <Popup
-                trigger={<button> Trigger</button>}
-                position="right center"
-              >
-                <div>Popup content here !!</div>
-              </Popup>
               <div className="ml-4">
                 <Tooltip
                   content={
