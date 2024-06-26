@@ -19,7 +19,7 @@ export function Stake() {
     address: account?.address,
     token: ADDRESSES.wstETH,
   });
-  const formattedBalance = BigNumber(data?.formatted || 0).toFixed(5);
+  const formattedBalance = data?.formatted || 0;
 
   const methods = useForm({
     defaultValues: {
@@ -57,10 +57,7 @@ export function Stake() {
     } else {
       setValue(
         "amount",
-        BigNumber(formattedBalance)
-          .div(100)
-          .multipliedBy(percentage)
-          .toFixed(2),
+        BigNumber(formattedBalance).div(100).multipliedBy(percentage).toFixed(),
       );
     }
   }
@@ -70,13 +67,10 @@ export function Stake() {
       <form action="#" onSubmit={handleSubmit(submit)}>
         <article className={"flex flex-col justify-between"}>
           <div className={"mb-36"}>
-            <div className={"mb-2 flex justify-between "}>
+            <div className={"mb-2  justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
-              <Typography className={"text-black/50"}>
-                {!data ? 0 : formattedBalance} wstETH available
-              </Typography>
             </div>
-            <div className={"mb-3 flex rounded-lg bg-black/5 p-2"}>
+            <div className={"mb-1 flex rounded-lg bg-black/5 p-2"}>
               <FormattedInput
                 className={
                   "mr-1 h-10 grow bg-transparent pl-1 text-lg outline-0"
@@ -92,7 +86,8 @@ export function Stake() {
                 wstETH
               </button>
             </div>
-            <article className={"mb-5 flex gap-2"}>
+
+            <article className={"mb-1 flex gap-2"}>
               <Button
                 className={"grow rounded-lg"}
                 size={"small"}
@@ -126,6 +121,11 @@ export function Stake() {
                 Max
               </Button>
             </article>
+            <div className="mb-4 text-right">
+              <Typography className={"text-sm text-black/50"}>
+                {!data ? 0 : formattedBalance} wstETH available
+              </Typography>
+            </div>
             <div className={"flex"}>
               <label className="ml-1 inline-flex cursor-pointer items-center">
                 <input

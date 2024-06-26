@@ -25,8 +25,7 @@ export const FormattedInput = ({
     render={({ field }) => (
       <input
         onChange={(e) => {
-          console.log(e.target.value);
-          const regex = /^\d+(\.\d{0,5})?$/;
+          const regex = /^\d+(\.\d{0,20})?$/;
           if (regex.test(e.target.value) || e.target.value === "") {
             field.onChange(e);
           }

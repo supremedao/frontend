@@ -26,10 +26,10 @@ function AdvancedInformation() {
       <div
         className={`${collapsed ? "h-0 opacity-0 delay-0 duration-0" : "h-full opacity-100 duration-500"} transition-opacity ease-in-out`}
       >
-        <div className={"mb-4 grid gap-4 sm:grid-cols-2"}>
-          <HealthStatus />
-          {/*<IncentivisationRange />*/}
-        </div>
+        {/*<div className={"mb-4 grid gap-4 sm:grid-cols-2"}>*/}
+        {/*<HealthStatus />*/}
+        {/*<IncentivisationRange />*/}
+        {/*</div>*/}
         <LiquidationRange />
       </div>
     </article>
