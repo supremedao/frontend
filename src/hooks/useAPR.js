@@ -15,6 +15,14 @@ function useAPR(days) {
       id: "0x27c9f71cc31464b906e0006d4fcbc8900f48f15f00020000000000000000010f",
     },
   });
+
+  console.log(`------- useAPR -----
+     fee: ${fee}
+     auraData: ${auraData}
+     tvlData: ${tvlData}
+     balancerPrices: ${balancerPrices}
+  `);
+
   if (!fee || !auraData || !tvlData || !balancerPrices) return [];
 
   const formattedTvlData = [...(tvlData?.poolSnapshots || [])].map((item) => {
@@ -66,6 +74,10 @@ function useAPR(days) {
 
     return auraAPR?.toFixed(5); // Fixed to 2 decimal places
   });
+
+  console.log(`----- auraAprData ----
+    ${auraAprData}
+  `);
 
   return auraAprData;
 }

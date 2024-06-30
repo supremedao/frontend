@@ -3,6 +3,8 @@ import { ApolloClient, InMemoryCache, from } from "@apollo/client";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { loadDevMessages, loadErrorMessages } from "@apollo/client/dev";
 
+const API_KEY = process.env.NEXT_PUBLIC_GRAPH_API_KEY;
+
 export function createClient() {
   const link = new RestLink({
     uri: "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2/graphql",
@@ -11,7 +13,7 @@ export function createClient() {
   const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
     // link: from([authMiddleware, link]),
-    uri: "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2",
+    uri: `https://gateway.thegraph.com/api/${API_KEY}/subgraphs/id/GAWNgiGrA9eRce5gha9tWc7q5DPvN3fs5rSJ6tEULFNM`,
   });
 
   return apolloClient;
