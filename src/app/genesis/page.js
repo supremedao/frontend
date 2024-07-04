@@ -55,7 +55,7 @@ function Product() {
       <Header>
         <div className={"flex content-start justify-end gap-2"}>
           <div className={"hidden shrink-0 lg:block"}>
-            <Link href={"/product/#how-it-works"}>
+            <Link href={"/genesis/#how-it-works"}>
               <Button size={"small"}>How it works</Button>
             </Link>
           </div>
