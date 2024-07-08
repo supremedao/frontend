@@ -117,7 +117,7 @@ export default function ConnectWalletDropdown() {
                         .
                       </Typography>
                       <div>
-                        <Typography className={"mb-1 text-xs font-bold"}>
+                        <Typography className={"mb-1 font-bold text-primary"}>
                           Important Notice: Risks of Using SupremeDAO Finance
                         </Typography>
                         <Typography className={"text-xs"}>
@@ -129,7 +129,7 @@ export default function ConnectWalletDropdown() {
                           with the Protocol.
                         </Typography>
                       </div>
-                      <div className={"mt-5"}>
+                      <div className={"mt-7"}>
                         <label className={"flex"}>
                           <input
                             type={"checkbox"}
