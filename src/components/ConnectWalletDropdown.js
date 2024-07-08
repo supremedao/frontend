@@ -116,20 +116,31 @@ export default function ConnectWalletDropdown() {
                         </Link>
                         .
                       </Typography>
-                    </div>
-                    <div className="p-4 sm:p-10">
-                      <div className={"mb-6"}>
+                      <div>
+                        <Typography className={"mb-1 text-xs font-bold"}>
+                          Important Notice: Risks of Using SupremeDAO Finance
+                        </Typography>
+                        <Typography className={"text-xs"}>
+                          SupremeDAO finance is a new suite of experimental
+                          blockchain-oriented functionalities. Please read
+                          carefully our terms & conditions. You understand and
+                          agree to assume full responsibility for all of the
+                          risks of accessing and using the Interface to interact
+                          with the Protocol.
+                        </Typography>
+                      </div>
+                      <div className={"mt-5"}>
                         <label className={"flex"}>
                           <input
                             type={"checkbox"}
                             className={"mr-2 w-4"}
                             onChange={handleAgreeTerms}
                           />
-                          <Typography className={"text-sm"}>
+                          <Typography className={"text-xs md:text-sm"}>
                             I agree to the{" "}
                             <Link
                               target={"_blank"}
-                              className={"text-sm text-primary"}
+                              className={"text-xs text-primary md:text-sm"}
                               href={"/content/terms-of-use"}
                             >
                               Terms &amp; Conditions
@@ -138,7 +149,7 @@ export default function ConnectWalletDropdown() {
                             <Link
                               href={"/content/privacy"}
                               target={"_blank"}
-                              className={"text-sm text-primary"}
+                              className={"text-xs text-primary md:text-sm"}
                             >
                               Privacy policy
                             </Link>
@@ -146,6 +157,8 @@ export default function ConnectWalletDropdown() {
                           </Typography>
                         </label>
                       </div>
+                    </div>
+                    <div className="p-4 sm:p-10">
                       {connectors.map((connector) => (
                         <Menu.Item key={connector.uid}>
                           {({ active }) => (
