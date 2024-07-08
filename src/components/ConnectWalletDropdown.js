@@ -101,7 +101,7 @@ export default function ConnectWalletDropdown() {
                       <Typography variant="h3" className="text-primary">
                         Connect your wallet
                       </Typography>
-                      <Typography className={"mb-4"}>
+                      <Typography className={"mb-5"}>
                         Connecting your wallet is like “logging in” to Web3.
                         Select your wallet from the options to get started. If
                         you don’t have a wallet jet, you can find an overview{" "}
@@ -158,38 +158,43 @@ export default function ConnectWalletDropdown() {
                         </label>
                       </div>
                     </div>
-                    <div className="p-4 sm:p-10">
-                      {connectors.map((connector) => (
-                        <Menu.Item key={connector.uid}>
-                          {({ active }) => (
-                            <a
-                              href={"#"}
-                              onClick={(event) => {
-                                event.preventDefault();
+                    <div className=" flex flex-col justify-center p-4 sm:p-10">
+                      <div>
+                        {connectors.map((connector) => (
+                          <Menu.Item key={connector.uid}>
+                            {({ active }) => (
+                              <a
+                                href={"#"}
+                                onClick={(event) => {
+                                  event.preventDefault();
 
-                                try {
-                                  if (!checked) return;
-                                  connect({ connector });
-                                } catch (error) {
-                                  console.log("error connecting wallet", error);
-                                }
-                              }}
-                              className={classNames(
-                                active && checked
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                `flex px-4 py-5  rounded-xl border-dashed border border-black my-3 ${checked ? "" : "opacity-25"}`,
-                              )}
-                            >
-                              <img
-                                src={getIcon(connector.id)}
-                                className={"mr-2 w-6"}
-                              />
-                              {connector.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
+                                  try {
+                                    if (!checked) return;
+                                    connect({ connector });
+                                  } catch (error) {
+                                    console.log(
+                                      "error connecting wallet",
+                                      error,
+                                    );
+                                  }
+                                }}
+                                className={classNames(
+                                  active && checked
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  `flex px-4 py-5  rounded-xl border-dashed border border-black my-3 ${checked ? "" : "opacity-25"}`,
+                                )}
+                              >
+                                <img
+                                  src={getIcon(connector.id)}
+                                  className={"mr-2 w-6"}
+                                />
+                                {connector.name}
+                              </a>
+                            )}
+                          </Menu.Item>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </Dialog.Panel>
