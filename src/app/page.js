@@ -37,7 +37,7 @@ export default function Home() {
                 target={"_blank"}
               >
                 <Button color={"blue"} size={"large"} className={"w-full"}>
-                  Coming soon
+                  Try Genesis Strategy Now
                 </Button>
               </Link>
             </div>
@@ -46,6 +46,9 @@ export default function Home() {
             </p>
           </div>
         </Hero>
+        <Typography className={"text-center uppercase text-red-600"}>
+          Powered by PowerPool
+        </Typography>
       </article>
 
       <article className={"mb-40"}>
@@ -70,7 +73,7 @@ export default function Home() {
             as our strategies succeed, backed by a diversified asset pool. This
             makes investing in DeFi strategies straightforward and efficient.
           </Card>
-          <Card title="DAO governed liquidity" icon={"icons/sup.svg"}>
+          <Card title="DAO Governed Liquidity" icon={"icons/sup.svg"}>
             SupremeDAO manages its liquidity by creating DAO controlled pools
             and applying veTokenomics incentives and strategic investments to
             ensure profitability and stability, with all operations automated
@@ -122,15 +125,15 @@ export default function Home() {
         </Typography>
         <div className="grid min-h-[580px] w-full gap-4 py-6 md:grid-cols-3 lg:mb-0">
           <Card
-            title="Alpha wstETH Maximizer"
+            title="Genesis wstETH Maximizer"
             conic
             className={`min-h-[500px] border-none bg-[conic-gradient(var(--conic--down))] sm:bg-[conic-gradient(var(--conic--right))]`}
           >
             <div className={"flex h-full flex-col justify-between"}>
               <Typography>
-                Maximize your wstETH on Mainnet with our D2D farming strategy.
-                Utilizing veTokenomics, this strategy enhances yield by
-                leveraging vote-escrowed tokens effectively.
+                Maximize your wstETH on Ethereum mainnet with our multistep Aura
+                farming strategy. Through automated borrowing and auto
+                compounding, this strategy enhances your yield.
               </Typography>
               <div className={"mt-3"}>
                 <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
@@ -217,7 +220,7 @@ export default function Home() {
         <div className="my-5 sm:flex md:mt-8">
           <div className="">
             <Button className="z-10 w-full" color={"blue"} size={"large"}>
-              Coming soon
+              Try Genesis Strategy Now
             </Button>
           </div>
         </div>

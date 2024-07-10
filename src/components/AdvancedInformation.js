@@ -10,7 +10,7 @@ function AdvancedInformation() {
   const [collapsed, toggle] = useState(false);
 
   return (
-    <article className={"mb-5"}>
+    <article className={"mb-20"}>
       <header className={"flex items-start justify-between"}>
         <Typography variant={"h2"}>Advanced Information</Typography>
         <button

@@ -45,7 +45,7 @@ function Information() {
               }
             />
           </div>
-          <div id={"how-it-works"} className={"mx-auto sm:w-1/2"}>
+          <div className={"mx-auto sm:w-1/2"}>
             <Typography variant={"h3"} className={"mb-8 text-primary"}>
               How it works
             </Typography>

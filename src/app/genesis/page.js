@@ -82,11 +82,7 @@ function Product() {
           <AdvancedInformation />
         </div>
 
-        <div>
-          <Information />
-        </div>
-
-        <article className={"mb-40"}>
+        <article className={"mb-40 hidden"}>
           <Typography variant={"h2"}>
             The process is <span className={"text-primary"}>simple</span>
           </Typography>
@@ -121,8 +117,8 @@ function Product() {
           </div>
         </article>
 
-        <article className={"mb-40"}>
-          <Typography variant={"h2"}>
+        <article className={"mb-32"} id={"how-it-works"}>
+          <Typography variant={"h2"} className={"capitalize"}>
             Learn more{" "}
             <span className={"text-primary"}>about the strategy</span>
           </Typography>
@@ -149,6 +145,9 @@ function Product() {
             </Card>
           </div>
         </article>
+        <div>
+          <Information />
+        </div>
 
         {/*<article className={"mb-10 flex flex-col gap-4 sm:flex-row"}>*/}
         {/*  <div className={"sm:w-3/5"}>*/}
