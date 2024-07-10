@@ -53,7 +53,7 @@ function Product() {
   return (
     <>
       <Header>
-        <div className={"flex content-start justify-end gap-2"}>
+        <div className={"flex content-start justify-end gap-2 lg:flex-1"}>
           <div className={"hidden shrink-0 lg:block"}>
             <Link href={"/genesis/#how-it-works"}>
               <Button size={"small"}>How it works</Button>

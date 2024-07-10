@@ -14,8 +14,8 @@ export default function Home() {
     <>
       <Header>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
-            <Button size="medium">Join Community</Button>
+          <Link href="/genesis">
+            <Button size="medium">Open dApp</Button>
           </Link>
         </div>
       </Header>
