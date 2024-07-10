@@ -30,17 +30,32 @@ export default function Home() {
               Gain instant access to high-APR DeFi strategies with a single
               token.
             </Typography>
-            <div className="my-5 sm:flex md:mt-10">
+            <div className="my-5 flex flex-col space-y-2 md:mt-10">
               <Link
                 href="https://twitter.com/supreme_dao"
                 className={"w-full sm:w-3/5 "}
                 target={"_blank"}
               >
-                <Button color={"blue"} size={"large"} className={"w-full"}>
+                <Button
+                  color={"blue"}
+                  size={"large"}
+                  className={"w-full whitespace-nowrap"}
+                >
                   Try Genesis Strategy Now
                 </Button>
               </Link>
+              <Link
+                href={
+                  "https://mirror.xyz/supremexyz.eth/tFlbXl8cnVWXZ8PvegEXcI7mfc8qJHT6OjSJ0JSua-Q"
+                }
+                target={"_blank"}
+              >
+                <Button size={"medium"} className={"w-full sm:w-3/5"}>
+                  Learn more
+                </Button>
+              </Link>
             </div>
+            <div className={"mb-2"}></div>
             <p className={"text-center text-xs sm:text-left"}>
               *Beta version now available for wstETH holders
             </p>
