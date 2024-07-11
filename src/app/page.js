@@ -61,9 +61,6 @@ export default function Home() {
             </p>
           </div>
         </Hero>
-        <Typography className={"text-center uppercase text-red-600"}>
-          Powered by PowerPool
-        </Typography>
       </article>
 
       <article className={"mb-40"}>
