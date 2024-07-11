@@ -31,11 +31,7 @@ export default function Home() {
               token.
             </Typography>
             <div className="my-5 flex flex-col space-y-2 md:mt-10">
-              <Link
-                href="https://twitter.com/supreme_dao"
-                className={"w-full sm:w-3/5 "}
-                target={"_blank"}
-              >
+              <Link href="/genesis" className={"w-full sm:w-3/5 "}>
                 <Button
                   color={"blue"}
                   size={"large"}
@@ -231,9 +227,11 @@ export default function Home() {
         </Typography>
         <div className="my-5 sm:flex md:mt-8">
           <div className="">
-            <Button className="z-10 w-full" color={"blue"} size={"large"}>
-              Try Genesis Strategy Now
-            </Button>
+            <Link href={"/genesis"}>
+              <Button className="z-10 w-full" color={"blue"} size={"large"}>
+                Try Genesis Strategy Now
+              </Button>
+            </Link>
           </div>
         </div>
       </Hero>
