@@ -26,6 +26,7 @@ import ConnectWalletDropdown from "@/components/ConnectWalletDropdown";
 import Header from "@/components/Header";
 import NoSSR from "@/app/NoSSR";
 import Link from "next/link";
+import AppProvider from "@/Context/AppProvider";
 
 const ConnectButton = () => {
   const account = useAccount();
@@ -177,7 +178,9 @@ export default function Page() {
       <QueryClientProvider client={queryClient}>
         <ContractsDataProvider>
           <ApolloProvider client={client}>
-            <Product />
+            <AppProvider>
+              <Product />
+            </AppProvider>
           </ApolloProvider>
         </ContractsDataProvider>
       </QueryClientProvider>

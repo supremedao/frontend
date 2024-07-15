@@ -9,8 +9,10 @@ import { useWithdraw } from "@/hooks/useWithdraw";
 import { useCurrentWSTBalance } from "@/hooks/useCurrentWSTBalance";
 import BigNumber from "bignumber.js";
 import { useState } from "react";
+import { useApp } from "@/Context/AppProvider";
 
 export function Withdraw() {
+  const { openModal } = useApp();
   const account = useAccount();
   const [validationError, setValidationError] = useState("");
   const { withdraw, isPending, isConfirmed, isConfirming, error } =
@@ -37,6 +39,16 @@ export function Withdraw() {
 
   async function submit(data) {
     setValidationError("");
+
+    if (
+      isPending ||
+      !account?.address ||
+      !wstEthBalance ||
+      wstEthBalance <= 0
+    ) {
+      openModal();
+      return;
+    }
 
     const { amount } = data;
     if (BigNumber(amount).gt(currentBalance)) {
@@ -90,12 +102,6 @@ export function Withdraw() {
               size={"small"}
               color={"blue"}
               className={"rounded-lg py-3"}
-              disabled={
-                isPending ||
-                !account?.address ||
-                !wstEthBalance ||
-                wstEthBalance <= 0
-              }
             >
               {isPending ? "Confirming..." : "Withdraw"}
             </Button>
@@ -129,12 +135,6 @@ export function Withdraw() {
               color={"white"}
               size={"small"}
               className={"rounded-lg py-3"}
-              disabled={
-                isPending ||
-                !account?.address ||
-                !wstEthBalance ||
-                wstEthBalance <= 0
-              }
             >
               {isPending ? "Confirming..." : "Withdraw"}
             </Button>

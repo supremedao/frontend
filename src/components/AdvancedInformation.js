@@ -7,7 +7,7 @@ import { LiquidationRange } from "@/components/Statuses/LiquidationRange";
 import { IncentivisationRange } from "@/components/Statuses/IncentivisationRange";
 
 function AdvancedInformation() {
-  const [collapsed, toggle] = useState(false);
+  const [collapsed, toggle] = useState(true);
 
   return (
     <article className={"mb-20"}>

@@ -4,15 +4,15 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FormProvider, useForm } from "react-hook-form";
 import { FormattedInput } from "@/components/Form/FormattedInput";
 import { useStake } from "@/hooks/useStake";
-import dynamic from "next/dynamic";
 import BigNumber from "bignumber.js";
 import { useAccount, useBalance } from "wagmi";
-import Popup from "reactjs-popup";
 
 import { ADDRESSES } from "@/contracts/addresses";
 import Tooltip from "@/components/Tooltip";
+import { useApp } from "@/Context/AppProvider";
 
 export function Stake() {
+  const { openModal } = useApp();
   const account = useAccount();
   const { stake, error, isPending, isConfirming, isConfirmed } = useStake();
   const { data, error: balanceError } = useBalance({
@@ -38,7 +38,17 @@ export function Stake() {
 
   async function submit(data) {
     const { amount, keeper } = data;
-    console.log("data", data);
+
+    if (
+      isPending ||
+      !account?.address ||
+      !data ||
+      BigNumber(formattedBalance).lte(0)
+    ) {
+      openModal();
+      return;
+    }
+
     const formattedAmount = BigNumber(amount)
       .multipliedBy(Math.pow(10, 18))
       .toFixed();
@@ -66,7 +76,7 @@ export function Stake() {
     <FormProvider {...methods}>
       <form action="#" onSubmit={handleSubmit(submit)}>
         <article className={"flex flex-col justify-between"}>
-          <div className={"mb-36"}>
+          <div className={"mb-24 sm:mb-36"}>
             <div className={"mb-2  justify-between "}>
               <Typography className={""}>Amount to Stake</Typography>
             </div>
@@ -165,12 +175,6 @@ export function Stake() {
             size={"small"}
             color={"blue"}
             className={"rounded-lg py-3"}
-            disabled={
-              isPending ||
-              !account?.address ||
-              !data ||
-              BigNumber(formattedBalance).lte(0)
-            }
           >
             {isPending ? "Confirming..." : "Stake"}
           </Button>

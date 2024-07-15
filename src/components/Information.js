@@ -2,7 +2,7 @@ import Typography from "@/components/Typography";
 
 function Information() {
   return (
-    <section className={"mx-auto mb-10 pt-10 text-center sm:w-11/12"}>
+    <section className={"mx-auto mb-10 text-center sm:w-11/12"}>
       <Typography className="mb-8">
         Prior to engaging with SupremeDAO’s strategy thoroughly review the
         documentation and terms and conditions provided. Keep in mind that

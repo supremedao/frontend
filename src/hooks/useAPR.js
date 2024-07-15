@@ -12,7 +12,7 @@ function useAPR(days) {
   const { data: tvlData, error } = useQuery(GET_POOL_TVLs, {
     variables: {
       days,
-      id: "0x27c9f71cc31464b906e0006d4fcbc8900f48f15f00020000000000000000010f",
+      id: "0x42fbd9f666aacc0026ca1b88c94259519e03dd67000200000000000000000507",
     },
   });
 

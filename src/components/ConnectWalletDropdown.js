@@ -6,6 +6,7 @@ import { useConnect } from "wagmi";
 import Typography from "@/components/Typography";
 import Link from "@/components/Link";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useApp } from "@/Context/AppProvider";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -26,15 +27,8 @@ function getIcon(id) {
 
 export default function ConnectWalletDropdown() {
   const { connectors, connect, status, error } = useConnect();
-  const [isOpen, setIsOpen] = useState(true);
   const [checked, setChecked] = useState(false);
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
+  const { authDialogOpen, closeModal, openModal } = useApp();
 
   function handleAgreeTerms(event) {
     setChecked(event.currentTarget.checked);
@@ -55,7 +49,7 @@ export default function ConnectWalletDropdown() {
           Connect wallet
         </Button>
       </div>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={authDialogOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
