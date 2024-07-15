@@ -1,4 +1,5 @@
-const BASE_API = "https://api.coingecko.com/api/v3";
+const BASE_API = "https://pro-api.coingecko.com/api/v3";
+const API_KEY = "CG-4VHTNCowR1kcRpcqHHLt45kF";
 
 const requestsCache = {
   simplePrices: null,
@@ -12,6 +13,12 @@ async function fetchSimplePrices(ids, vs_currencies = "ETH,USD") {
   try {
     const response = await fetch(
       `${BASE_API}/simple/price?ids=${ids}&vs_currencies=${vs_currencies}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-cg-pro-api-key": API_KEY,
+        },
+      },
     );
 
     if (!response.ok) {
@@ -51,6 +58,12 @@ async function fetchHistoricalData(id, days) {
   try {
     const response = await fetch(
       `${BASE_API}/coins/${id}/market_chart?days=${days}&vs_currency=usd&interval=daily`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-cg-pro-api-key": API_KEY,
+        },
+      },
     );
 
     if (!response.ok) {
