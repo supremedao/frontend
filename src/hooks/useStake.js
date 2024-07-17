@@ -59,7 +59,14 @@ export function useStake() {
       return Promise.reject("abi is not loaded");
     }
 
-    console.log("approved:", approvedAmount);
+    console.log(
+      "approved:",
+      approvedAmount,
+      "amount: ",
+      amount,
+      "3rd param: ",
+      BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(0),
+    );
 
     return new Promise((resolve, reject) => {
       // if already approved amount is bigger, no need to call "approve" again
@@ -95,7 +102,7 @@ export function useStake() {
               args: [
                 amount,
                 account?.address,
-                BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(),
+                BigNumber(amount).multipliedBy(wstETHvsUSDPrice).toFixed(0),
               ],
               enabled: !!account?.address,
             },
@@ -159,7 +166,7 @@ export function useStake() {
                       account?.address,
                       BigNumber(amount)
                         .multipliedBy(wstETHvsUSDPrice)
-                        .toFixed(),
+                        .toFixed(0),
                     ],
                     enabled: !!account?.address,
                   },

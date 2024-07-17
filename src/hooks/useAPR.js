@@ -4,6 +4,7 @@ import { useContractsData } from "@/Context/ContractsDataProvider";
 import { useQuery } from "@apollo/client";
 import { GET_POOL_TVLs } from "@/api/graphql/queries";
 import BigNumber from "bignumber.js";
+import { ADDRESSES } from "@/contracts/addresses";
 
 function useAPR(days) {
   const timestamps = generateTimestamps(days);
@@ -12,16 +13,19 @@ function useAPR(days) {
   const { data: tvlData, error } = useQuery(GET_POOL_TVLs, {
     variables: {
       days,
-      id: "0x42fbd9f666aacc0026ca1b88c94259519e03dd67000200000000000000000507",
+      id: ADDRESSES.TVL_POOL,
     },
   });
 
-  console.log(`------- useAPR -----
+  console.log(
+    tvlData,
+    `------- useAPR -----
      fee: ${fee}
      auraData: ${auraData}
      tvlData: ${tvlData}
      balancerPrices: ${balancerPrices}
-  `);
+  `,
+  );
 
   if (!fee || !auraData || !tvlData || !balancerPrices) return [];
 

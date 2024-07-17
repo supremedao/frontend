@@ -87,6 +87,24 @@ export function calculateAuraAPR({
   const auraPerYearUsd = BigNumber(auraPerYear).multipliedBy(auraPrice);
   const value = auraPerYearUsd.div(tvl).multipliedBy(100).plus(balEarnedUSD);
 
+  console.log(
+    "auraPerYear: ",
+    auraPerYear.toFixed(),
+    "auraPerYearUsd: ",
+    auraPerYearUsd.toFixed(),
+    "tvl: ",
+    tvl,
+    "auraVaultData: ",
+    auraVaultData,
+    "balancerPrice: ",
+    balancerPrice,
+    "auraPrice: ",
+    auraPrice,
+    "balEarnedUSD: ",
+    balEarnedUSD.toFixed(),
+    "value:",
+    value.toFixed(),
+  );
   // minus fee
   return value.minus(value.multipliedBy(fee));
 }

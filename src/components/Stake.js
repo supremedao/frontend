@@ -51,7 +51,7 @@ export function Stake() {
 
     const formattedAmount = BigNumber(amount)
       .multipliedBy(Math.pow(10, 18))
-      .toFixed();
+      .toFixed(0);
     console.log(formattedAmount, "keeper", keeper);
     try {
       await stake(formattedAmount, { keeper });
