@@ -28,7 +28,7 @@ export default function Header({ children }) {
           </a>
         </div>
 
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
+        <Popover.Group className="-ml-10 hidden lg:flex lg:gap-x-12">
           <a
             href="https://t.me/supremedaochat"
             target={"_blank"}

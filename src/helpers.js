@@ -1,5 +1,4 @@
 import BigNumber from "bignumber.js";
-import { formatEther } from "viem";
 
 export function convertEthToUsd(amount, ethToUsdRate) {
   if (!ethToUsdRate) return 0;
@@ -128,7 +127,10 @@ export function calculateWstEthBalanceInUSD({
   summ,
   wstETHvsUSDPrice,
 }) {
-  const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(summ);
+  const amount = BigNumber(balanceOf)
+    .div(totalSupply)
+    .multipliedBy(summ)
+    .div(Math.pow(10, 18));
 
   console.log(`=========== WST Balance in USD ========
     amount=${amount}
@@ -137,7 +139,7 @@ export function calculateWstEthBalanceInUSD({
     summ=${summ}
   `);
 
-  return !amount.isNaN() ? BigNumber(formatEther(amount)).toFixed(2) : 0;
+  return !amount.isNaN() ? BigNumber(amount).toFixed(2) : 0;
 }
 
 export function calculateHealth({ s = 0, debt = 0, liqDiscount, p = 0 }) {

@@ -19,8 +19,8 @@ function AdvancedInformation() {
             "mt-4 inline-block rounded-full border p-2  transition-all"
           }
         >
-          {!collapsed && <ChevronDownIcon className={"size-6 "} />}
-          {collapsed && <ChevronUpIcon className={"size-6"} />}
+          {collapsed && <ChevronDownIcon className={"size-6 "} />}
+          {!collapsed && <ChevronUpIcon className={"size-6"} />}
         </button>
       </header>
       <div
