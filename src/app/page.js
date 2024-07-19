@@ -144,13 +144,13 @@ export default function Home() {
                 compounding, this strategy enhances your yield.
               </Typography>
               <div className={"mt-3"}>
-                <Link href="https://twitter.com/supreme_dao" target={"_blank"}>
+                <Link href="/genesis" target={"_blank"}>
                   <Button
                     className={"relative z-10 w-full"}
                     size={"large"}
                     color={"white"}
                   >
-                    Coming soon
+                    Stake now
                   </Button>
                 </Link>
               </div>
