@@ -6,9 +6,10 @@ import { loadDevMessages, loadErrorMessages } from "@apollo/client/dev";
 const API_KEY = process.env.NEXT_PUBLIC_GRAPH_API_KEY;
 
 export function createClient() {
-  const link = new RestLink({
-    uri: "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2/graphql",
-  });
+  // @Deprecated link to old Graph to fetch TVL pool data
+  // const link = new RestLink({
+  //   uri: "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2/graphql",
+  // });
 
   const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),

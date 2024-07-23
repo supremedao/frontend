@@ -13,22 +13,22 @@ export function useApp() {
 }
 
 function AppProvider({ children }) {
-  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
 
-  function closeModal() {
-    setAuthDialogOpen(false);
+  function closeAuthModal() {
+    setIsAuthDialogOpen(false);
   }
 
-  function openModal() {
-    setAuthDialogOpen(true);
+  function openAuthModal() {
+    setIsAuthDialogOpen(true);
   }
 
   return (
     <AppContext.Provider
       value={{
-        authDialogOpen,
-        closeModal,
-        openModal,
+        isAuthDialogOpen,
+        closeAuthModal,
+        openAuthModal,
       }}
     >
       {children}
