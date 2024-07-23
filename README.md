@@ -19,6 +19,11 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Markdown pages
+Dynamic pages like `/about`, `/privacy`, `/terms`, etc. are generated with a help of Markdown files. 
+
+You can find them at the `/_content-markdown` folder. 
+
 
 ## CI/CD
 Currently we use Netlify for CI/CD. 
