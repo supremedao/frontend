@@ -76,7 +76,7 @@ function Product() {
           <APRStatus />
           <TVLStatus />
           <CurrentBalanceStatus />
-          <TotalRewardsEarnedStatus className={"hidden"} />
+          <TotalRewardsEarnedStatus />
         </div>
 
         <div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Typography from "@/components/Typography";
 import Button from "@/components/Button";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
@@ -10,9 +11,12 @@ import { useAccount, useBalance } from "wagmi";
 import { ADDRESSES } from "@/contracts/addresses";
 import Tooltip from "@/components/Tooltip";
 import { useApp } from "@/Context/AppProvider";
+import Link from "next/link";
+import UseKeeperModal from "./UseKeeperModal";
 
 export function Stake() {
   const { openModal } = useApp();
+  let [isKeeperModalOpen, setIsKeeperModalOpen] = useState(false)
   const account = useAccount();
   const { stake, error, isPending, isConfirming, isConfirmed } = useStake();
   const { data, error: balanceError } = useBalance({
@@ -56,6 +60,9 @@ export function Stake() {
     try {
       await stake(formattedAmount, { keeper });
       setValue("amount", 0);
+      if (keeper) {
+        openKeeperModal()
+      }
     } catch (error) {
       console.log("rejection", error);
     }
@@ -72,13 +79,25 @@ export function Stake() {
     }
   }
 
+  function closeKeeperModal() {
+    setIsKeeperModalOpen(false)
+  }
+
+  function openKeeperModal() {
+    setIsKeeperModalOpen(true)
+  }
+
   return (
     <FormProvider {...methods}>
       <form action="#" onSubmit={handleSubmit(submit)}>
         <article className={"flex flex-col justify-between"}>
           <div className={"mb-24 sm:mb-36"}>
-            <div className={"mb-2  justify-between "}>
-              <Typography className={""}>Amount to Stake</Typography>
+            <div className={"mb-2 justify-between flex flex-wrap items-center"}>
+              <Typography className={"text-primary mr-1"}>Amount to Stake</Typography>
+              <Typography className={"text-xs"}>
+                Need wstETH? Swap easily on{" "}
+                <Link href={"https://swap.cow.fi/#/1/swap/_/wstETH"} target="_blank" className={"text-primary underline"}>CowSwap</Link>
+              </Typography>
             </div>
             <div className={"mb-1 flex rounded-lg bg-black/5 p-2"}>
               <FormattedInput
@@ -185,6 +204,10 @@ export function Stake() {
           <Typography className={"mt-2 px-2 text-xs"}>
             {error && error.shortMessage}
           </Typography>
+          <UseKeeperModal 
+            isKeeperModalOpen={isKeeperModalOpen} 
+            closeKeeperModal={closeKeeperModal} 
+          />
         </article>
       </form>
     </FormProvider>
