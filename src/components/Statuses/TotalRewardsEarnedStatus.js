@@ -1,4 +1,5 @@
 "use client";
+const moment = require("moment");
 import StatusBar from "@/components/StatusBar";
 import { formatEther } from "viem";
 import BigNumber from "bignumber.js";
@@ -16,11 +17,11 @@ function useTotalRewards() {
   const aprData = useAPR(1);
   const apr = aprData?.[0];
   const aprInPercent = BigNumber(apr);
-  
+
   const depositData = useUserDeposit();
   const firstDepositTimestamp = depositData?.[0]?.timestamp;
-  const currentDate = new Date();
-  const firstDepositDate = new Date(firstDepositTimestamp*1000);
+  const currentDate = moment();
+  const firstDepositDate = moment.unix(firstDepositTimestamp);
 
   const {
     balanceOf,
@@ -31,15 +32,17 @@ function useTotalRewards() {
     wstETHvsUSDPrice,
     summ,
   } = useContractsData();
-  
-  const diffTime = Math.abs(currentDate - firstDepositDate);
-  const depositDaysCount = Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 2); // First and last days not include (-2). 
+
+  const depositDaysCount = Math.max(
+    0,
+    currentDate.diff(firstDepositDate, "days") - 1,
+  );
 
   const amount = BigNumber(wstEthBalance).plus(
     BigNumber(wstEthBalance)
-      .multipliedBy(aprInPercent.div(365*100))
-      .multipliedBy(depositDaysCount)
-  )
+      .multipliedBy(aprInPercent.div(365 * 100))
+      .multipliedBy(depositDaysCount),
+  );
 
   console.log(`====== Total Rewards Earned ======
     balanceOf=${balanceOf}

@@ -1,22 +1,22 @@
-
 import { useAccount } from "wagmi";
+const moment = require("moment");
 
 function useUserDeposit() {
   const account = useAccount();
 
   // MOCK
-  const currentDate = new Date();
-  const oneYearAgo = new Date(currentDate);
-  oneYearAgo.setFullYear(currentDate.getFullYear() - 1);
-  const timestampOneYearAgo = Math.floor(oneYearAgo.getTime() / 1000);
+  const oneYearAgo = moment().subtract(1, "year");
+  const timestampOneYearAgo = oneYearAgo.unix();
 
-   const userDeposits = account?.address ? [
-    {
-      id:'0xe26e39f60f0a95',
-      owner: account?.address,
-      timestamp: timestampOneYearAgo
-    }
-  ] : []
+  const userDeposits = account?.address
+    ? [
+        {
+          id: "0xe26e39f60f0a95",
+          owner: account?.address,
+          timestamp: timestampOneYearAgo,
+        },
+      ]
+    : [];
 
   console.log(
     `------- userDeposits ----- MOCK
