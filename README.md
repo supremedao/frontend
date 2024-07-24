@@ -28,6 +28,11 @@ You can find them at the `/_content-markdown` folder.
 ## CI/CD
 Currently we use Netlify for CI/CD. 
 
+# Linting & Formatting
+Please, turn on ESLINT. It uses prettier by default.
+
+⚠️ Your code has to be linted otherwise the build will fail
+
 ## Release management
 
 `main` - production branch
