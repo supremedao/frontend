@@ -28,7 +28,7 @@ function getIcon(id) {
 export default function ConnectWalletDropdown() {
   const { connectors, connect, status, error } = useConnect();
   const [checked, setChecked] = useState(false);
-  const { authDialogOpen, closeModal, openModal } = useApp();
+  const { isAuthDialogOpen, closeModal, openModal } = useApp();
 
   function handleAgreeTerms(event) {
     setChecked(event.currentTarget.checked);
@@ -49,7 +49,7 @@ export default function ConnectWalletDropdown() {
           Connect wallet
         </Button>
       </div>
-      <Transition appear show={authDialogOpen} as={Fragment}>
+      <Transition appear show={isAuthDialogOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
