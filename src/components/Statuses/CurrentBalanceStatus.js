@@ -33,7 +33,9 @@ function CurrentBalanceStatus({ keeperAmount = 0, ...props }) {
         </div>
       }
       value={`${currentBalance} wstETH / ${amount} USD`}
-      comment={keeperAmount ? `Pending Keeper Execution: ${keeperAmount} wstETH`: ''}
+      comment={
+        keeperAmount ? `Pending Keeper Execution: ${keeperAmount} wstETH` : ""
+      }
       {...props}
     />
   );

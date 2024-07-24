@@ -131,9 +131,15 @@ export function LiquidationRange({ className = "" }) {
       <article className={"flex flex-col sm:flex-row"}>
         <div className={"mb-4 sm:mb-0 sm:w-1/3"}>
           <header className={"mb-2"}>
-            <Typography variant={"lead"} className={"font-light text-primary flex"}>
+            <Typography
+              variant={"lead"}
+              className={"font-light text-primary flex"}
+            >
               Liquidation Range
-              <Link href={"https://crvusd.curve.fi/"} className="ml-2 items-start">
+              <Link
+                href={"https://crvusd.curve.fi/"}
+                className="ml-2 items-start"
+              >
                 <img
                   src={"/icons/external-link.png"}
                   className={"w-3"}

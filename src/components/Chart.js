@@ -80,7 +80,7 @@ export default function Chart() {
     <article className={"rounded-md border bg-black/5 p-4"}>
       <div className="-mx-4 mb-2 flex grow flex-row items-center justify-between border-b px-4 pb-4">
         <Typography variant={"h3"} className={"mb-0 flex"}>
-          Historical APR 
+          Historical APR
           <Link href={"https://aura.finance/"} className="ml-2 items-start">
             <img
               src={"/icons/external-link.png"}

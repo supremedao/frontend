@@ -4,8 +4,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import Typography from "@/components/Typography";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function UseKeeperModal({ isKeeperModalOpen, closeKeeperModal }) {
-
+export default function UseKeeperModal({
+  isKeeperModalOpen,
+  closeKeeperModal,
+}) {
   return (
     <Transition appear show={isKeeperModalOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeKeeperModal}>
@@ -52,8 +54,13 @@ export default function UseKeeperModal({ isKeeperModalOpen, closeKeeperModal }) 
                     Thank you for choosing to stake with the Keeper!
                   </Typography>
                   <Typography className={"mb-3 text-xl"}>
-                    Your staking transaction will be executed by the Keeper at {" "}
-                    <Typography as={'span'}  className={"text-primary text-xl font-semibold"}>10 PM UTC</Typography>
+                    Your staking transaction will be executed by the Keeper at{" "}
+                    <Typography
+                      as={"span"}
+                      className={"text-primary text-xl font-semibold"}
+                    >
+                      10 PM UTC
+                    </Typography>
                     .
                   </Typography>
                   <Typography className={"mb-5 text-xl"}>
@@ -66,5 +73,5 @@ export default function UseKeeperModal({ isKeeperModalOpen, closeKeeperModal }) 
         </div>
       </Dialog>
     </Transition>
-  )
+  );
 }

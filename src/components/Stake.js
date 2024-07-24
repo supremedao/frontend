@@ -16,7 +16,7 @@ import UseKeeperModal from "./UseKeeperModal";
 
 export function Stake() {
   const { openModal } = useApp();
-  let [isKeeperModalOpen, setIsKeeperModalOpen] = useState(false)
+  let [isKeeperModalOpen, setIsKeeperModalOpen] = useState(false);
   const account = useAccount();
   const { stake, error, isPending, isConfirming, isConfirmed } = useStake();
   const { data, error: balanceError } = useBalance({
@@ -61,7 +61,7 @@ export function Stake() {
       await stake(formattedAmount, { keeper });
       setValue("amount", 0);
       if (keeper) {
-        openKeeperModal()
+        openKeeperModal();
       }
     } catch (error) {
       console.log("rejection", error);
@@ -80,11 +80,11 @@ export function Stake() {
   }
 
   function closeKeeperModal() {
-    setIsKeeperModalOpen(false)
+    setIsKeeperModalOpen(false);
   }
 
   function openKeeperModal() {
-    setIsKeeperModalOpen(true)
+    setIsKeeperModalOpen(true);
   }
 
   return (
@@ -93,10 +93,18 @@ export function Stake() {
         <article className={"flex flex-col justify-between"}>
           <div className={"mb-24 sm:mb-36"}>
             <div className={"mb-2 justify-between flex flex-wrap items-center"}>
-              <Typography className={"text-primary mr-1"}>Amount to Stake</Typography>
+              <Typography className={"text-primary mr-1"}>
+                Amount to Stake
+              </Typography>
               <Typography className={"text-xs"}>
                 Need wstETH? Swap easily on{" "}
-                <Link href={"https://swap.cow.fi/#/1/swap/_/wstETH"} target="_blank" className={"text-primary underline"}>CowSwap</Link>
+                <Link
+                  href={"https://swap.cow.fi/#/1/swap/_/wstETH"}
+                  target="_blank"
+                  className={"text-primary underline"}
+                >
+                  CowSwap
+                </Link>
               </Typography>
             </div>
             <div className={"mb-1 flex rounded-lg bg-black/5 p-2"}>
@@ -204,9 +212,9 @@ export function Stake() {
           <Typography className={"mt-2 px-2 text-xs"}>
             {error && error.shortMessage}
           </Typography>
-          <UseKeeperModal 
-            isKeeperModalOpen={isKeeperModalOpen} 
-            closeKeeperModal={closeKeeperModal} 
+          <UseKeeperModal
+            isKeeperModalOpen={isKeeperModalOpen}
+            closeKeeperModal={closeKeeperModal}
           />
         </article>
       </form>
