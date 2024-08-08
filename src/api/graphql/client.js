@@ -2,6 +2,7 @@ import { RestLink } from "apollo-link-rest";
 import { ApolloClient, InMemoryCache, from } from "@apollo/client";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { loadDevMessages, loadErrorMessages } from "@apollo/client/dev";
+import { ADDRESSES } from "@/contracts/addresses";
 
 const API_KEY = process.env.NEXT_PUBLIC_GRAPH_API_KEY;
 
@@ -14,7 +15,7 @@ export function createClient() {
   const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
     // link: from([authMiddleware, link]),
-    uri: `https://gateway.thegraph.com/api/${API_KEY}/subgraphs/id/GAWNgiGrA9eRce5gha9tWc7q5DPvN3fs5rSJ6tEULFNM`,
+    uri: `https://gateway.thegraph.com/api/${API_KEY}/subgraphs/id/${ADDRESSES.SUBGRAPH_ID}`,
   });
 
   return apolloClient;
