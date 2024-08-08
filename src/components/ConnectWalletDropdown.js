@@ -28,7 +28,7 @@ function getIcon(id) {
 export default function ConnectWalletDropdown() {
   const { connectors, connect, status, error } = useConnect();
   const [checked, setChecked] = useState(false);
-  const { isAuthDialogOpen, closeModal, openModal } = useApp();
+  const { isAuthDialogOpen, closeAuthModal, openAuthModal } = useApp();
 
   function handleAgreeTerms(event) {
     setChecked(event.currentTarget.checked);
@@ -45,12 +45,17 @@ export default function ConnectWalletDropdown() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Button size={"small"} onClick={openModal} color={"blue"} className="">
+        <Button
+          size={"small"}
+          onClick={openAuthModal}
+          color={"blue"}
+          className=""
+        >
           Connect wallet
         </Button>
       </div>
       <Transition appear show={isAuthDialogOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-10" onClose={closeAuthModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -80,7 +85,7 @@ export default function ConnectWalletDropdown() {
                     <button
                       type="button"
                       className="inline-flex w-full justify-center px-3 py-2 text-gray-900"
-                      onClick={closeModal}
+                      onClick={closeAuthModal}
                       data-autofocus
                     >
                       <XMarkIcon className={"size-6"} />
