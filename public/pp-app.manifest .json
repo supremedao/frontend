@@ -1,0 +1,9 @@
+{
+  "name": "supremedao",
+  "title": "SupremeDAO Genesis Strategy",
+  "description": "Automated leveraged yield farming strategy built with PowerPool",
+  "tags": ["DeFi"],
+  "icon": "https://supremedao.xyz/logotype.png",
+  "url": "https://supremedao.xyz/",
+  "networks": ["ethereum"]
+}
