@@ -1,7 +1,7 @@
 {
-  "name": "supremedao",
-  "title": "SupremeDAO Genesis Strategy",
-  "description": "Automated leveraged yield farming strategy built with PowerPool",
+  "name": "SupremeDAO",
+  "title": "SupremeDAO wstETH Yield Strategy",
+  "description": "Supercharge your wstETH yield generation with SupremeDAO x PowerPool! Get exposure to leverage, yield compounding, and automatic liquidation protection",
   "tags": ["DeFi"],
   "icon": "https://supremedao.xyz/logotype.png",
   "url": "https://supremedao.xyz/genesis",
