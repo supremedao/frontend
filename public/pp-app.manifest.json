@@ -3,7 +3,7 @@
   "title": "SupremeDAO wstETH Yield Strategy",
   "description": "Supercharge your wstETH yield generation with SupremeDAO x PowerPool! Get exposure to leverage, yield compounding, and automatic liquidation protection",
   "tags": ["DeFi"],
-  "icon": "https://supremedao.xyz/logotype.png",
+  "icon": "https://supremedao.xyz/supreme-logo.png",
   "url": "https://supremedao.xyz/genesis",
   "networks": ["ethereum"]
 }
