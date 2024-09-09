@@ -6,7 +6,7 @@ import BigNumber from "bignumber.js";
 import { useCurrentWSTBalance } from "@/hooks/useCurrentWSTBalance";
 import Typography from "@/components/Typography";
 
-function CurrentBalanceStatus(props) {
+function CurrentBalanceStatus({ keeperAmount = 0, ...props }) {
   const { balanceOf, summ, totalSupply, userState, wstETHvsUSDPrice } =
     useContractsData();
   const currentBalance = useCurrentWSTBalance();
@@ -33,6 +33,9 @@ function CurrentBalanceStatus(props) {
         </div>
       }
       value={`${currentBalance} wstETH / ${amount} USD`}
+      comment={
+        keeperAmount ? `Pending Keeper Execution: ${keeperAmount} wstETH` : ""
+      }
       {...props}
     />
   );

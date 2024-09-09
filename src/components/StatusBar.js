@@ -5,7 +5,13 @@ import { v4 as uuidv4 } from "uuid";
 import Tooltip from "@/components/Tooltip";
 import { useMemo } from "react";
 
-function StatusBar({ hint = "", title = "", value = 0, className = "" }) {
+function StatusBar({
+  hint = "",
+  title = "",
+  value = 0,
+  className = "",
+  comment = "",
+}) {
   const tooltipID = useMemo(() => `tooltip-${uuidv4()}`, []);
   return (
     <div className={`grow rounded-md border bg-black/5 p-4  ${className}`}>
@@ -23,6 +29,10 @@ function StatusBar({ hint = "", title = "", value = 0, className = "" }) {
       <Typography variant={"h3"} className={`font-normal`}>
         {value}
       </Typography>
+
+      {comment && (
+        <Typography className={"text-sm text-black/50"}>{comment}</Typography>
+      )}
     </div>
   );
 }

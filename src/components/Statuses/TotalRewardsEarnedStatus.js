@@ -1,9 +1,12 @@
 "use client";
+const moment = require("moment");
 import StatusBar from "@/components/StatusBar";
 import { formatEther } from "viem";
 import BigNumber from "bignumber.js";
 import { useContractsData } from "@/Context/ContractsDataProvider";
+import { useAPR } from "@/hooks/useAPR";
 import Typography from "@/components/Typography";
+import { useUserDeposit } from "@/hooks/useUserDeposit";
 
 // Total Rewards earned
 // Get user shares by calling balanceOf in LeverageStrategy and total shares by calling totalSupply()
@@ -11,6 +14,15 @@ import Typography from "@/components/Typography";
 // calculate rew = summ - currentDeposits()
 // return balanceOf/totalSupply * rew for specific person
 function useTotalRewards() {
+  const aprData = useAPR(1);
+  const apr = aprData?.[0];
+  const aprInPercent = BigNumber(apr);
+
+  const depositData = useUserDeposit();
+  const firstDepositTimestamp = depositData?.[0]?.timestamp;
+  const currentDate = moment();
+  const firstDepositDate = moment.unix(firstDepositTimestamp);
+
   const {
     balanceOf,
     totalSupply,
@@ -21,11 +33,16 @@ function useTotalRewards() {
     summ,
   } = useContractsData();
 
-  const rev = BigNumber(summ)
-    .minus(BigNumber(currentDeposits).multipliedBy(wstETHvsUSDPrice))
-    .div(Math.pow(10, 18));
-  const revenue = rev.lt(0) ? 0 : rev;
-  const amount = BigNumber(balanceOf).div(totalSupply).multipliedBy(revenue);
+  const depositDaysCount = Math.max(
+    0,
+    currentDate.diff(firstDepositDate, "days") - 1,
+  );
+
+  const amount = BigNumber(wstEthBalance).plus(
+    BigNumber(wstEthBalance)
+      .multipliedBy(aprInPercent.div(365 * 100))
+      .multipliedBy(depositDaysCount),
+  );
 
   console.log(`====== Total Rewards Earned ======
     balanceOf=${balanceOf}
@@ -37,8 +54,6 @@ function useTotalRewards() {
     userState[0]=${userState?.[0]}
     userState[1]=${userState?.[1]}
     summ=${summ}, 
-    rev=${rev}
-    revenue=${revenue}
     amount=${amount}
   `);
 
